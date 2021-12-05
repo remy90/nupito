@@ -3,23 +3,22 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Menu, MenuItem } from '@mui/material';
+import Link from '../Link';
 
 export default function ButtonAppBar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) =>
     setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+
+  const handleClose = () => setAnchorEl(null);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static"  sx={{ backgroundColor: 'navy'}}>
         <Toolbar>
           <IconButton
             size="large"
@@ -43,14 +42,16 @@ export default function ButtonAppBar() {
               'aria-labelledby': 'basic-button',
             }}
           >
-            <MenuItem onClick={handleClose}>Home</MenuItem>
-            <MenuItem onClick={handleClose}>RSVP</MenuItem>
-            <MenuItem onClick={handleClose}>Schedule</MenuItem>
-            <MenuItem onClick={handleClose}>Registry</MenuItem>
-            <MenuItem onClick={handleClose}>Location</MenuItem>
+            <MenuItem onClick={handleClose}><Link href="/" color="secondary">Home</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href="/rsvp" color="secondary">RSVP</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href="/schedule" color="secondary">Schedule</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href="/registry" color="secondary">Registry</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href="/location" color="primary">Location</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href="/hymns" color="secondary">Hymns</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href="/readings" color="secondary">Readings</Link></MenuItem>
           </Menu>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} align="justify">
+            Shaun &#38; Char
           </Typography>
         </Toolbar>
       </AppBar>

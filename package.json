@@ -1,6 +1,6 @@
 {
-  "name": "nextjs-with-styled-components-typescript",
-  "version": "5.0.0",
+  "name": "shaun-and-charlotte",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -14,6 +14,7 @@
     "@mui/icons-material": "^5.2.0",
     "@mui/material": "latest",
     "@mui/styled-engine-sc": "latest",
+    "mongodb": "^4.2.1",
     "next": "latest",
     "next-transpile-modules": "latest",
     "react": "latest",
