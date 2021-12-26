@@ -1,10 +1,10 @@
-import { connectToDatabase } from "../../util/mongodb";
+import { connectToDatabase } from '../../util/mongodb';
 
 const movies = async (req, res) => {
   const { db } = await connectToDatabase();
 
   const movies = await db
-    .collection("movies")
+    .collection('movies')
     .find({})
     .sort({ metacritic: -1 })
     .limit(20)

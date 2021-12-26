@@ -4,7 +4,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Link from '../src/Link';
+import Link from '../Link';
 
 export default function RSVP() {
   return (
@@ -15,7 +15,7 @@ export default function RSVP() {
         <meta content="minimum-scale=1, initial-scale=1, width=device-width" name="viewport" />
       </Head>
       <Box sx={{ my: 4 }}>
-      <Typography variant="h4" component="h1" gutterBottom>Répondez, s’il vous plaît</Typography>
+        <Typography variant="h4" component="h1" gutterBottom>Répondez, s’il vous plaît</Typography>
         <Button variant="contained" component={Link} noLinkStyle href="/">
           Go to the main page
         </Button>

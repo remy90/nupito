@@ -1,7 +1,7 @@
 import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
-import theme from '../src/theme';
+import theme from '../theme';
 
 // https://mui.com/styles/advanced/#next-js
 export default class MyDocument extends Document {
@@ -36,8 +36,8 @@ MyDocument.getInitialProps = async (ctx) => {
     ctx.renderPage = () =>
       originalRenderPage({
         enhanceApp: (App) => (props) => styledComponentsSheet.collectStyles(
-        <>
-          <style global jsx>{`
+          <>
+            <style global jsx>{`
           @media screen {
             html,
             body,
@@ -47,8 +47,8 @@ MyDocument.getInitialProps = async (ctx) => {
             }
           }
           `}</style>
-          <App {...props} />
-        </>),
+            <App {...props} />
+          </>),
       });
 
     const initialProps = await Document.getInitialProps(ctx);

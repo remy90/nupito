@@ -33,3 +33,7 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# https
+localhost*.pem
+localhost*-key.pem

@@ -1,6 +1,7 @@
-import { Link, Typography } from "@mui/material";
-import Navigator from "./Navigator";
-import { StickToEndOfContainer } from "./styledcomponents";
+import React from 'react';
+import { Link, Typography } from '@mui/material';
+import Navigator from './Navigator';
+import { StickToEndOfContainer } from './styledcomponents';
 
 export default function Layout({ children }: any) {
   // debugger;
@@ -14,5 +15,5 @@ export default function Layout({ children }: any) {
         </div>
       </ StickToEndOfContainer>
     </>
-  )
+  );
 }

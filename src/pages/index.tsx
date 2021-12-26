@@ -3,14 +3,15 @@ import Head from 'next/head';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Link from '../src/Link';
-// @ts-ignore
-import clientPromise from '../lib/mongodb';
-
+import Link from '../Link';
 interface IProps {
+  griddy: {
+    name: string
+  };
   isConnected: boolean;
 }
-export default function Index({ isConnected }: IProps) {
+
+export default function HomePage({ griddy, isConnected }: IProps) {
   return (
     <Container maxWidth="sm">
       <Head>
@@ -26,9 +27,11 @@ export default function Index({ isConnected }: IProps) {
         <Link href="/about" color="secondary">
           Go to the about page
         </Link>
-
+        <div>
+          {griddy.name}
+        </div>
         {isConnected ? (
-          <h2 className="subtitle">You are connected to MongoDB</h2>
+          <h2 className="subtitle">{'You are \'connected\' to MongoDB'}</h2>
         ) : (
           <h2 className="subtitle">
             You are NOT connected to MongoDB. Check the <code>README.md</code>{' '}
@@ -40,23 +43,14 @@ export default function Index({ isConnected }: IProps) {
   );
 }
 
+export const getStaticProps = async () => {
+  const response = await fetch('https://localhost:3000/api/grid');
+  const griddy = await response.json();
 
-export async function getServerSideProps(context: any) {
-  try {
-    // client.db() will be the default database passed in the MONGODB_URI
-    // You can change the database by calling the client.db() function and specifying a database like:
-    // const db = client.db("myDatabase");
-    // Then you can execute queries against your database like so:
-    // db.find({}) or any of the MongoDB Node Driver commands
-    // @ts-ignore
-    await clientPromise;
-    return {
-      props: { isConnected: true },
-    }
-  } catch (e) {
-    console.error(e)
-    return {
-      props: { isConnected: false },
-    }
-  }
-}
+  return {
+    props: { 
+      griddy,
+      isConnected: true
+    },
+  };
+};

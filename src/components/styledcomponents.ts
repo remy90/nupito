@@ -6,4 +6,4 @@ export const StickToEndOfContainer = styled.div`
     bottom: 0;
     // width: 100%;
     overflow:hidden;
-`
+`;
