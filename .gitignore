@@ -37,3 +37,6 @@ yarn-error.log*
 # https
 localhost*.pem
 localhost*-key.pem
+
+# private-assets
+private-assets
