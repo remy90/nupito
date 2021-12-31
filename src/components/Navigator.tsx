@@ -18,8 +18,27 @@ export default function ButtonAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static"  sx={{ backgroundColor: 'navy'}}>
+      <AppBar position="static"  sx={{ backgroundColor: '#222222'}}>
         <Toolbar>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{ 'aria-labelledby': 'basic-button' }}
+          >
+            <MenuItem onClick={handleClose}><Link href="/" color="secondary">Home</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href="/rsvp" color="secondary">RSVP</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href="/order" color="secondary">Order of service</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href="/registry" color="secondary">Registry</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href="/location" color="primary">Location</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href="/songs" color="secondary">Hymns</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href="/readings" color="secondary">Readings</Link></MenuItem>
+            {/* <MenuItem onClick={handleClose}><Link href={reduxStore} color="secondary">my page</Link></MenuItem> */}
+          </Menu>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} align="justify">
+            Shaun &#38; Char
+          </Typography>
           <IconButton
             size="large"
             edge="start"
@@ -33,26 +52,6 @@ export default function ButtonAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Menu
-            id="basic-menu"
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            MenuListProps={{
-              'aria-labelledby': 'basic-button',
-            }}
-          >
-            <MenuItem onClick={handleClose}><Link href="/" color="secondary">Home</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link href="/rsvp" color="secondary">RSVP</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link href="/schedule" color="secondary">Schedule</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link href="/registry" color="secondary">Registry</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link href="/location" color="primary">Location</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link href="/hymns" color="secondary">Hymns</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link href="/readings" color="secondary">Readings</Link></MenuItem>
-          </Menu>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} align="justify">
-            Shaun &#38; Char
-          </Typography>
         </Toolbar>
       </AppBar>
     </Box>

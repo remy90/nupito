@@ -3,10 +3,10 @@ import Container from '@mui/material/Container';
 import type { NextPage } from 'next';
 import { Typography } from '@mui/material';
 
-const Registry: NextPage = () => (
+const Order: NextPage =  () => (
   <Container maxWidth="sm">
-    <Typography>Registry</Typography>
+    <Typography>Order of Service</Typography>
   </Container>
 );
 
-export default Registry;
+export default Order;

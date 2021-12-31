@@ -3,10 +3,11 @@ import Container from '@mui/material/Container';
 import type { NextPage } from 'next';
 import { Typography } from '@mui/material';
 
-const Registry: NextPage = () => (
+// eslint-disable-next-line @typescript-eslint/ban-types
+const Hymns: NextPage<{}> = () => (
   <Container maxWidth="sm">
-    <Typography>Registry</Typography>
+    <Typography>Songs of praise</Typography>
   </Container>
 );
 
-export default Registry;
+export default Hymns;

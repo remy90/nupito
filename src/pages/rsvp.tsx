@@ -5,21 +5,22 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Link from '../Link';
+import type { NextPage } from 'next';
+import Form from '../components/Form';
 
-export default function RSVP() {
-  return (
-    <Container maxWidth="sm">
-      <Head>
-        <title>S&#38;C: RSVP</title>
-        <link href="/favicon.ico" rel="icon" />
-        <meta content="minimum-scale=1, initial-scale=1, width=device-width" name="viewport" />
-      </Head>
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>Répondez, s’il vous plaît</Typography>
-        <Button variant="contained" component={Link} noLinkStyle href="/">
-          Go to the main page
-        </Button>
-      </Box>
-    </Container>
-  );
-}
+const RSVP: NextPage = () => (
+  <Container maxWidth="sm">
+    <Head>
+      <title>S&#38;C: RSVP</title>
+      <link href="/favicon.ico" rel="icon" />
+      <meta content="minimum-scale=1, initial-scale=1, width=device-width" name="viewport" />
+    </Head>
+    <Box sx={{ my: 4 }}>
+      <Typography variant="h1" component="h1" gutterBottom>Répondez, s’il vous plaît</Typography>
+      <Typography variant="h4" component="h4">- can you make it?</Typography>
+      <Form />
+    </Box>
+  </Container>
+);
+
+export default RSVP;
