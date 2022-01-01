@@ -16,8 +16,7 @@ const RSVP: NextPage = () => (
       <meta content="minimum-scale=1, initial-scale=1, width=device-width" name="viewport" />
     </Head>
     <Box sx={{ my: 4 }}>
-      <Typography variant="h1" component="h1" gutterBottom>Répondez, s’il vous plaît</Typography>
-      <Typography variant="h4" component="h4">- can you make it?</Typography>
+      <Typography variant="h2" component="h1" gutterBottom>Répondez, s’il vous plaît</Typography>
       <Form />
     </Box>
   </Container>

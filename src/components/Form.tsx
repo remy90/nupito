@@ -1,10 +1,10 @@
-import { FormControl, Input, MenuItem, Select } from '@mui/material';
+import { FormControl, Input, InputLabel, MenuItem, Paper, Select, TextField, Box } from '@mui/material';
 import React from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 
 export const DietType = {
-  AnythingGoes: 'anything goes',
-  Veggie: 'veggie',
+  Meat: 'anything goes',
+  Vegetarian: 'veggie',
   Vegan: 'vegan',
 } as const;
 type DietType = typeof DietType[keyof typeof DietType];
@@ -15,40 +15,55 @@ type Inputs = {
   otherFoodRequirements: string,
 };
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-      padding: 10,
-      margin: 10,
-    },
-  },
-};
-
 export default function Form() {
-  const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
+  const { register, handleSubmit, control, formState: { errors } } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
-
   return (
-    /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-    <FormControl sx={{ m: 1, width: 300 }} onSubmit={handleSubmit(onSubmit)}>
-      
-      <Select MenuProps={MenuProps} {...register('isAttending')}>
-        <MenuItem value={undefined} />
-        <MenuItem value={1}>yes</MenuItem>
-        <MenuItem value={0}>no</MenuItem>
-      </Select>
-      <Select MenuProps={MenuProps} {...register('diet')}>
-        <MenuItem value={undefined} />
-        <MenuItem value={1}>anything goes</MenuItem>
-        <MenuItem value={0}>veggie</MenuItem>
-        <MenuItem value={0}>vegan</MenuItem>
-      </Select>
-      <Input {...register('otherFoodRequirements')} />
-      <Input style={{margin: 10, padding: 10}} type="submit" />
-    </FormControl>
+    <Paper style={{height: '40vh'}}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Box sx={{marginTop: '2rem', marginBottom: '2rem'}}>
+          <TextField
+            select
+            sx={{width: '100%'}}
+            label="RSVP"
+            defaultValue=""
+            inputProps={register('isAttending', {
+              required: 'Please enter currency',
+            })}
+            // error={errors.isAttending}
+            helperText={errors.isAttending?.message}
+          >
+            <MenuItem value={''} />
+            <MenuItem value={0}>I will attend</MenuItem>
+            <MenuItem value={1}>I will not be able to attend</MenuItem>
+          </TextField>
+        </Box>
+        <Box sx={{marginBottom: '2rem'}}>
+          <TextField
+            select
+            sx={{ width: '100%' }}
+            label="Diet"
+            defaultValue={''}
+            inputProps={register('diet', {
+              required: 'Please enter currency',
+            })}
+            // error={errors.isAttending}
+            helperText={errors.diet?.message}
+          >
+            <MenuItem value={''} />
+            <MenuItem value={DietType.Meat}>I can eat anything</MenuItem>
+            <MenuItem value={DietType.Vegetarian}>Vegetarian</MenuItem>
+            <MenuItem value={DietType.Vegan}>Vegan</MenuItem>
+          </TextField>
+        </Box>
+        <Box sx={{marginBottom: '2rem'}}>
+          <Input
+            sx={{ width: '100%', paddingLeft: 2 }}
+            placeholder='Other food requirements'
+            {...register('otherFoodRequirements')} />
+        </Box>
+        <Box><Input type="submit" /></Box>
+      </form>
+    </Paper>
   );
 }
