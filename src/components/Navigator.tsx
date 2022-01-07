@@ -50,7 +50,7 @@ export default function ButtonAppBar() {
             aria-expanded={open ? 'true' : undefined}
             onClick={handleClick}
           >
-            <MenuIcon />
+            <MenuIcon fontSize="small" />
           </IconButton>
         </Toolbar>
       </AppBar>
