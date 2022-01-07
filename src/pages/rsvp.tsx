@@ -3,8 +3,6 @@ import Head from 'next/head';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Link from '../Link';
 import type { NextPage } from 'next';
 import Form from '../components/Form';
 
