@@ -1,6 +1,8 @@
-import { Input, MenuItem, Paper, TextField, Box, AlertColor } from '@mui/material';
-import React, { useContext } from 'react';
+import { Input, MenuItem, Paper, TextField, Box, AlertColor, SelectChangeEvent, Button } from '@mui/material';
+import { fontSize } from '@mui/system';
+import React, { ChangeEvent, useContext, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { once } from 'stream';
 import { AppContext } from './AppProvider';
 import { TemporaryAlert } from './TemporaryAlert';
 
@@ -14,7 +16,8 @@ type DietType = typeof DietType[keyof typeof DietType];
 export type Inputs = {
   isAttending: boolean,
   diet: DietType,
-  otherFoodRequirements: string,
+  otherFoodConsiderations: string,
+  emailAddress: string,
 };
 export type GuestData = {
   firstName: string,
@@ -25,19 +28,22 @@ export type GuestData = {
   wave:1,
   isAttending: boolean,
   diet: string,
-  otherFoodRequirements: string,
+  otherFoodConsiderations: string,
 };
 export type FormData = {
   urlId: string,
   isAttending: boolean,
   diet: DietType,
-  otherFoodRequirements: string,
+  otherFoodConsiderations: string,
   plusOne?: {
     guest: GuestData,
-  }
+  },
+  emailAddress: string,
 }
 export default function Form() {
   const { state, dispatch } = useContext(AppContext);
+  const [attending, setAttending] = useState<boolean>();
+  const [eatsAnything, setEatsAnything] = useState<boolean>();
   const registerGuest = async (data: any) =>
     await fetch('/api/guestUpdate', {
       body: JSON.stringify(data),
@@ -56,6 +62,7 @@ export default function Form() {
       : 'An error occured with your submission. Please ensure you used the correct invitation url and try again.';
   };
   const onSubmit: SubmitHandler<Inputs> = async data => {
+    console.log('submitting...');
     if (!state?.ID){
       console.error('id not registered');
     }
@@ -77,6 +84,12 @@ export default function Form() {
     console.log(`ShowAlertMessage: ${state.ShowAlertMessage}`);
     console.log(state);
   };
+  const handleAttendanceChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setAttending(event.target?.value === 'true');
+  };
+  const handleDietChange =  (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setEatsAnything(event.target?.value !== DietType.Meat);
+  };
   return (
     <Paper style={{height: '40vh'}}>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -89,14 +102,16 @@ export default function Form() {
             inputProps={register('isAttending', {
               required: 'Please select your attendance'  // JS only: <p>error message</p> TS only support string
             })}
+            onChange={handleAttendanceChange}
             error={!!errors.isAttending}
             helperText={errors.isAttending?.message}
           >
-            <MenuItem value={'true'}>I will attend</MenuItem>
+            <MenuItem onSelect={() => console.log('selected')} value={'true'}>I will attend</MenuItem>
             <MenuItem value={'false'}>I will not be able to attend</MenuItem>
           </TextField>
         </Box>
-        <Box sx={{marginBottom: '2rem'}}>
+        
+        {attending && <Box sx={{marginBottom: '2rem'}}>
           <TextField
             select
             sx={{ width: '100%' }}
@@ -105,6 +120,8 @@ export default function Form() {
             inputProps={register('diet', {
               required: 'Please enter a dietary preference',
             })}
+
+            onChange={handleDietChange}
             error={!!errors.diet}
             helperText={errors.diet?.message}
           >
@@ -112,14 +129,28 @@ export default function Form() {
             <MenuItem value={DietType.Vegetarian}>Vegetarian</MenuItem>
             <MenuItem value={DietType.Vegan}>Vegan</MenuItem>
           </TextField>
-        </Box>
-        <Box sx={{marginBottom: '2rem'}}>
+        </Box>}
+        {attending && eatsAnything && <Box sx={{marginBottom: 2, paddingLeft: 2}}>
           <Input
-            sx={{ width: '100%', paddingLeft: 2 }}
-            placeholder='Other food requirements'
-            {...register('otherFoodRequirements')} />
-        </Box>
-        <Box><Input type="submit" /></Box>
+            sx={{ width: '90%', paddingLeft: 2 }}
+            placeholder='Other food considerations'
+            {...register('otherFoodConsiderations')} />
+        </Box>}
+        {attending && <Box  sx={{marginTop: 2, marginBottom: 2, paddingLeft: 2}}>
+          <Input
+            sx={{ width: '90%', paddingLeft: 2, paddingRight: 2 }}
+            placeholder='Email address'
+            {...register('emailAddress', {
+              pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
+            }
+            )}
+            error={!!errors.emailAddress}
+          />
+          { errors?.emailAddress?.type === 'pattern' && (
+            <div style={{width: '80%'}}><p style={{fontSize: 15, color: '#CD403F'} }>Please supply a valid email address for our wedding updates</p></div>
+          )}
+        </Box>}
+        <Box><Button sx={{margin: 2}} variant="outlined" type="submit">Submit</Button></Box>
         {!!state.ShowAlertMessage
           && <TemporaryAlert severity={ state.Severity ?? 'error' }>
             { getAlertText(state.Severity) }
