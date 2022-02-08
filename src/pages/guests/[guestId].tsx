@@ -1,5 +1,4 @@
-import React, { useEffect, useContext } from 'react';
-import Head from 'next/head';
+import React, { useEffect, useContext, useMemo } from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -16,28 +15,33 @@ interface IGuestProps {
   HasPlusOne: boolean;
 }
 
+const showAttendanceMessage = (isAttending: boolean, hasPlusOne: boolean) => {
+  if (isAttending === undefined || isAttending === null) {
+    return 'Head over to the RSVP page to let us know if you can make it';
+  }
+  return isAttending
+    ? `We're glad you're attending our wedding${hasPlusOne ? ', including your plus one.': '!'}`
+    : 'We\'ll miss your absence at our wedding!';
+};
+
 const GuestPage: NextPage<IGuestProps> = ({
   Id,
   FirstName,
   IsAttending,
   HasPlusOne,
 }: IGuestProps) => {
+
   const { state, dispatch } = useContext(AppContext);
+  
   useEffect(() => dispatch({ type: 'UPDATE_ID', value: Id }), ['UPDATE_ID', Id]);
+  useEffect(() => localStorage.setItem('shaun_char_guest_id', Id), [Id]);
+
+  const memoizedAttendanceMessage = useMemo(() => showAttendanceMessage(IsAttending, HasPlusOne), [IsAttending, HasPlusOne]);
   console.log(state);
   return (
     <Container maxWidth="sm">
-      <Head>
-        <title>Shaun &#38; Char</title>
-        <link href="/favicon.ico" rel="icon" />
-        <meta content="minimum-scale=1, initial-scale=1, width=device-width" name="viewport" />
-      </Head>
       <Box sx={{ my: 4 }}><Typography>Welcome, {FirstName}</Typography>
-        <Typography>{
-          IsAttending
-            ? `We're glad you're attending our wedding${HasPlusOne && ', including your plus one'}.`
-            : 'We\'ll miss your absence at our wedding!'}
-        </Typography>
+        <Typography>{memoizedAttendanceMessage}</Typography>
       </Box>
     </Container>
   );

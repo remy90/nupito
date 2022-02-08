@@ -8,11 +8,6 @@ import Form from '../components/Form';
 
 const RSVP: NextPage = () => (
   <Container maxWidth="sm">
-    <Head>
-      <title>S&#38;C: RSVP</title>
-      <link href="/favicon.ico" rel="icon" />
-      <meta content="minimum-scale=1, initial-scale=1, width=device-width" name="viewport" />
-    </Head>
     <Box sx={{ my: 4 }}>
       <Typography variant="h2" component="h1" gutterBottom>Répondez, s’il vous plaît</Typography>
       <Form />

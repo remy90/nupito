@@ -13,6 +13,7 @@
     "@emotion/react": "^11.7.1",
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.6.0",
+    "@js-temporal/polyfill": "^0.3.0",
     "@mui/icons-material": "^5.2.0",
     "@mui/material": "latest",
     "mongodb": "^4.2.1",

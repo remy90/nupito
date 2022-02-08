@@ -5,21 +5,29 @@ import { MongoClient, GridFSBucket } from 'mongodb';
 import fs from 'fs';
 import assert from 'assert';
 
-const fileUpload = (filename: string, bucketName: string, outputDirectory: string) => {
+const fileDownload = async (filename: string, bucketName: string, outputDirectory: string) => {
   const client = new MongoClient(process.env.MONGODB_URI!);
-  client.connect((err: any) => {
-    assert.ifError(err);
+  await client.connect();
 
-    const db = client.db(process.env.MONGODB_DB);
-    const bucket = new GridFSBucket(db, { bucketName: bucketName });
+  const db = client.db(process.env.MONGODB_DB);
+  const bucket = new GridFSBucket(db, { bucketName: bucketName });
     
+  return new Promise<void>(resolve => {
     bucket.openDownloadStreamByName(filename)
       .pipe(fs.createWriteStream(outputDirectory))
       .on('error', (error) => assert.ifError(error))
       .on('finish', () => {
         console.log('done!');
-        process.exit(0);
+        resolve();
+        // process.exit(0);
       });
+    // a.on('finish', resolve);
   });
 };
-export { fileUpload };
+// new Promise<void>(resolve => {
+//   let a = replaceStream(makeRegex, replaceFn.bind(this, replaceObj), { maxMatchLen: 5000 });
+//   let b = fs.createWriteStream(tempPath);
+//   fs.createReadStream(oldPath, 'utf8').pipe(a).pipe(b);
+//   b.on('finish', resolve);
+// }
+export { fileDownload };

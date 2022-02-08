@@ -34,13 +34,12 @@ export default function ButtonAppBar() {
             <MenuItem onClick={handleClose}><Link href="/location" color="primary">Location</Link></MenuItem>
             <MenuItem onClick={handleClose}><Link href="/songs" color="secondary">Hymns</Link></MenuItem>
             <MenuItem onClick={handleClose}><Link href="/readings" color="secondary">Readings</Link></MenuItem>
-            {/* <MenuItem onClick={handleClose}><Link href={reduxStore} color="secondary">my page</Link></MenuItem> */}
           </Menu>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} align="justify">
             Shaun &#38; Char
           </Typography>
           <IconButton
-            size="large"
+            size="small"
             edge="start"
             color="inherit"
             aria-label="menu"

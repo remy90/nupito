@@ -9,13 +9,6 @@ import type { NextPage } from 'next';
 
 const HomePage: NextPage = () => (
   <Container maxWidth="sm">
-
-    {/* <Navigator /> */}
-    <Head>
-      <title>Shaun &#38; Char</title>
-      <link href="/favicon.ico" rel="icon" />
-      <meta content="minimum-scale=1, initial-scale=1, width=device-width" name="viewport" />
-    </Head>
     <Box sx={{ my: 4 }}>
       <Typography variant="h4" component="h1" gutterBottom>
         {'Welcome to Shaun and Charlotte\'s wedapp'}
@@ -26,5 +19,20 @@ const HomePage: NextPage = () => (
     </Box>
   </Container>
 );
+// export async function getStaticProps(context) {
+//   const fs = require('fs');
+//   async function exists(path: string) {  
+//     return fs.existsSync('public/home-page.jpeg');
+//   }
+//   // await fileUpload('home-page.jpeg', 'home-image01', 'public/private-assets/home-page.jpeg');
+  
+//   if (!(await exists('public/home-page.jpeg'))) {
+//     await fileDownload('home-page.jpeg', 'home-image01', 'public/home-page.jpeg');
+//   }
+
+//   return { props: {
+//     homePageImagePath: '/public/home-page.jpeg'
+//   }};
+// }
 
 export default HomePage;

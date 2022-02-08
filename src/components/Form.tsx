@@ -1,4 +1,4 @@
-import { Input, MenuItem, Paper, TextField, Box, AlertColor, SelectChangeEvent, Button } from '@mui/material';
+import { Input, MenuItem, Paper, TextField, Box, AlertColor, SelectChangeEvent, Button, Typography } from '@mui/material';
 import { fontSize } from '@mui/system';
 import React, { ChangeEvent, useContext, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -20,10 +20,10 @@ export type Inputs = {
   emailAddress: string,
 };
 export type GuestData = {
+  ID: string,
   firstName: string,
   lastName: string,
   isPlusOne: string,
-  ID: string,
   hasPlusOne: boolean,
   wave:1,
   isAttending: boolean,
@@ -67,7 +67,7 @@ export default function Form() {
       console.error('id not registered');
     }
     const result = await registerGuest({
-      ID: state?.ID,
+      ID: state?.ID ?? localStorage.getItem('shaun_char_guest_id'),
       ...data
     });
     console.log(result);
@@ -147,7 +147,13 @@ export default function Form() {
             error={!!errors.emailAddress}
           />
           { errors?.emailAddress?.type === 'pattern' && (
-            <div style={{width: '80%'}}><p style={{fontSize: 15, color: '#CD403F'} }>Please supply a valid email address for our wedding updates</p></div>
+            <div style={{width: '80%'}}>
+              <Typography style={{
+                fontSize: '0.75rem',
+                fontWeight: 400,
+                color: '#ff1744'
+              }}>Please supply a valid email address for our wedding updates</Typography>
+            </div>
           )}
         </Box>}
         <Box><Button sx={{margin: 2}} variant="outlined" type="submit">Submit</Button></Box>

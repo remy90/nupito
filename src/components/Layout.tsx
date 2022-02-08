@@ -2,10 +2,16 @@ import React from 'react';
 import { Link, Typography } from '@mui/material';
 import Navigator from './Navigator';
 import { StickToEndOfContainer } from './styledcomponents';
+import Head from 'next/head';
 
 export default function Layout({ children }: any) {
   return (
     <>
+      <Head>
+        <title>Shaun &#38; Char</title>
+        <link href="/favicon.ico" rel="icon" />
+        <meta content="minimum-scale=1, initial-scale=1, width=device-width" name="viewport" />
+      </Head>
       <Navigator />
       <main>{ children }</main>
       <StickToEndOfContainer>
