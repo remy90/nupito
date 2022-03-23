@@ -17,7 +17,7 @@
     "@mui/icons-material": "^5.2.0",
     "@mui/material": "latest",
     "mongodb": "^4.2.1",
-    "next": "^12.0.7",
+    "next": "^12.1.0",
     "next-transpile-modules": "latest",
     "react": "latest",
     "react-dom": "latest",

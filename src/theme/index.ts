@@ -1,5 +1,6 @@
 import typography from '../theme/typography';
 import {createTheme } from '@mui/material/styles';
+import { paddingBottom, paddingTop } from '../styles/sxConstants';
 
 export const theme = createTheme({
   palette: {
@@ -25,30 +26,29 @@ export const theme = createTheme({
       fontSize: `${typography.h1.large.fontSize}rem`,
       lineHeight: `${typography.h1.large.lineHeight}rem`,
       fontWeight: typography.h1.large.fontWeight,
-      paddingTop: '0.438rem',
-      paddingBottom: '0.688rem',
+      MarginTop: '0.438rem',
+      MarginBottom: '0.688rem',
     },
     h2: { // Sub Heading
       fontSize: `${typography.h2.fontSize}rem`,
       lineHeight: `${typography.h2.lineHeight}rem`,
       fontWeight: typography.h2.fontWeight,
-      paddingTop: '0.75rem',
-      paddingBottom: '0.75rem',
-
+      ...paddingTop,
+      ...paddingBottom,
     },
     h3: { // Small title
       fontSize: `${typography.regular.size}rem`,
       lineHeight: `${typography.regular.lineHeight}rem`,
       fontWeight: 600,
-      paddingTop: '0.75rem',
-      paddingBottom: '0.75rem',
+      ...paddingTop,
+      ...paddingBottom,
     },
     body1: {
       fontSize: `${typography.regular.size}rem`,
       lineHeight: `${typography.regular.lineHeight}rem`,
       fontWeight: 'normal',
-      paddingTop: '0.75rem',
-      paddingBottom: '0.75rem',
+      ...paddingTop,
+      ...paddingBottom,
     }
   },
   components: {
@@ -56,8 +56,8 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           fontWeight: 'bold',
-          paddingTop: '0.75rem',
-          paddingBottom: '0.75rem',
+          ...paddingTop,
+          ...paddingBottom,
         },
       },
     },

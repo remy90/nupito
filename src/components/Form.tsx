@@ -1,9 +1,11 @@
-import { Input, MenuItem, Paper, TextField, Box, AlertColor, SelectChangeEvent, Button, Typography } from '@mui/material';
+import { Input, MenuItem, Paper, TextField, Box, AlertColor, SelectChangeEvent, Button, Typography, FormControlLabel, Checkbox, FormGroup } from '@mui/material';
 import { fontSize } from '@mui/system';
 import React, { ChangeEvent, useContext, useState } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { once } from 'stream';
 import { AppContext } from './AppProvider';
+import MenuForm from './MenuForm';
+import { AfroMenuOptions } from './MenuOptions';
 import { TemporaryAlert } from './TemporaryAlert';
 
 export const DietType = {
@@ -18,6 +20,24 @@ export type Inputs = {
   diet: DietType,
   otherFoodConsiderations: string,
   emailAddress: string,
+  cuisineType: {
+    euro: boolean;
+    afro: boolean;
+  }
+  menuChoice: {
+    foodOption1: boolean,
+    foodOption2: boolean,
+    foodOption3: boolean,
+    foodOption4: boolean,
+    foodOption5: boolean,
+    foodOption6: boolean,
+    foodOption7: boolean,
+    foodOption8: boolean,
+    foodOption9: boolean,
+    foodOption10: boolean,
+    foodOption11: boolean,
+    foodOption12: boolean,
+  }
 };
 export type GuestData = {
   ID: string,
@@ -43,7 +63,7 @@ export type FormData = {
 export default function Form() {
   const { state, dispatch } = useContext(AppContext);
   const [attending, setAttending] = useState<boolean>();
-  const [eatsAnything, setEatsAnything] = useState<boolean>();
+  const [eatsAnything, setEatsAnything] = useState<boolean>(false);
   const registerGuest = async (data: any) =>
     await fetch('/api/guestUpdate', {
       body: JSON.stringify(data),
@@ -53,7 +73,24 @@ export default function Form() {
       method: 'POST'
     });
 
-  const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
+  const { register, handleSubmit, formState: { errors }, control } = useForm<Inputs>({
+    defaultValues: {
+      menuChoice: {
+        foodOption1: false,
+        foodOption2: false,
+        foodOption3: false,
+        foodOption4: false,
+        foodOption5: false,
+        foodOption6: false,
+        foodOption7: false,
+        foodOption8: false,
+        foodOption9: false,
+        foodOption10: false,
+        foodOption11: false,
+        foodOption12: false
+      }
+    }
+  });
   const showAlertMessage = true;
   const getAlertText = (severity: AlertColor = 'info') => {
     if (severity === 'info') { return; }
@@ -62,10 +99,13 @@ export default function Form() {
       : 'An error occured with your submission. Please ensure you used the correct invitation url and try again.';
   };
   const onSubmit: SubmitHandler<Inputs> = async data => {
+    debugger;
+    console.log(data);
     console.log('submitting...');
     if (!state?.ID){
       console.error('id not registered');
     }
+
     const result = await registerGuest({
       ID: state?.ID ?? localStorage.getItem('shaun_char_guest_id'),
       ...data
@@ -88,7 +128,7 @@ export default function Form() {
     setAttending(event.target?.value === 'true');
   };
   const handleDietChange =  (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setEatsAnything(event.target?.value !== DietType.Meat);
+    setEatsAnything(event.target?.value === DietType.Meat);
   };
   return (
     <Paper style={{height: '40vh'}}>
@@ -130,12 +170,7 @@ export default function Form() {
             <MenuItem value={DietType.Vegan}>Vegan</MenuItem>
           </TextField>
         </Box>}
-        {attending && eatsAnything && <Box sx={{marginBottom: 2, paddingLeft: 2}}>
-          <Input
-            sx={{ width: '90%', paddingLeft: 2 }}
-            placeholder='Other food considerations'
-            {...register('otherFoodConsiderations')} />
-        </Box>}
+        <MenuForm eatsAnything={!!eatsAnything} control={control} />
         {attending && <Box  sx={{marginTop: 2, marginBottom: 2, paddingLeft: 2}}>
           <Input
             sx={{ width: '90%', paddingLeft: 2, paddingRight: 2 }}

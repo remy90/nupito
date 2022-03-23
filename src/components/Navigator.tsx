@@ -29,9 +29,10 @@ export default function ButtonAppBar() {
           >
             <MenuItem onClick={handleClose}><Link href="/" color="secondary">Home</Link></MenuItem>
             <MenuItem onClick={handleClose}><Link href="/rsvp" color="secondary">RSVP</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href="/menu" color="secondary">Wedding breakfast menu</Link></MenuItem>
             <MenuItem onClick={handleClose}><Link href="/order" color="secondary">Order of service</Link></MenuItem>
             <MenuItem onClick={handleClose}><Link href="/registry" color="secondary">Registry</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link href="/location" color="primary">Location</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href="/location" color="secondary">Location</Link></MenuItem>
             <MenuItem onClick={handleClose}><Link href="/songs" color="secondary">Hymns</Link></MenuItem>
             <MenuItem onClick={handleClose}><Link href="/readings" color="secondary">Readings</Link></MenuItem>
           </Menu>

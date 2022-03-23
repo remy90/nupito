@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import type { NextPage } from 'next';
 import Form from '../components/Form';
 
+
 const RSVP: NextPage = () => (
   <Container maxWidth="sm">
     <Box sx={{ my: 4 }}>
