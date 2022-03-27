@@ -8,8 +8,6 @@ export default async function  (req: NextApiRequest, res: NextApiResponse) {
   const database = client.db('shaun-charlotte');
   const guests = database.collection('guests');
 
-  // TODO: Check if they have a plus one
-  // TODO: Add plus one to the DB
   const result = await guests.findOneAndUpdate({ ID: req.body?.ID }, {
     $set:{
       ...req.body

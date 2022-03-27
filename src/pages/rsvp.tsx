@@ -10,7 +10,7 @@ import Form from '../components/Form';
 const RSVP: NextPage = () => (
   <Container maxWidth="sm">
     <Box sx={{ my: 4 }}>
-      <Typography variant="h2" component="h1" gutterBottom>Répondez, s’il vous plaît</Typography>
+      <Typography variant="h1" sx={{fontSize: '5rem'}} gutterBottom>Répondez, s’il vous plaît</Typography>
       <Form />
     </Box>
   </Container>

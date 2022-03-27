@@ -1,7 +1,7 @@
 import { Input, MenuItem, Paper, TextField, Box, AlertColor, SelectChangeEvent, Button, Typography, FormControlLabel, Checkbox, FormGroup } from '@mui/material';
 import { fontSize } from '@mui/system';
 import React, { ChangeEvent, useContext, useState } from 'react';
-import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+import { useForm, SubmitHandler, Controller, useFormContext } from 'react-hook-form';
 import { once } from 'stream';
 import { AppContext } from './AppProvider';
 import MenuForm from './MenuForm';
@@ -24,7 +24,9 @@ export type Inputs = {
     euro: boolean;
     afro: boolean;
   }
+  // TODO: Create RadioOptionFormField template with label, key and default value
   menuChoice: {
+    foodOption0: boolean;
     foodOption1: boolean,
     foodOption2: boolean,
     foodOption3: boolean,
@@ -36,7 +38,10 @@ export type Inputs = {
     foodOption9: boolean,
     foodOption10: boolean,
     foodOption11: boolean,
-    foodOption12: boolean,
+    euroStarter: number,
+    euroMain: number,
+    // TODO: Add dessert to afro options
+    euroDessert: number,
   }
 };
 export type GuestData = {
@@ -62,8 +67,16 @@ export type FormData = {
 }
 export default function Form() {
   const { state, dispatch } = useContext(AppContext);
-  const [attending, setAttending] = useState<boolean>();
+  const [isAttending, setAttending] = useState<boolean>();
   const [eatsAnything, setEatsAnything] = useState<boolean>(false);
+
+  const isVegetarian = () => {
+    return false;
+  };
+  const isVegan = () => {
+    return false;
+  };
+
   const registerGuest = async (data: any) =>
     await fetch('/api/guestUpdate', {
       body: JSON.stringify(data),
@@ -73,7 +86,7 @@ export default function Form() {
       method: 'POST'
     });
 
-  const { register, handleSubmit, formState: { errors }, control } = useForm<Inputs>({
+  const { register, handleSubmit, formState: { errors }, control, getValues } = useForm<Inputs>({
     defaultValues: {
       menuChoice: {
         foodOption1: false,
@@ -151,7 +164,7 @@ export default function Form() {
           </TextField>
         </Box>
         
-        {attending && <Box sx={{marginBottom: '2rem'}}>
+        {isAttending && <Box sx={{marginBottom: '2rem'}}>
           <TextField
             select
             sx={{ width: '100%' }}
@@ -170,8 +183,8 @@ export default function Form() {
             <MenuItem value={DietType.Vegan}>Vegan</MenuItem>
           </TextField>
         </Box>}
-        <MenuForm eatsAnything={!!eatsAnything} control={control} />
-        {attending && <Box  sx={{marginTop: 2, marginBottom: 2, paddingLeft: 2}}>
+        {isAttending && !!getValues()?.diet && <MenuForm eatsAnything={!!eatsAnything} control={control} />}
+        {isAttending && <Box  sx={{marginTop: 2, marginBottom: 2, paddingLeft: 2}}>
           <Input
             sx={{ width: '90%', paddingLeft: 2, paddingRight: 2 }}
             placeholder='Email address'
