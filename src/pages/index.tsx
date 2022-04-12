@@ -6,6 +6,7 @@ import Image from 'next/image';
 import type { GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
 import { fileDownload } from './api/gridFSFileDownload';
 import { fileUpload } from './api/gridFSFileUpload';
+import getConfig from 'next/config';
 
 const HomePage: NextPage = ({ homePageImagePath }: any) => (
   <Container maxWidth="sm">
@@ -25,7 +26,8 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
   async function exists(path: string) {  
     return fs.existsSync(path);
   }
-
+  const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
+  console.log(`publicRuntimeConfig.staticFolder: ${publicRuntimeConfig.staticFolder}`);
   const getDirectories = (source: string) =>
     (fs.readdirSync(source, { withFileTypes: true }, (err: any, files: any) => {
       console.log('\nCurrent directory files:');

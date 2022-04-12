@@ -1,29 +1,22 @@
 import {  Box, Typography, FormControl, RadioGroup, Radio, FormControlLabel } from '@mui/material';
 import React, { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { AfroMenuOptions } from './AfroMenuOptions';
 import { EuroMenuOptions } from './EuroMenuOptions';
 import { RHFormControlProps } from './Interfaces';
-
-type FormValues = {
-  IsAttending: boolean;
-  diet: string;
-  emailAddress: string;
-  foodChoices: [];
-};
 
 type CuisineType = 'euro' | 'afro';
 interface OtherProps {
   eatsAnything: boolean;
   control: any;
 }
+
 export default function MenuForm({ eatsAnything, control }: RHFormControlProps & OtherProps) {
   const [isAfrican, setIsAfrican] = useState(false);
   const [isEuropean, setIsEuropean] = useState(false);
-  // const onSubmit = data => {debugger; handleSubmit(data);};
-  const { register, handleSubmit, formState: { errors }, reset, getValues } = useForm();
-  const onSubmit: SubmitHandler<FormValues> = (data) => {JSON.stringify(getValues());
-  };
+
+  const { reset } = useForm();
+
   const resetFoodOptions = (firstOptionNumber: number, lastOptionNumber: number) => {
     const resetObject: any = {};
   
