@@ -1,6 +1,6 @@
 import {  Box, Typography, FormControl, RadioGroup, Radio, FormControlLabel } from '@mui/material';
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Control, useForm } from 'react-hook-form';
 import { AfroMenuOptions } from './AfroMenuOptions';
 import { EuroMenuOptions } from './EuroMenuOptions';
 import { RHFormControlProps } from './Interfaces';
@@ -8,7 +8,7 @@ import { RHFormControlProps } from './Interfaces';
 type CuisineType = 'euro' | 'afro';
 interface OtherProps {
   eatsAnything: boolean;
-  control: any;
+  control: Control;
 }
 
 export default function MenuForm({ eatsAnything, control }: RHFormControlProps & OtherProps) {
