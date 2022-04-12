@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import { Control, useForm } from 'react-hook-form';
 import { AfroMenuOptions } from './AfroMenuOptions';
 import { EuroMenuOptions } from './EuroMenuOptions';
-import { RHFormControlProps } from './Interfaces';
+import { Inputs, RHFormControlProps } from './Interfaces';
 
 type CuisineType = 'euro' | 'afro';
 interface OtherProps {
   eatsAnything: boolean;
-  control: Control;
+  control: Control<Inputs, object>;
 }
 
 export default function MenuForm({ eatsAnything, control }: RHFormControlProps & OtherProps) {
