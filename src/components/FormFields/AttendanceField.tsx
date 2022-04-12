@@ -9,7 +9,7 @@ export const AttendanceField = ({ errors, onChange, register }: IFieldProps) =>
     label="RSVP"
     defaultValue=""
     inputProps={register('isAttending', {
-      required: 'Please select your attendance'  // JS only: <p>error message</p> TS only support string
+      required: 'Please select your attendance'
     })}
     onChange={onChange}
     error={!!errors}
