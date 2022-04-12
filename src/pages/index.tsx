@@ -25,6 +25,7 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
   async function exists(path: string) {  
     return fs.existsSync(path);
   }
+  // uncomment the following to update the db locally without uploading an image to source control
   // await fileUpload('home-page.jpeg', 'home-image01', 'public/private-assets/home-page.jpeg');
   
   if (!(await exists('public/home-page.jpeg'))) {
