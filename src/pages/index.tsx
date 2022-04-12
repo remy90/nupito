@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Image from 'next/image';
 import homePageImg from '../../public/private-assets/home-page.jpeg';
-import type { NextPage } from 'next';
+import type { GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
 import { fileDownload } from './api/gridFSFileDownload';
 import { fileUpload } from './api/gridFSFileUpload';
 
@@ -20,10 +20,11 @@ const HomePage: NextPage = () => (
     </Box>
   </Container>
 );
-export async function getStaticProps(context: any) {
+export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const fs = require('fs');
   async function exists(path: string) {  
-    return fs.existsSync('public/home-page.jpeg');
+    return fs.existsSync(path);
   }
   await fileUpload('home-page.jpeg', 'home-image01', 'public/private-assets/home-page.jpeg');
   
@@ -34,6 +35,6 @@ export async function getStaticProps(context: any) {
   return { props: {
     homePageImagePath: '/public/home-page.jpeg'
   }};
-}
+};
 
 export default HomePage;
