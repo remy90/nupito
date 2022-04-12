@@ -73,3 +73,4 @@ export const AfroMenuOptions = ({ control }: RHFormControlProps) =>
         <FormControlLabel {...field} checked={field.value} control={<Checkbox />} label="Salad" />} />
     <Typography variant="h4" sx={{ my: '1rem'}}>Dessert</Typography>
   </FormGroup>;
+  
