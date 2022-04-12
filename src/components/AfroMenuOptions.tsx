@@ -1,11 +1,7 @@
 import React from 'react';
 import { Checkbox, FormControlLabel, FormGroup, Typography } from '@mui/material';
-import { Control, Controller } from 'react-hook-form';
-import { Inputs } from './Form';
-
-export interface RHFormControlProps {
-  control: Control<Inputs, object>;
-}
+import { Controller } from 'react-hook-form';
+import { RHFormControlProps } from './Interfaces';
 
 export const AfroMenuOptions = ({ control }: RHFormControlProps) =>
   <FormGroup>

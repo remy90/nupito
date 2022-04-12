@@ -1,8 +1,9 @@
 import {  Box, Typography, FormControl, RadioGroup, Radio, FormControlLabel } from '@mui/material';
 import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { AfroMenuOptions, RHFormControlProps } from './AfroMenuOptions';
+import { AfroMenuOptions } from './AfroMenuOptions';
 import { EuroMenuOptions } from './EuroMenuOptions';
+import { RHFormControlProps } from './Interfaces';
 
 type FormValues = {
   IsAttending: boolean;

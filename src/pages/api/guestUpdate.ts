@@ -3,7 +3,7 @@ import { MongoClient } from 'mongodb';
 
 const client = new MongoClient(process.env.MONGODB_URI!);
 
-export default async function  (req: NextApiRequest, res: NextApiResponse) {
+export const guestUpdate = async(req: NextApiRequest, res: NextApiResponse) => {
   await client.connect();
   const database = client.db('shaun-charlotte');
   const guests = database.collection('guests');
@@ -20,4 +20,4 @@ export default async function  (req: NextApiRequest, res: NextApiResponse) {
   } else {
     return res.status(200).json({ name: 'Thomas Anderson' });
   }
-}
+};

@@ -1,11 +1,7 @@
 import React from 'react';
-import { Checkbox, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Radio, RadioGroup, Typography } from '@mui/material';
-import { Control, Controller } from 'react-hook-form';
-import { Inputs } from './Form';
-
-export interface RHFormControlProps {
-  control: Control<Inputs, object>;
-}
+import { FormControl, FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material';
+import { Controller } from 'react-hook-form';
+import { RHFormControlProps } from './Interfaces';
 
 // TODO: Allow only 1 starter, 1 main course and 1 desert
 export const EuroMenuOptions = ({ control}: RHFormControlProps) =>

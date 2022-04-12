@@ -1,11 +1,9 @@
 import * as React from 'react';
-import Head from 'next/head';
-import Container from '@mui/material/Container';
+import { Container } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import type { NextPage } from 'next';
 import Form from '../components/Form';
-
 
 const RSVP: NextPage = () => (
   <Container maxWidth="sm">
