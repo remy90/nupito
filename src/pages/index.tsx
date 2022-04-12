@@ -27,7 +27,7 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
   }
 
   const getDirectories = (source: string) =>
-    (fs.readdirSync(source, { withFileTypes: true }, (err, files) => {
+    (fs.readdirSync(source, { withFileTypes: true }, (err: any, files: any) => {
       console.log('\nCurrent directory files:');
       if (err)
         console.log(err);
