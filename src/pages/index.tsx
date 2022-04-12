@@ -26,15 +26,22 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
     return fs.existsSync(path);
   }
 
-  const getDirectories = async (source: string) =>
-    (await fs.readdir(source, { withFileTypes: true }))
-      .filter((dirent: { isDirectory: () => boolean; }) => dirent.isDirectory())
-      .map((dirent: { name: string; }) => dirent.name);
+  const getDirectories = (source: string) =>
+    (fs.readdirSync(source, { withFileTypes: true }, (err, files) => {
+      console.log('\nCurrent directory files:');
+      if (err)
+        console.log(err);
+      else {
+        files.forEach((file: any) => {
+          console.log(file);
+        });
+      }
+    }));
 
   // uncomment the following to update the db locally without uploading an image to source control
   // await fileUpload('home-page.jpeg', 'home-image01', 'public/private-assets/home-page.jpeg');
-  console.log(`pathy: ${process.cwd()}`);
-  console.log(`path2: ${getDirectories(process.cwd())}`);
+  // console.log(`pathy: ${process.cwd()}`);
+  console.log(`path2: ${JSON.stringify(getDirectories(process.cwd()))}`);
   if (!(await exists('public/home-page.jpeg'))) {
     await fileDownload('home-page.jpeg', 'home-image01', 'public/home-page.jpeg');
   }
