@@ -1,11 +1,8 @@
-import { Input, MenuItem, Paper, TextField, Box, AlertColor, SelectChangeEvent, Button, Typography, FormControlLabel, Checkbox, FormGroup } from '@mui/material';
-import { fontSize } from '@mui/system';
 import React, { ChangeEvent, useContext, useState } from 'react';
-import { useForm, SubmitHandler, Controller, useFormContext } from 'react-hook-form';
-import { once } from 'stream';
+import { Input, MenuItem, Paper, TextField, Box, AlertColor, Typography, Button } from '@mui/material';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { AppContext } from './AppProvider';
 import MenuForm from './MenuForm';
-import { AfroMenuOptions } from './MenuOptions';
 import { TemporaryAlert } from './TemporaryAlert';
 
 export const DietType = {
@@ -44,6 +41,7 @@ export type Inputs = {
     euroDessert: number,
   }
 };
+
 export type GuestData = {
   ID: string,
   firstName: string,
@@ -55,6 +53,7 @@ export type GuestData = {
   diet: string,
   otherFoodConsiderations: string,
 };
+
 export type FormData = {
   urlId: string,
   isAttending: boolean,
@@ -70,25 +69,17 @@ export default function Form() {
   const [isAttending, setAttending] = useState<boolean>();
   const [eatsAnything, setEatsAnything] = useState<boolean>(false);
 
-  const isVegetarian = () => {
-    return false;
-  };
-  const isVegan = () => {
-    return false;
-  };
-
   const registerGuest = async (data: any) =>
     await fetch('/api/guestUpdate', {
       body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       method: 'POST'
-    });
+    }); 
 
   const { register, handleSubmit, formState: { errors }, control, getValues } = useForm<Inputs>({
     defaultValues: {
       menuChoice: {
+        foodOption0: false,
         foodOption1: false,
         foodOption2: false,
         foodOption3: false,
@@ -100,7 +91,6 @@ export default function Form() {
         foodOption9: false,
         foodOption10: false,
         foodOption11: false,
-        foodOption12: false
       }
     }
   });
@@ -112,7 +102,6 @@ export default function Form() {
       : 'An error occured with your submission. Please ensure you used the correct invitation url and try again.';
   };
   const onSubmit: SubmitHandler<Inputs> = async data => {
-    debugger;
     console.log(data);
     console.log('submitting...');
     if (!state?.ID){
