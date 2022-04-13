@@ -1,4 +1,3 @@
-
 // https://mongodb.github.io/node-mongodb-native/3.6/tutorials/gridfs/streaming/
 // https://docs.mongodb.com/drivers/node/master/fundamentals/gridfs/
 import { MongoClient, GridFSBucket } from 'mongodb';
@@ -12,15 +11,13 @@ const fileUpload = async (filename: string, bucketName: string, uploadFromDirect
 
   const db = client.db(process.env.MONGODB_DB);
 
-  const bucket = new GridFSBucket(db, { bucketName: bucketName });
+  const bucket = new GridFSBucket(db, { bucketName });
 
   fs.createReadStream(uploadFromDirectory)
-    .pipe(bucket.openUploadStream(filename))
-    .on('error', (error: any) => assert.ifError(error))
+    .pipe(bucket.openUploadStream(filename, { contentType: 'image/jpeg' }))
+    .on('error', assert.ifError)
     .on('finish', () => {
       console.log('done!');
-      client.close();
-      process.exit(0);
     });
 };
 

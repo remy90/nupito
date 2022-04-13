@@ -52,7 +52,7 @@ export default function Form() {
     console.log(state);
   };
   const handleAttendanceChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setAttending(event.target?.value === 'true');
+    setAttending(!!event.target?.value);
   };
   const handleDietChange =  (event: ChangeEvent<HTMLInputElement>) => 
     setEatsAnything(event.target?.value === DietType.Meat);
