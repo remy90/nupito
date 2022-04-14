@@ -16,6 +16,7 @@
     "@js-temporal/polyfill": "^0.3.0",
     "@mui/icons-material": "^5.2.0",
     "@mui/material": "latest",
+    "@sentry/nextjs": "^6.19.6",
     "mongodb": "^4.2.1",
     "next": "^12.1.0",
     "next-transpile-modules": "latest",

@@ -12,5 +12,8 @@ export const formDefaults = {
     foodOption9: false,
     foodOption10: false,
     foodOption11: false,
+    euroStarter: undefined,
+    euroMain: undefined,
+    euroDessert: undefined,
   }
 };

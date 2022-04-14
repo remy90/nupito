@@ -41,3 +41,8 @@ localhost*-key.pem
 # private-assets
 private-assets
 home-page.jpg
+# Sentry
+.sentryclirc
+
+# Sentry
+.sentryclirc

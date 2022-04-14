@@ -9,18 +9,15 @@ import { EmailFormField } from './FormFields/EmailFormField';
 import { AttendanceField } from './FormFields/AttendanceField';
 import { DietPreferenceField } from './FormFields/DietPreferenceField';
 import { formDefaults } from './FormFields/FormHelpers';
+import { registerGuest } from '../pages/api/guest';
+import { Sentry } from '../utils';
+import { STATUS_CODES } from 'http';
 
 export default function Form() {
   const { state, dispatch } = useContext(AppContext);
   const [isAttending, setAttending] = useState<boolean>();
   const [eatsAnything, setEatsAnything] = useState<boolean>(false);
 
-  const registerGuest = async (data: any) =>
-    await fetch('/api/guestUpdate', {
-      body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json' },
-      method: 'POST'
-    }); 
 
   const { register, handleSubmit, formState: { errors }, control, getValues } = useForm<Inputs>({
     defaultValues: { ...formDefaults }
@@ -34,40 +31,43 @@ export default function Form() {
   };
   const onSubmit: SubmitHandler<Inputs> = async data => {
     console.log('submitting...');
-    if (!state?.ID){
-      console.error('id not registered');
+    if (!state?.id){
+      Sentry.captureException(`id not registered ${localStorage.getItem('shaun_char_guest_id')}`);
     }
 
-    const result = await registerGuest({
-      ID: state?.ID ?? localStorage.getItem('shaun_char_guest_id'),
-      ...data
-    });
-    dispatch({
-      type: 'SUBMIT_FORM',
-      value: {
-        showAlertMessage: showAlertMessage,
-        severity: result.status === 200 ? 'success' : 'error',
-      },
-    });
-    console.log(state);
+    try {
+      const result = await registerGuest({
+        id: state?.id ?? localStorage.getItem('shaun_char_guest_id'),
+        ...data
+      });
+      dispatch({
+        type: 'SUBMIT_FORM',
+        value: {
+          showAlertMessage: showAlertMessage,
+          severity: result?.status ? STATUS_CODES[result.status] : 'error',
+        },
+      });
+      console.log(state);
+    } catch(e) {
+      Sentry.captureException(`failed to register guest ${state?.id}: ${e}`);
+    }
   };
-  const handleAttendanceChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setAttending(!!event.target?.value);
-  };
+  const handleAttendanceChange = (event: ChangeEvent<HTMLInputElement>) =>
+    setAttending(event.target?.value === 'isAttending');
+
   const handleDietChange =  (event: ChangeEvent<HTMLInputElement>) => 
     setEatsAnything(event.target?.value === DietType.Meat);
 
   return (
-    <Paper style={{height: '40vh'}}>
+    <Paper style={{height: '100%'}}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Box sx={{marginTop: '2rem', marginBottom: '2rem'}}>
-          <AttendanceField errors={errors} onChange={handleAttendanceChange} register={register} />
-        </Box>
-        {isAttending && <Box sx={{marginBottom: '2rem'}}>
-          <DietPreferenceField errors={errors} onChange={handleDietChange} register={register} />
-        </Box>}
-        {isAttending && !!getValues()?.diet && <MenuForm eatsAnything={!!eatsAnything} control={control} />}
-        {isAttending && <EmailFormField errors={errors} onChange={() => null} register={register} />}
+        <AttendanceField errors={errors} onChange={handleAttendanceChange} register={register} />
+        {isAttending && 
+          <DietPreferenceField errors={errors} onChange={handleDietChange} register={register} />}
+        {isAttending &&
+          !!getValues()?.diet && <MenuForm eatsAnything={!!eatsAnything} control={control} />}
+        {isAttending &&
+          <EmailFormField errors={errors} onChange={() => null} register={register} />}
         <Box><Button sx={{margin: 2}} variant="outlined" type="submit">Submit</Button></Box>
         {!!state.ShowAlertMessage
           && <TemporaryAlert severity={ state.Severity ?? 'error' }>

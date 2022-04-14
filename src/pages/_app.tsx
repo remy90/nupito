@@ -14,10 +14,12 @@ const clientSideEmotionCache = createEmotionCache();
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
+  isDev: boolean;
 }
 
 export default function MyApp(props: MyAppProps) {
-  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  const { Component, emotionCache = clientSideEmotionCache, pageProps, isDev } = props;
+
   return (
     <CacheProvider value={emotionCache}>
       <Head>
@@ -35,4 +37,8 @@ export default function MyApp(props: MyAppProps) {
       </ThemeProvider>
     </CacheProvider>
   );
+}
+
+export async function getStaticProps() {
+  return { props: { isDev: process.env.NODE_ENV !== 'production' }};
 }

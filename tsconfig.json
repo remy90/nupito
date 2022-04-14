@@ -24,7 +24,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "*.mjs"
+    "*.mjs",
+    "src/pages/_error.js"
   ],
   "exclude": ["node_modules"]
 }

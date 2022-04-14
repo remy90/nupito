@@ -1,980 +1,757 @@
 [{
   "firstName": "Shaun",
   "lastName": "Gaisie",
-  "ID":	"ff94e7",
+  "id":	"ff94e7",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Pat",
   "lastName": "Mundon",
-  "ID":	"e4d650",
+  "id":	"e4d650",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Corinne",
   "lastName": "Gaisie",
-  "ID":	"4443c5",
+  "id":	"4443c5",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Stephen",
   "lastName": "Gaisie",
-  "ID":	"3b45ae",
+  "id":	"3b45ae",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Iveta",
   "lastName":"Blazova",
-  "ID":	"80207",
+  "id":	"80207",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
-}, {
-  "firstName": "Bob",
-  "lastName": "Gaisie",
-  "ID":	"63074a",
-  "hasPlusOne":	false,
-  "wave":	1,
-  "isAttending": null,
-  "emailAddress": null,
-  "isPlusOne": false,
-  "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Thelma",
   "lastName": "Gaisie",
-  "ID":	"2f07c9",
+  "id":	"2f07c9",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Nathan",
   "lastName": "Gaisie",
-  "ID":	"169a36",
+  "id":	"169a36",
   "hasPlusOne": true,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
-}, {
-  "firstName": "partner",
-  "lastName": "Gaisie",
-  "ID":	"1458c4",
-  "hasPlusOne":	false,
-  "wave":	1,
-  "isAttending": null,
-  "emailAddress": null,
-  "isPlusOne": false,
-  "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Tina",
   "lastName": "Gaisie",
-  "ID":	"46fd83",
+  "id":	"46fd83",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Manfred",
   "lastName": "Gaisie",
-  "ID":	"db5149",
+  "id":	"db5149",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Edmund",
   "lastName": "Gaisie",
-  "ID":	"9b9fdc",
+  "id":	"9b9fdc",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Stefan",
   "lastName": "Gaisie",
-  "ID":	"5439d7",
+  "id":	"5439d7",
   "hasPlusOne": true,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Manfred",
   "lastName": "Gaisie",
-  "ID":	"649ba1",
+  "id":	"649ba1",
   "hasPlusOne": false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Linda",
   "lastName": "Gaisie",
-  "ID":	"9cc75a",
+  "id":	"9cc75a",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Roseline",
   "lastName": "Ampah",
-  "ID":	"b78cac",
+  "id":	"b78cac",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Kukua",
   "lastName": "Ampah",
-  "ID":	"cfac76",
+  "id":	"cfac76",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Babs",
   "lastName": "Ampah",
-  "ID":	"0084ff",
+  "id":	"0084ff",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Nina",
   "lastName": "Gaisie",
-  "ID":	"78a144",
+  "id":	"78a144",
   "hasPlusOne": true,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Lisbeth",
-  "lastName": "Gaisie",
-  "ID":	"6ca28e",
+  "lastName": "Andersen",
+  "id":	"6ca28e",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
-}, {
-  "firstName": "Jocelyn",
-  "lastName": "Hélénon",
-  "ID":	"38f6a8",
-  "hasPlusOne":	false,
-  "wave":	1,
-  "isAttending": null,
-  "emailAddress": null,
-  "isPlusOne": false,
-  "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Greg",
   "lastName": "Hélénon",
-  "ID":	"ba41e7",
+  "id":	"ba41e7",
   "hasPlusOne": true,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Julien",
   "lastName": "Hélénon",
-  "ID":	"44853d",
+  "id":	"44853d",
   "hasPlusOne": true,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Jonathan",
   "lastName": "Hélénon",
-  "ID":	"9a8490",
+  "id":	"9a8490",
   "hasPlusOne": true,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Severine",
   "lastName": "Hélénon",
-  "ID":	"bee7f6",
+  "id":	"bee7f6",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Fabrice",
   "lastName": "Hélénon",
-  "ID":	"c94d1e",
+  "id":	"c94d1e",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Gina",
   "lastName": "Kounga",
-  "ID":	"552191",
+  "id":	"552191",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Lily",
   "lastName": "Gaisie",
-  "ID":	"64440a",
+  "id":	"64440a",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Lia",
   "lastName": "Gaisie",
-  "ID":	"a8e619",
+  "id":	"a8e619",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Lukka",
   "lastName": "Gaisie",
-  "ID":	"dfd245",
+  "id":	"dfd245",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Mingus",
   "lastName": "Gaisie",
-  "ID":	"13e38b",
+  "id":	"13e38b",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Hilary",
   "lastName": "Jones",
-  "ID":	"e92172",
+  "id":	"e92172",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Glenda",
   "lastName": "Worth",
-  "ID":	"f3efb0",
+  "id":	"f3efb0",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Nigel",
   "lastName": "Worth",
-  "ID":	"18f14a",
+  "id":	"18f14a",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Mercy",
   "lastName": "Akman",
-  "ID":	"81ae5c",
+  "id":	"81ae5c",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Michelle",
   "lastName": "Wright",
-  "ID":	"1123bc",
+  "id":	"1123bc",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "James",
   "lastName": "Akman",
-  "ID":	"404cd4",
+  "id":	"404cd4",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Karine",
   "lastName": "Gallas",
-  "ID":	"790dd1",
+  "id":	"790dd1",
   "hasPlusOne": true,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Nathan",
   "lastName": "Leonard",
-  "ID":	"dab30d",
+  "id":	"dab30d",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Lewis",
   "lastName": "Chaffe",
-  "ID":	"74b1a5",
+  "id":	"74b1a5",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Phil",
   "lastName": "Worth",
-  "ID":	"72666f",
+  "id":	"72666f",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Emma",
   "lastName": "Worth",
-  "ID":	"220363",
+  "id":	"220363",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Josh",
   "lastName": "Smith",
-  "ID":	"815f41",
+  "id":	"815f41",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Lydia",
   "lastName": "Smith",
-  "ID":	"6e0ea5",
+  "id":	"6e0ea5",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Tom",
   "lastName": "Amos",
-  "ID":	"6c600f",
+  "id":	"6c600f",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Justin",
   "lastName": "Eniola",
-  "ID":	"07a649",
+  "id":	"07a649",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Esther",
   "lastName": "Eniola",
-  "ID":	"a634f7",
+  "id":	"a634f7",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Sam",
   "lastName": "Brown",
-  "ID":	"79936e",
+  "id":	"79936e",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Stephen",
   "lastName": "Okeghie",
-  "ID":	"6ecc71",
+  "id":	"6ecc71",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Rick",
   "lastName": "Elson",
-  "ID":	"0f01bd",
+  "id":	"0f01bd",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Katy",
   "lastName": "Elson",
-  "ID":	"1fa049",
+  "id":	"1fa049",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Simon",
   "lastName": "Rolling",
-  "ID":	"1dc83e",
+  "id":	"1dc83e",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Kat",
   "lastName": "Rolling",
-  "ID":	"0004eb",
+  "id":	"0004eb",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Mike",
   "lastName": "Rudge",
-  "ID":	"bc4c06",
+  "id":	"bc4c06",
   "hasPlusOne": true,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Stef",
   "lastName": "Stefanova",
-  "ID":	"7245ba",
+  "id":	"7245ba",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Pete",
   "lastName": "YB",
-  "ID":	"20b60c",
+  "id":	"20b60c",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Lucy",
   "lastName": "YB",
-  "ID":	"34acf5",
+  "id":	"34acf5",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Iona",
   "lastName": "Ledwidge",
-  "ID":	"2457fd",
+  "id":	"2457fd",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Neil",
   "lastName": "Day",
-  "ID":	"554b08",
+  "id":	"554b08",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Toby",
   "lastName": "Bryson",
-  "ID":	"d5e6f6",
+  "id":	"d5e6f6",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Solene",
   "lastName": "Bryson",
-  "ID":	"cdbc3e",
+  "id":	"cdbc3e",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Richard",
   "lastName": "Verrall",
-  "ID":	"434426",
+  "id":	"434426",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Haru",
   "lastName": "Majengwa",
-  "ID":	"2f4277",
+  "id":	"2f4277",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Alex",
   "lastName": "Whitehouse",
-  "ID":	"85fde9",
+  "id":	"85fde9",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Sam",
   "lastName": "Elegbede",
-  "ID":	"1a97b2",
+  "id":	"1a97b2",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Keith",
   "lastName": "Kaselampao",
-  "ID":	"2b81a8",
+  "id":	"2b81a8",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Olivia",
   "lastName": "Kaselampao",
-  "ID":	"48bbf4",
+  "id":	"48bbf4",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Ryan",
   "lastName": "Topper",
-  "ID":	"bbab09",
+  "id":	"bbab09",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Jade",
   "lastName": "Topper",
-  "ID":	"47c503",
+  "id":	"47c503",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Chris",
   "lastName": "Collinson",
-  "ID":	"bd3ffa",
+  "id":	"bd3ffa",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Juliette",
   "lastName": "Collinson",
-  "ID":	"b126b6",
+  "id":	"b126b6",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Jeff",
   "lastName": "Barnet",
-  "ID":	"543d39",
+  "id":	"543d39",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Sam",
   "lastName": "Hughes",
-  "ID":	"72da6e",
+  "id":	"72da6e",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Evie",
   "lastName": "Christian",
-  "ID":	"c4da7d",
+  "id":	"c4da7d",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Mwansa",
   "lastName": "Mwondela",
-  "ID":	"a429de",
+  "id":	"a429de",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Chris",
   "lastName": "Hyliger",
-  "ID":	"0c95d1",
+  "id":	"0c95d1",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Jo",
   "lastName": "Hyliger",
-  "ID":	"5e7817",
+  "id":	"5e7817",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Emmanuel",
   "lastName": "Boakye",
-  "ID":	"43aaba",
+  "id":	"43aaba",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Rachel",
   "lastName": "Marshall",
-  "ID":	"3b1247",
+  "id":	"3b1247",
   "hasPlusOne": true,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Kate",
   "lastName": "Marvelyan",
-  "ID":	"4fdf9f",
+  "id":	"4fdf9f",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Josh",
   "lastName": "Marvelyan",
-  "ID":	"7ed40b",
+  "id":	"7ed40b",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Mary",
   "lastName": "Trevelyan",
-  "ID":	"511a12",
+  "id":	"511a12",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Jonny",
   "lastName": "Claridge",
-  "ID":	"78c07f",
+  "id":	"78c07f",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Steve",
   "lastName": "Ninaber",
-  "ID":	"ed65e6",
+  "id":	"ed65e6",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Joanna",
   "lastName": "Chumbley",
-  "ID":	"404d8e",
+  "id":	"404d8e",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 },{
-  "firstName": "Jonny",
-  "lastName": "Claridge",
-  "ID":	"b1a595",
-  "hasPlusOne":	false,
-  "wave":	1,
-  "isAttending": null,
-  "emailAddress": null,
-  "isPlusOne": false,
-  "diet": null,
-  "otherFoodConsiderations": null
-}, {
   "firstName": "Rob",
   "lastName": "Bruce",
-  "ID":	"cbbd28",
+  "id":	"cbbd28",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }, {
   "firstName": "Kyra",
   "lastName": "Bruce",
-  "ID":	"bba36c",
+  "id":	"bba36c",
   "hasPlusOne":	false,
-  "wave":	1,
   "isAttending": null,
   "emailAddress": null,
-  "isPlusOne": false,
   "diet": null,
-  "otherFoodConsiderations": null
-}, {
-  "firstName": "Pastor",
-  "lastName": "Pastor",
-  "ID":	"9d49be",
-  "hasPlusOne": true,
-  "wave":	1,
-  "isAttending": null,
-  "emailAddress": null,
-  "isPlusOne": false,
-  "diet": null,
-  "otherFoodConsiderations": null
+  "menuChoices": []
 }]

@@ -1,7 +1,8 @@
-import {  Box, Typography, FormControl, RadioGroup, Radio, FormControlLabel } from '@mui/material';
 import React, { useState } from 'react';
+import {  Box, Typography, FormControl, RadioGroup, Radio, FormControlLabel } from '@mui/material';
 import { Control, useForm } from 'react-hook-form';
 import { AfroMenuOptions } from './AfroMenuOptions';
+import { DessertOptions } from './DessertOptions';
 import { EuroMenuOptions } from './EuroMenuOptions';
 import { Inputs, RHFormControlProps } from './Interfaces';
 
@@ -58,13 +59,14 @@ export default function MenuForm({ eatsAnything, control }: RHFormControlProps &
           <FormControlLabel
             checked={isAfrican}
             control={<Radio />}
-            label="African 🇳🇬"
+            label="West African 🇳🇬"
             onClick={() => handleClick('afro')}
           />
         </RadioGroup>
       </FormControl>}
       {eatsAnything && isAfrican && <AfroMenuOptions control={control} />}
       {(isEuropean || !eatsAnything) && <EuroMenuOptions control={control} />}
+      {(isAfrican || isEuropean) && <DessertOptions control={control} />}
     </Box>
   );
 }

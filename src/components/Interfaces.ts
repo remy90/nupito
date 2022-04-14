@@ -31,34 +31,31 @@ export type Inputs = {
     foodOption9: boolean,
     foodOption10: boolean,
     foodOption11: boolean,
-    euroStarter: number,
-    euroMain: number,
-    // TODO: Add dessert to afro options
-    euroDessert: number,
+    euroStarter: number | undefined,
+    euroMain: number | undefined,
+    euroDessert: number | undefined,
   }
 };
 
 export type GuestData = {
-  ID: string,
+  id: string,
   firstName: string,
   lastName: string,
-  isPlusOne: string,
   hasPlusOne: boolean,
-  wave:1,
   isAttending: boolean,
-  diet: string,
-  otherFoodConsiderations: string,
+  diet: DietType,
+  menuChoices: Array<number>,
 };
 
 export type FormData = {
   urlId: string,
   isAttending: boolean,
   diet: DietType,
-  otherFoodConsiderations: string,
   plusOne?: {
     guest: GuestData,
   },
   emailAddress: string,
+  menuChoices: Array<number>,
 };
 
 

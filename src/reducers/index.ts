@@ -16,20 +16,20 @@ function guestReducer(state: any, action: reducerType) {
   switch (action.type) {
   case 'UPDATE_ID':
     return {
-      ID: action.value,
-      ...state
+      ...state,
+      id: action.value,
     };
   case 'SUBMIT_FORM':
     return {
-      ShowAlertMessage: true,
-      Severity: formValue.severity,
-      ...state
+      ...state,
+      showAlertMessage: true,
+      severity: formValue.severity,
     };
   case 'RESET_FORM_ALERT':
     return {
-      ShowAlertMessage: false,
-      Severity: undefined,
       ...state,
+      showAlertMessage: false,
+      severity: undefined,
     };
   default:
     return state;
