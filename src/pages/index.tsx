@@ -21,8 +21,9 @@ const HomePage: NextPage = ({ homePageImg }: any) => {
           {'Welcome to Shaun and Charlotte\'s wedapp'}
         </Typography>
         <Box style={{ width: '100%', maxWidth: '30rem' }}>
-          {/* <Image sizes='100%' priority width="100%" height="100%" src={homePageImg} alt="Home page image of shaun and charlotte" /> */}
-          <div style={{width: '10rem', height: '10rem', backgroundImage: `url(${homePageImg})`}}></div>
+          {/* <Image sizes='100%' priority width="100%" height="100%" src={'home-page.jpeg'} alt="Home page image of shaun and charlotte" /> */}
+          {/* <div style={{width: '10rem', height: '10rem', backgroundImage: `url(${homePageImg})`}}></div> */}
+          <img src="home-page.jpeg" alt="shaun and charlotte" />
         </Box>
       </Box>
     </Container>
