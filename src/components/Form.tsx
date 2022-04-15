@@ -18,7 +18,6 @@ export default function Form() {
   const [isAttending, setAttending] = useState<boolean>();
   const [eatsAnything, setEatsAnything] = useState<boolean>(false);
 
-
   const { register, handleSubmit, formState: { errors }, control, getValues } = useForm<Inputs>({
     defaultValues: { ...formDefaults }
   });

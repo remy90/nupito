@@ -79,3 +79,10 @@ export interface IDietFormFieldProps {
   register: UseFormRegister<Inputs>;
   onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
+
+export interface IGuestProps {
+  id: string;
+  firstName: string;
+  isAttending: boolean;
+  hasPlusOne: boolean;
+}

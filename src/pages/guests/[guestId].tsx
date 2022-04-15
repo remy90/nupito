@@ -1,20 +1,14 @@
 import React, { useEffect, useContext, useMemo } from 'react';
+import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { MongoClient } from 'mongodb';
-import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { AppContext } from '../../components/AppProvider';
 import { Sentry } from '../../utils';
+import { IGuestProps } from '../../components/Interfaces';
 
 const client = new MongoClient(process.env.MONGODB_URI!);
-
-interface IGuestProps {
-  id: string;
-  firstName: string;
-  isAttending: boolean;
-  hasPlusOne: boolean;
-}
 
 const showAttendanceMessage = (isAttending: boolean, hasPlusOne: boolean) => {
   if (isAttending === undefined || isAttending === null) {
