@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, Typography } from '@mui/material';
 import Navigator from './Navigator';
 import { StickToEndOfContainer } from './styledcomponents';
 import Head from 'next/head';
+import { AppContext, AppProvider } from './AppProvider';
 
 export default function Layout({ children }: any) {
+  const {state} = useContext(AppContext);
+  console.log(`Layout state ${JSON.stringify(state)}`);
   return (
     <>
       <Head>

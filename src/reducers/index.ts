@@ -1,6 +1,8 @@
 import { AlertColor } from '@mui/material';
 
-const initialState = {};
+const initialState = {
+  test: 0,
+};
 type formValue = {
   showAlertMessage: boolean,
   severity?: AlertColor,
@@ -21,7 +23,7 @@ function guestReducer(state: any, action: reducerType) {
     };
   case 'SUBMIT_FORM':
     return {
-      ...state,
+      ...formValue,
       showAlertMessage: true,
       severity: formValue.severity,
     };

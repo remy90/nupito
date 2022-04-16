@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Menu, MenuItem } from '@mui/material';
 import Link from '../Link';
+import { AppContext } from './AppProvider';
 
 export default function ButtonAppBar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -15,7 +16,8 @@ export default function ButtonAppBar() {
     setAnchorEl(event.currentTarget);
 
   const handleClose = () => setAnchorEl(null);
-
+  const {state, dispatch} = useContext(AppContext);
+  console.log(`menu navigator state: ${JSON.stringify(state)}`);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static"  sx={{ backgroundColor: '#222222'}}>
@@ -28,8 +30,7 @@ export default function ButtonAppBar() {
             MenuListProps={{ 'aria-labelledby': 'basic-button' }}
           >
             <MenuItem onClick={handleClose}><Link href="/" color="secondary">Home</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link href="/rsvp" color="secondary">RSVP</Link></MenuItem>
-            {/* // ! is attending and has made menu selection, show them their order: <MenuItem onClick={handleClose}><Link href="/menu" color="secondary">Wedding breakfast menu</Link></MenuItem> */}
+            {state?.isAttending != false && <MenuItem onClick={handleClose}><Link href="/rsvp" color="secondary">RSVP</Link></MenuItem>}
             <MenuItem onClick={handleClose}><Link href="/order" color="secondary">Order of service</Link></MenuItem>
             <MenuItem onClick={handleClose}><Link href="/registry" color="secondary">Registry</Link></MenuItem>
             <MenuItem onClick={handleClose}><Link href="/location" color="secondary">Location</Link></MenuItem>

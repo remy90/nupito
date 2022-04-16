@@ -7,23 +7,17 @@ import { MongoClient } from 'mongodb';
 import { AppContext } from '../../components/AppProvider';
 import { Sentry } from '../../utils';
 import { IGuestProps } from '../../components/Interfaces';
+import { showAttendanceMessage, showMealSelection } from '../../components/formSubmissionTextHelper';
 
 const client = new MongoClient(process.env.MONGODB_URI!);
-
-const showAttendanceMessage = (isAttending: boolean, hasPlusOne: boolean) => {
-  if (isAttending === undefined || isAttending === null) {
-    return 'Head over to the RSVP page to let us know if you can make it';
-  }
-  return isAttending
-    ? `We're glad you're attending our wedding${hasPlusOne ? ', including your plus one.': '!'}`
-    : 'We\'ll miss your absence at our wedding!';
-};
 
 const GuestPage: NextPage<IGuestProps> = ({
   id,
   firstName,
   isAttending,
+  isEating,
   hasPlusOne,
+  menuChoices,
 }: IGuestProps) => {
   const { dispatch } = useContext(AppContext);
   
@@ -32,12 +26,13 @@ const GuestPage: NextPage<IGuestProps> = ({
   Sentry.captureMessage(`guestId dispatched for ${id}`, Sentry.Severity.Debug);
 
   const memoizedAttendanceMessage = useMemo(() => showAttendanceMessage(isAttending, hasPlusOne), [isAttending, hasPlusOne]);
-
+  const memoizedMealSelection = useMemo(() => showMealSelection(menuChoices), [menuChoices]);
   return (
     <Container maxWidth="sm">
       <Box sx={{ my: 4 }}><Typography>Welcome, {firstName}</Typography>
         <Typography>{memoizedAttendanceMessage}</Typography>
       </Box>
+      {isAttending && isEating && memoizedMealSelection}
     </Container>
   );
 };
@@ -49,6 +44,7 @@ export const getServerSideProps: GetServerSideProps = async({params}: GetServerS
   const data = await guests.findOne({ id: params?.guestId });
 
   if (!data) {
+    Sentry.captureMessage('possible randomer');
     return { notFound: true };
   }
 
@@ -57,7 +53,9 @@ export const getServerSideProps: GetServerSideProps = async({params}: GetServerS
       id: data.id,
       firstName: data.firstName,
       isAttending: data.isAttending,
+      isEating: data.isEating,
       hasPlusOne: data.hasPlusOne,
+      menuChoices: data.menuChoices
     }
   };
 };

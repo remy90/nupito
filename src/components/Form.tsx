@@ -42,6 +42,7 @@ export default function Form() {
       dispatch({
         type: 'SUBMIT_FORM',
         value: {
+          ...data,
           showAlertMessage: showAlertMessage,
           severity: result?.status ? STATUS_CODES[result.status] : 'error',
         },
@@ -52,7 +53,7 @@ export default function Form() {
     }
   };
   const handleAttendanceChange = (event: ChangeEvent<HTMLInputElement>) =>
-    setAttending(event.target?.value === 'isAttending');
+    setAttending(event.target?.value == 'true');
 
   const handleDietChange =  (event: ChangeEvent<HTMLInputElement>) => 
     setEatsAnything(event.target?.value === DietType.Meat);

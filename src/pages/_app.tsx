@@ -28,12 +28,12 @@ export default function MyApp(props: MyAppProps) {
         <link href="/favicon.ico" rel="icon" />
       </Head>
       <ThemeProvider theme={theme}>
-        <Layout>
-          <CssBaseline />
-          <AppProvider>
+        <AppProvider>
+          <Layout>
+            <CssBaseline />
             <Component {...pageProps} />
-          </AppProvider>
-        </Layout>
+          </Layout>
+        </AppProvider>
       </ThemeProvider>
     </CacheProvider>
   );

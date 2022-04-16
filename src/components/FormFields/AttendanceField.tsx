@@ -13,7 +13,7 @@ export const AttendanceField = ({ errors, onChange, register }: IFieldProps) =>
       error={!!errors?.isAttending}
       helperText={errors?.isAttending?.message}
     >
-      <MenuItem key={'true'} value={'isAttending'}>I will attend</MenuItem>
-      <MenuItem key={'false'} value={'isNotAttending'}>I will not be able to attend</MenuItem>
+      <MenuItem key={'true'} value={1}>I will attend</MenuItem>
+      <MenuItem key={'false'} value={0}>I will not be able to attend</MenuItem>
     </TextField>
   </Box>;
