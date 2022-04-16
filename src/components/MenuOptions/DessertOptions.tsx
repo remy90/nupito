@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material';
 import { Controller } from 'react-hook-form';
-import { RHFormControlProps } from './Interfaces';
+import { RHFormControlProps } from '../Interfaces';
 
 export const DessertOptions = ({control}: RHFormControlProps) =>
   <>

@@ -87,4 +87,5 @@ export interface IGuestProps {
   isEating: boolean;
   hasPlusOne: boolean;
   menuChoices: Array<number>;
+  homePageImg: string;
 }

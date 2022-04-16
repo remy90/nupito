@@ -8,7 +8,7 @@ export const showAttendanceMessage = (isAttending: boolean, hasPlusOne: boolean)
   }
   return isAttending
     ? `We're glad you're attending our wedding${hasPlusOne ? ', including your plus one.': '!'}`
-    : 'We\'ll miss your absence at our wedding!';
+    : 'We\'ll miss your presence at our wedding!';
 };
 const menuMap = [{key: 0, value: 'blem'}];
 export const showMealSelection = (menuChoices: Array<number>) => {

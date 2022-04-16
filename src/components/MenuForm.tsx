@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import {  Box, Typography, FormControl, RadioGroup, Radio, FormControlLabel } from '@mui/material';
 import { Control, useForm } from 'react-hook-form';
-import { AfroMenuOptions } from './AfroMenuOptions';
-import { DessertOptions } from './DessertOptions';
-import { EuroMenuOptions } from './EuroMenuOptions';
+import { AfroMenuOptions } from './MenuOptions/AfroMenuOptions';
+import { DessertOptions } from './MenuOptions/DessertOptions';
+import { EuroMenuOptions } from './MenuOptions/EuroMenuOptions';
 import { Inputs, RHFormControlProps } from './Interfaces';
 
 type CuisineType = 'euro' | 'afro';

@@ -16,8 +16,8 @@ export default function ButtonAppBar() {
     setAnchorEl(event.currentTarget);
 
   const handleClose = () => setAnchorEl(null);
-  const {state, dispatch} = useContext(AppContext);
-  console.log(`menu navigator state: ${JSON.stringify(state)}`);
+  const {state} = useContext(AppContext);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static"  sx={{ backgroundColor: '#222222'}}>
@@ -29,13 +29,14 @@ export default function ButtonAppBar() {
             onClose={handleClose}
             MenuListProps={{ 'aria-labelledby': 'basic-button' }}
           >
-            <MenuItem onClick={handleClose}><Link href="/" color="secondary">Home</Link></MenuItem>
-            {state?.isAttending != false && <MenuItem onClick={handleClose}><Link href="/rsvp" color="secondary">RSVP</Link></MenuItem>}
-            <MenuItem onClick={handleClose}><Link href="/order" color="secondary">Order of service</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link href="/registry" color="secondary">Registry</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link href="/location" color="secondary">Location</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link href="/songs" color="secondary">Hymns</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link href="/readings" color="secondary">Readings</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href={`/${state?.id}`} color="secondary">Home</Link></MenuItem>
+            {state?.isAttending != false &&
+              <MenuItem onClick={handleClose}><Link href={`/rsvp/${state?.id}`} color="secondary">RSVP</Link></MenuItem>}
+            <MenuItem onClick={handleClose}><Link href={`/order/${state?.id}`} color="secondary">Order of service</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href={`/registry/${state?.id}`} color="secondary">Registry</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href={`/location/${state?.id}`} color="secondary">Location</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href={`/songs/${state?.id}`} color="secondary">Songs</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href={`/readings/${state?.id}`} color="secondary">Readings</Link></MenuItem>
           </Menu>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} align="justify">
             Shaun &#38; Char
