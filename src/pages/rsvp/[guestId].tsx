@@ -8,7 +8,6 @@ import { AppContext } from '../../components/AppProvider';
 
 const RSVP: NextPage = () => {
   const { state } = useContext(AppContext);
-  console.log(state);
   const isAttending = state.isAttending; // add db check in getStaticProps here?
   return (
     <Container maxWidth="sm">
@@ -22,7 +21,8 @@ const RSVP: NextPage = () => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async({params}: GetServerSidePropsContext) =>
-{ return {props: { id: params?.guestId } };};
+export const getServerSideProps: GetServerSideProps = async({params}: GetServerSidePropsContext) => {
+  return {props: { id: params?.guestId } };
+};
 
 export default RSVP;

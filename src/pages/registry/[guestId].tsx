@@ -3,6 +3,7 @@ import Container from '@mui/material/Container';
 import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { Typography } from '@mui/material';
 
+// TODO: if state id is null, set state from url value (on each page!?)
 const Registry: NextPage = () => (
   <Container maxWidth="sm">
     <Typography>Registry</Typography>

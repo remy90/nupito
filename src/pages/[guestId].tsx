@@ -28,6 +28,8 @@ const HomePage: NextPage<IGuestProps> = ({
 
   const memoizedAttendanceMessage = useMemo(() => showAttendanceMessage(isAttending, hasPlusOne), [isAttending, hasPlusOne]);
   const memoizedMealSelection = useMemo(() => showMealSelection(menuChoices), [menuChoices]);
+  // TODO: Check if person has id, if not, give an oops message
+  // ! TODO: Fix landing page for deployed page
   return (
     <Container maxWidth="sm">
       <Box sx={{ my: 4 }}>
