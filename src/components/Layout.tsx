@@ -1,10 +1,10 @@
 import React from 'react';
+import Head from 'next/head';
 import { Link, Typography } from '@mui/material';
 import Navigator from './Navigator';
 import { StickToEndOfContainer } from './styledcomponents';
-import Head from 'next/head';
 
-export default function Layout({ children }: ({children: React.ReactChild})) {
+export default function Layout({ children }: ({children: Array<React.ReactChild>})) {
   return (
     <>
       <Head>

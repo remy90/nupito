@@ -9,6 +9,8 @@ import { showAttendanceMessage, showMealSelection } from '../components/formSubm
 import { Sentry } from '../utils';
 import { IGuestProps } from '../components/Interfaces';
 import { MongoClient } from 'mongodb';
+import { existsSync } from 'fs';
+
 // import { fileUpload } from './api/gridFSFileUpload';
 
 const HomePage: NextPage<IGuestProps> = ({
@@ -50,16 +52,14 @@ const HomePage: NextPage<IGuestProps> = ({
 
 export const getServerSideProps: GetServerSideProps = async ({params}: GetServerSidePropsContext) => {
   const client = new MongoClient(process.env.MONGODB_URI!);
-  const fs = require('fs');
-  async function exists(path: string) {  
-    return fs.existsSync(path);
-  }
+  const connectTask = client.connect();
+
   // await fileUpload('home-page.jpeg', 'home-image01', 'public/private-assets/home-page.jpeg');
   
-  if (!(await exists('public/home-page.jpeg'))) {
+  if (! existsSync('./public/home-page.jpeg')) {
     await fileDownload('home-page.jpeg', 'home-image01', './public/home-page.jpeg');
   }
-  await client.connect();
+  await connectTask;
   const database = client.db('shaun-charlotte');
   const guests = database.collection('guests');
   const data = await guests.findOne({ id: params?.guestId });
@@ -70,7 +70,7 @@ export const getServerSideProps: GetServerSideProps = async ({params}: GetServer
   }
 
   return { props: {
-    homePageImg: 'home-page.jpeg',
+    homePageImg: './home-page.jpeg',
     id: data.id,
     firstName: data.firstName,
     isAttending: data.isAttending,
