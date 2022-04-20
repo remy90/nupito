@@ -63,9 +63,9 @@ const HomePage: NextPage<IGuestProps> = ({
 export const getServerSideProps: GetServerSideProps = async({params}: GetServerSidePropsContext) => {
   // await fileUpload('home-page.jpeg', 'home-image01', 'public/private-assets/home-page.jpeg');
   const client = new MongoClient(process.env.MONGODB_URI!);
-  if (!existsSync('./public/home-page.jpeg')) {
-    console.log('uploading image');
-    await fileDownload('home-page.jpeg', 'home-image01', './public/home-page.jpeg');
+  if (!existsSync('./home-page.jpeg')) {
+    console.log('downloading image');
+    await fileDownload('home-page.jpeg', 'home-image01', './home-page.jpeg');
     console.log('image upload complete');
   } else {
     console.log('already on the server');
