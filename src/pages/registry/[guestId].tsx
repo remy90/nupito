@@ -6,7 +6,7 @@ import { Typography } from '@mui/material';
 // TODO: if state id is null, set state from url value (on each page!?)
 const Registry: NextPage = () => (
   <Container maxWidth="sm">
-    <Typography>Registry</Typography>
+    <Typography variant="h2">Registry</Typography>
   </Container>
 );
 

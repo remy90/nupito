@@ -5,7 +5,7 @@ import { Typography } from '@mui/material';
 
 const Readings: NextPage = () => (
   <Container maxWidth="sm">
-    <Typography> Readings</Typography>
+    <Typography variant="h2"> Readings</Typography>
   </Container>
 );
 

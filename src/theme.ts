@@ -1,7 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
+import type {} from '@mui/lab/themeAugmentation';
 
-// Create a theme instance.
 const theme = createTheme({
   palette: {
     primary: {
@@ -14,6 +14,15 @@ const theme = createTheme({
       main: red.A400,
     },
   },
+  components: {
+    MuiTimelineItem: {
+      styleOverrides: {
+        root: {
+          '&:before': { flex: 0 }
+        }
+      }
+    }
+  }
 });
 
 export default theme;

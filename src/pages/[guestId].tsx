@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useMemo} from 'react';
+import React, { Suspense, useContext, useEffect, useMemo, useRef, useState} from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -10,6 +10,7 @@ import { Sentry } from '../utils';
 import { IGuestProps } from '../components/Interfaces';
 import { MongoClient } from 'mongodb';
 import { existsSync } from 'fs';
+import { CircularProgress } from '@mui/material';
 
 // import { fileUpload } from './api/gridFSFileUpload';
 
@@ -30,22 +31,30 @@ const HomePage: NextPage<IGuestProps> = ({
 
   const memoizedAttendanceMessage = useMemo(() => showAttendanceMessage(isAttending, hasPlusOne), [isAttending, hasPlusOne]);
   const memoizedMealSelection = useMemo(() => showMealSelection(menuChoices), [menuChoices]);
+
   // TODO: Check if person has id, if not, give an oops message
   // ! TODO: Fix landing page for deployed page
+
   return (
     <Container maxWidth="sm">
       <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Welcome to {firstName}, to Shaun and Charlotte&apos;s wedapp
-        </Typography>
+        {isAttending === undefined
+          ? <Typography variant="h4" gutterBottom>
+          Welcome, {firstName}, to Shaun and Charlotte&apos;s wedapp
+          </Typography>
+          : <Typography>Hi, {firstName}</Typography>
+        }
         <Typography>{memoizedAttendanceMessage}</Typography>
       </Box>
       {isAttending && isEating && memoizedMealSelection}
-      <Box sx={{ my: 4 }}>
-        <Box style={{ width: '100%', maxWidth: '30rem' }}>
-          <img width='100%' src={homePageImg} alt="shaun and charlotte" />
+      
+      <Suspense fallback={<CircularProgress color="inherit" />}>
+        <Box sx={{ my: 4 }}>
+          <Box style={{ width: '100%', maxWidth: '30rem' }}>
+            <img width='100%' src={homePageImg} alt="shaun and charlotte" />
+          </Box>
         </Box>
-      </Box>
+      </Suspense>
     </Container>
   );
 };

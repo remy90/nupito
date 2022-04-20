@@ -6,7 +6,7 @@ import { Typography } from '@mui/material';
 // eslint-disable-next-line @typescript-eslint/ban-types
 const Hymns: NextPage<{}> = () => (
   <Container maxWidth="sm">
-    <Typography>Songs of praise</Typography>
+    <Typography variant="h2">Songs of praise</Typography>
   </Container>
 );
 

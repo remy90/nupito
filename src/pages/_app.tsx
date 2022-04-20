@@ -1,4 +1,5 @@
-import * as React from 'react';
+import type React from 'react';
+import './styles/global.css';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
 import { ThemeProvider } from '@emotion/react';
@@ -18,7 +19,7 @@ interface MyAppProps extends AppProps {
 }
 
 export default function MyApp(props: MyAppProps) {
-  const { Component, emotionCache = clientSideEmotionCache, pageProps, isDev } = props;
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   return (
     <CacheProvider value={emotionCache}>
@@ -37,8 +38,4 @@ export default function MyApp(props: MyAppProps) {
       </ThemeProvider>
     </CacheProvider>
   );
-}
-
-export async function getStaticProps() {
-  return { props: { isDev: process.env.NODE_ENV !== 'production' }};
 }
