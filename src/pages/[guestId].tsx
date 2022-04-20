@@ -1,4 +1,5 @@
-import React, { Suspense, useContext, useEffect, useMemo, useRef, useState} from 'react';
+import type React from 'react';
+import { Suspense, useContext, useEffect, useMemo } from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -32,7 +33,7 @@ const HomePage: NextPage<IGuestProps> = ({
   const memoizedAttendanceMessage = useMemo(() => showAttendanceMessage(isAttending, hasPlusOne), [isAttending, hasPlusOne]);
   const memoizedMealSelection = useMemo(() => showMealSelection(menuChoices), [menuChoices]);
 
-  // TODO: Check if person has id, if not, give an oops message
+  // TODO: Check if person has id, if not, give a 404 oops message
   // ! TODO: Fix landing page for deployed page
 
   return (
@@ -59,16 +60,18 @@ const HomePage: NextPage<IGuestProps> = ({
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({params}: GetServerSidePropsContext) => {
-  const client = new MongoClient(process.env.MONGODB_URI!);
-  const connectTask = client.connect();
-
+export const getServerSideProps: GetServerSideProps = async({params}: GetServerSidePropsContext) => {
   // await fileUpload('home-page.jpeg', 'home-image01', 'public/private-assets/home-page.jpeg');
-  
-  if (! existsSync('./public/home-page.jpeg')) {
+  const client = new MongoClient(process.env.MONGODB_URI!);
+  if (!existsSync('./public/home-page.jpeg')) {
+    console.log('uploading image');
     await fileDownload('home-page.jpeg', 'home-image01', './public/home-page.jpeg');
+    console.log('image upload complete');
+  } else {
+    console.log('already on the server');
   }
-  await connectTask;
+
+  await client.connect();
   const database = client.db('shaun-charlotte');
   const guests = database.collection('guests');
   const data = await guests.findOne({ id: params?.guestId });
@@ -78,15 +81,17 @@ export const getServerSideProps: GetServerSideProps = async ({params}: GetServer
     return { notFound: true };
   }
 
-  return { props: {
-    homePageImg: './home-page.jpeg',
-    id: data.id,
-    firstName: data.firstName,
-    isAttending: data.isAttending,
-    isEating: data.isEating,
-    hasPlusOne: data.hasPlusOne,
-    menuChoices: data.menuChoices
-  }};
+  return {
+    props: {
+      homePageImg: './home-page.jpeg',
+      id: data.id,
+      firstName: data.firstName,
+      isAttending: data.isAttending,
+      isEating: data.isEating,
+      hasPlusOne: data.hasPlusOne,
+      menuChoices: data.menuChoices
+    }
+  };
 };
 
 export default HomePage;
