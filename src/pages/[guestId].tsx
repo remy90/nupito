@@ -52,7 +52,7 @@ const HomePage: NextPage<IGuestProps> = ({
       <Suspense fallback={<CircularProgress color="inherit" />}>
         <Box sx={{ my: 4 }}>
           <Box style={{ width: '100%', maxWidth: '30rem' }}>
-            <img width='100%' src={homePageImg} alt="shaun and charlotte" />
+            {/* <img width='100%' src={homePageImg} alt="shaun and charlotte" /> */}
           </Box>
         </Box>
       </Suspense>
@@ -63,13 +63,13 @@ const HomePage: NextPage<IGuestProps> = ({
 export const getServerSideProps: GetServerSideProps = async({params}: GetServerSidePropsContext) => {
   // await fileUpload('home-page.jpeg', 'home-image01', 'public/private-assets/home-page.jpeg');
   const client = new MongoClient(process.env.MONGODB_URI!);
-  if (!existsSync('./home-page.jpeg')) {
-    console.log('downloading image');
-    await fileDownload('home-page.jpeg', 'home-image01', './home-page.jpeg');
-    console.log('image upload complete');
-  } else {
-    console.log('already on the server');
-  }
+  // if (!existsSync('./home-page.jpeg')) {
+  //   console.log('downloading image');
+  //   await fileDownload('home-page.jpeg', 'home-image01', './home-page.jpeg');
+  //   console.log('image upload complete');
+  // } else {
+  //   console.log('already on the server');
+  // }
 
   await client.connect();
   const database = client.db('shaun-charlotte');
