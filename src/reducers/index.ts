@@ -1,7 +1,7 @@
+import { IGuestProps } from './../components/Interfaces';
 import { AlertColor } from '@mui/material';
 
 const initialState = {
-  test: 0,
 };
 type formValue = {
   showAlertMessage: boolean,
@@ -10,22 +10,32 @@ type formValue = {
 
 type reducerType = {
     type: string,
-    value: formValue | string
+    value: formValue | string | IGuestProps;
 }
 function guestReducer(state: any, action: reducerType) {
   const formValue = action.value as formValue;
 
   switch (action.type) {
-  case 'UPDATE_ID':
+  case 'UPDATE_GUEST':
     return {
       ...state,
-      id: action.value,
+      ...(action.value as IGuestProps),
     };
-  case 'SUBMIT_FORM':
+  case 'SUBMIT_GUEST_RSVP':
     return {
-      ...formValue,
-      showAlertMessage: true,
-      severity: formValue.severity,
+      guest: {
+        ...formValue,
+      }
+    };
+  case 'SUBMIT_PLUS_ONE_RSVP':
+    return {
+      plusOne: {
+        ...formValue,
+      }
+    };
+  case 'SUBMIT_RSVP_FORM':
+    return {
+      ...formValue
     };
   case 'RESET_FORM_ALERT':
     return {

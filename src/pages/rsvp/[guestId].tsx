@@ -3,7 +3,7 @@ import { Container } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
-import Form from '../../components/Form';
+import RsvpForm from '../../components/RsvpForm';
 import { AppContext } from '../../components/AppProvider';
 
 const RSVP: NextPage = () => {
@@ -15,7 +15,7 @@ const RSVP: NextPage = () => {
         <Typography variant="h1" sx={{fontSize: '5rem'}} gutterBottom>Répondez, s&apos;il vous plaît</Typography>
         {isAttending === false
           ? <Typography>We&apos;re sad you&apos;re unable to make it to our special day. If you would still like to contribute towards our new life together, please find our wedding registry link here</Typography>
-          : <Form />}
+          : <RsvpForm />}
       </Box>
     </Container>
   );

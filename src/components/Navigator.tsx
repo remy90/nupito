@@ -28,14 +28,18 @@ export default function ButtonAppBar() {
             onClose={handleClose}
             MenuListProps={{ 'aria-labelledby': 'basic-button' }}
           >
-            <MenuItem onClick={handleClose}><Link href={state?.id ? `/${state.id}`: ''} color="secondary">Home</Link></MenuItem>
-            {state?.id && (state?.isAttending != false) &&
-              <MenuItem onClick={handleClose}><Link href={state?.id ? `/${state.id}`:`/rsvp/${state?.id}`} color="secondary">RSVP</Link></MenuItem>}
-            <MenuItem onClick={handleClose}><Link href={state?.id ? `/order/${state?.id}`: ''} color="secondary">Order of service</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link href={state?.id ? `/registry/${state?.id}`: ''} color="secondary">Registry</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link href={state?.id ? `/location/${state?.id}`: ''} color="secondary">Location</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link href={state?.id ? `/songs/${state?.id}`: ''} color="secondary">Songs</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link href={state?.id ? `/readings/${state?.id}`: ''} color="secondary">Readings</Link></MenuItem>
+            {state?.id &&
+              <><MenuItem onClick={handleClose}><Link href={`/${state.id}`} color="secondary">Home</Link></MenuItem>
+                {/* {state?.id && (state?.isAttending != false) && */}
+                <MenuItem onClick={handleClose}><Link href={`/rsvp/${state?.id}`} color="secondary">RSVP</Link></MenuItem>
+                {/* } */}
+                <MenuItem onClick={handleClose}><Link href={`/order/${state?.id}`} color="secondary">Order of service</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link href={`/registry/${state?.id}`} color="secondary">Registry</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link href={`/location/${state?.id}`} color="secondary">Location</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link href={`/songs/${state?.id}`} color="secondary">Songs</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link href={`/readings/${state?.id}`} color="secondary">Readings</Link></MenuItem>
+              </>
+            }
           </Menu>
           <Link color='inherit' underline='none' variant="h6"  href={`/${state?.id}`} sx={{ flexGrow: 1 }}  type="button" align="justify">
             Shaun &amp; Char

@@ -16,7 +16,6 @@ import { CircularProgress } from '@mui/material';
 // import { fileUpload } from './api/gridFSFileUpload';
 
 const HomePage: NextPage<IGuestProps> = ({
-  homePageImg,
   id,
   firstName,
   isAttending,
@@ -24,12 +23,13 @@ const HomePage: NextPage<IGuestProps> = ({
   hasPlusOne,
   menuChoices,
 }: IGuestProps) => {
-  const { dispatch } = useContext(AppContext);
-
-  useEffect(() => dispatch({ type: 'UPDATE_ID', value: id }), ['UPDATE_ID', id]);
+  const { dispatch, state } = useContext(AppContext);
+  console.log('blem');
+  useEffect(() => dispatch({ type: 'UPDATE_GUEST', value: { id, firstName, isAttending, isEating, hasPlusOne, menuChoices } }),
+    ['UPDATE_GUEST', id, firstName, isAttending, isEating, hasPlusOne, menuChoices]);
   useEffect(() => localStorage.setItem('shaun_char_guest_id', id), [id]);
   Sentry.captureMessage(`guestId dispatched for ${id}`, Sentry.Severity.Debug);
-
+  console.log(state);
   const memoizedAttendanceMessage = useMemo(() => showAttendanceMessage(isAttending, hasPlusOne), [isAttending, hasPlusOne]);
   const memoizedMealSelection = useMemo(() => showMealSelection(menuChoices), [menuChoices]);
 
@@ -83,7 +83,6 @@ export const getServerSideProps: GetServerSideProps = async({params}: GetServerS
 
   return {
     props: {
-      homePageImg: './home-page.jpeg',
       id: data.id,
       firstName: data.firstName,
       isAttending: data.isAttending,

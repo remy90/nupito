@@ -9,6 +9,8 @@ export const DietType = {
 type DietType = typeof DietType[keyof typeof DietType];
 
 export type Inputs = {
+  firstName: string,
+  lastName: string,
   isAttending: boolean,
   diet: DietType,
   otherFoodConsiderations: string,
@@ -72,12 +74,6 @@ export interface IEmailFormFieldProps {
 
 export interface RHFormControlProps {
   control: Control<Inputs, object>;
-}
-
-export interface IDietFormFieldProps {
-  errors: FieldErrors<Inputs>;
-  register: UseFormRegister<Inputs>;
-  onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
 export interface IGuestProps {
