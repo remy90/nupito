@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type React from 'react';
 import Container from '@mui/material/Container';
 import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { Typography } from '@mui/material';

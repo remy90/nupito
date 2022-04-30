@@ -10,7 +10,7 @@ export const EuroMenuOptions = ({ control}: RHFormControlProps) =>
     <Typography variant="h4" sx={{ my: '1rem', fontSize: '2rem'}}>Starters</Typography>
     {/* // TODO: Uncontrolled to controlled? */}
     <Controller
-      name='menuChoice.euroStarter'
+      name='menu.euroStarter'
       control={control}
       render={({field}) =>
         <RadioGroup {...field} value={field.value || undefined}>
@@ -27,7 +27,7 @@ export const EuroMenuOptions = ({ control}: RHFormControlProps) =>
     />
     <Typography variant="h4" sx={{ my: '1rem', fontSize: '2rem'}}>Mains - all are served with Seasonal Vegetables and Potatoes</Typography>
     <Controller
-      name='menuChoice.euroMain'
+      name='menu.euroMain'
       control={control}
       render={({field}) =>
         <RadioGroup {...field}>

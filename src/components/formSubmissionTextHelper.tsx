@@ -1,6 +1,7 @@
 import React from 'react';
-import { List, ListItem, Typography } from '@mui/material';
+import { List, Typography } from '@mui/material';
 import { Box } from '@mui/system';
+import { Menu } from './Interfaces';
 
 export const showAttendanceMessage = (isAttending: boolean, hasPlusOne: boolean) => {
   // if (isAttending === undefined || isAttending === null) {
@@ -11,12 +12,12 @@ export const showAttendanceMessage = (isAttending: boolean, hasPlusOne: boolean)
   //   : 'We\'ll miss your presence at our wedding!';
 };
 const menuMap = [{key: 0, value: 'blem'}];
-export const showMealSelection = (menuChoices: Array<number>) => {
+export const showMealSelection = (menuChoices: Menu) => {
   return (
     <Box>
       <Typography variant="h3">You have chosen:</Typography>
       <List>
-        {menuChoices.map(x => <ListItem key={x}>• {menuMap[x]?.value}</ListItem>)}
+        {/* {menuChoices.map(x => <ListItem key={x}>• {menuMap[x]?.value}</ListItem>)} */}
       </List>
     </Box>);
 };

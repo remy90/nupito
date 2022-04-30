@@ -16,7 +16,7 @@ export default function ButtonAppBar() {
 
   const handleClose = () => setAnchorEl(null);
   const {state} = useContext(AppContext);
-
+  const {id} = state?.guest;
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static"  sx={{ backgroundColor: '#222222'}}>
@@ -28,20 +28,20 @@ export default function ButtonAppBar() {
             onClose={handleClose}
             MenuListProps={{ 'aria-labelledby': 'basic-button' }}
           >
-            {state?.id &&
-              <><MenuItem onClick={handleClose}><Link href={`/${state.id}`} color="secondary">Home</Link></MenuItem>
-                {/* {state?.id && (state?.isAttending != false) && */}
-                <MenuItem onClick={handleClose}><Link href={`/rsvp/${state?.id}`} color="secondary">RSVP</Link></MenuItem>
+            {id &&
+              <><MenuItem onClick={handleClose}><Link href={`/${id}`} color="secondary">Home</Link></MenuItem>
+                {/* {id && (state?.guest?.isAttending != false) && */}
+                <MenuItem onClick={handleClose}><Link href={`/rsvp/${id}`} color="secondary">RSVP</Link></MenuItem>
                 {/* } */}
-                <MenuItem onClick={handleClose}><Link href={`/order/${state?.id}`} color="secondary">Order of service</Link></MenuItem>
-                <MenuItem onClick={handleClose}><Link href={`/registry/${state?.id}`} color="secondary">Registry</Link></MenuItem>
-                <MenuItem onClick={handleClose}><Link href={`/location/${state?.id}`} color="secondary">Location</Link></MenuItem>
-                <MenuItem onClick={handleClose}><Link href={`/songs/${state?.id}`} color="secondary">Songs</Link></MenuItem>
-                <MenuItem onClick={handleClose}><Link href={`/readings/${state?.id}`} color="secondary">Readings</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link href={`/order/${id}`} color="secondary">Order of service</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link href={`/registry/${id}`} color="secondary">Registry</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link href={`/location/${id}`} color="secondary">Location</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link href={`/songs/${id}`} color="secondary">Songs</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link href={`/readings/${id}`} color="secondary">Readings</Link></MenuItem>
               </>
             }
           </Menu>
-          <Link color='inherit' underline='none' variant="h6"  href={`/${state?.id}`} sx={{ flexGrow: 1 }}  type="button" align="justify">
+          <Link color='inherit' underline='none' variant="h6"  href={`/${id}`} sx={{ flexGrow: 1 }}  type="button" align="justify">
             Shaun &amp; Char
           </Link>
           <IconButton

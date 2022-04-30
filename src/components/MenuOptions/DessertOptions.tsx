@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material';
 import { Controller } from 'react-hook-form';
 import { RHFormControlProps } from '../Interfaces';
@@ -7,7 +7,7 @@ export const DessertOptions = ({control}: RHFormControlProps) =>
   <>
     <Typography variant="h4" sx={{ my: '1rem', fontSize: '2rem'}}>Dessert</Typography>
     <Controller
-      name='menuChoice.euroDessert'
+      name='menu.euroDessert'
       control={control}
       render={({field}) =>
         <RadioGroup {...field}>

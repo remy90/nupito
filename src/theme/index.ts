@@ -63,10 +63,3 @@ export const theme = createTheme({
     },
   },
 });
-
-// declare module '@emotion/react' {
-//   interface Theme {
-//     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-//     breakpoints: any;
-//   }
-// }

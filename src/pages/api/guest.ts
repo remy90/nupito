@@ -1,8 +1,9 @@
+import { GuestDocument } from './../../components/Interfaces';
 import { Sentry } from '../../utils';
 
-export const registerGuest = async (data: any) => {
+export const persistGuestAttendance = async (data: GuestDocument, endpoint: string) => {
   try { 
-    return await fetch('/api/guestUpdate', {
+    return await fetch(endpoint, {
       body: JSON.stringify(data),
       headers: { 'Content-Type': 'application/json' },
       method: 'POST'

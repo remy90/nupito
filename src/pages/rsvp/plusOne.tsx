@@ -1,82 +1,77 @@
 import React, { ChangeEvent, useContext, useState } from 'react';
-import { Paper, Box, AlertColor, Button, Container } from '@mui/material';
+import { Paper, Box, Button, Container, Typography } from '@mui/material';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { STATUS_CODES } from 'http';
 import { Sentry } from '../../utils';
 import { formDefaults } from '../../components/FormFields/FormHelpers';
-import { registerGuest } from '../api/guest';
+import { persistGuestAttendance } from '../api/guest';
 import { DietPreferenceField } from '../../components/FormFields/DietPreferenceField';
 import MenuForm from '../../components/MenuForm';
 import { EmailFormField } from '../../components/FormFields/EmailFormField';
-import { TemporaryAlert } from '../../components/TemporaryAlert';
-import { DietType, Inputs } from '../../components/Interfaces';
+import { DietType, GuestDocument } from '../../components/Interfaces';
 import { AppContext } from '../../components/AppProvider';
-import { NameField } from '../../components/FormFields/NameField';
 import { useRouter } from 'next/router';
+import { randomUUID } from 'crypto';
+import { InputField } from '../../components/FormFields/InputField';
+import { PlusOneDecision } from '../../components/FormFields/PlusOneDecision';
 
 export default function plusOne() {
   const { state, dispatch } = useContext(AppContext);
   const [eatsAnything, setEatsAnything] = useState<boolean>(false);
+  const [decision, setDecision] = useState<boolean>(false);
+  const tempFunc = (val) => {
+    console.log(val);
+    setDecision(val);
+  };
+  const handleDietChange =  (event: ChangeEvent<HTMLInputElement>) => 
+    setEatsAnything(event.target?.value === DietType.Meat);
+
   const router = useRouter();
 
-  const { register, handleSubmit, formState: { errors, isDirty }, control, getValues } = useForm<Inputs>({
+  const { register, handleSubmit, formState: { errors, isDirty }, getValues, control } = useForm<GuestDocument>({
     defaultValues: { ...formDefaults }
   });
-  const showAlertMessage = true;
-  const getAlertText = (severity: AlertColor = 'info') => {
-    if (severity === 'info') { return; }
-    return severity === 'success'
-      ? 'Form submitted successfully'
-      : 'An error occured with your submission. Please ensure you used the correct invitation url and try again.';
-  };
-  const onSubmit: SubmitHandler<Inputs> = async data => {
+
+  const onSubmit: SubmitHandler<GuestDocument> = async data => {
     console.log('add plus one data to state');
     console.log('storing rsvp...');
+    const plusOneId = randomUUID().slice(0,5);
+    const plusOneData = data; // ? the following doesn't work? const plusOneData = { ...data, id: plusOneId };
+    plusOneData.id = plusOneId;
     console.log(JSON.stringify(state));
-    if (!state?.id){
+    if (!state?.guest.id){
       Sentry.captureException(`id not registered ${localStorage.getItem('shaun_char_guest_id')}`);
       return; //?
     }
 
     try {
-      const result = await registerGuest({
-        id: state?.id ?? localStorage.getItem('shaun_char_guest_id'),
-        ...data
-      });
-      dispatch({
-        type: 'SUBMIT_GUEST_RSVP',
-        value: {
-          ...data,
-          showAlertMessage: showAlertMessage,
-          severity: result?.status ? STATUS_CODES[result.status] : 'error',
-        },
-      });
-      console.log(state);
+      await persistGuestAttendance(state.guest, '/api/guestUpdate');
+
+      console.log(JSON.stringify(plusOneData));
+      const result = await persistGuestAttendance(plusOneData, '/api/addPlusOne');
+
+      dispatch({ type: 'SUBMIT_PLUS_ONE_RSVP', value: plusOneData });
+      Sentry.captureMessage(`${state.plusOne.id} persisted: ${result!.text}`);
     } catch(e) {
-      Sentry.captureException(`failed to register guest ${state?.id}: ${e}`);
+      Sentry.captureException(`failed to register guest ${state?.plusOne.id}: ${e}`);
     }
   };
 
-  const handleDietChange =  (event: ChangeEvent<HTMLInputElement>) => 
-    setEatsAnything(event.target?.value === DietType.Meat);
-
   return (
-    <Container>
+    <Container maxWidth="sm">
+      <Typography variant="h1" sx={{fontSize: '5rem'}} gutterBottom>Plus one</Typography>
       <Paper style={{height: '100%'}}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <NameField errors={errors} inputName="firstName" placeholder='first name' onChange={() => null} register={register} />
-          <NameField errors={errors} inputName="lastName" placeholder='last name' onChange={() => null} register={register} />
-          <DietPreferenceField errors={errors} onChange={handleDietChange} register={register} />
-          {!!getValues()?.diet && <MenuForm eatsAnything={!!eatsAnything} control={control} />}
-          <EmailFormField errors={errors} onChange={() => null} register={register} />
+          <InputField errors={errors} inputName="firstName" placeholder='First name' register={register} />
+          <InputField errors={errors} inputName="lastName" placeholder='Last name' register={register} />
+          <EmailFormField inputName="emailAddress" placeholder="Email address" errors={errors} register={register} />
+          <PlusOneDecision setDecision={tempFunc} />
+          {decision && state.guest.isEating &&
+            <DietPreferenceField inputName="plusOne.diet" errors={errors} onChange={handleDietChange} register={register} />}
+          {decision && getValues().diet &&<MenuForm eatsAnything={!!eatsAnything} control={control} />}
           <Box>
             <Button sx={{margin: 2}} variant="outlined" onClick={router.back}>Back</Button>
-            <Button sx={{margin: 2}} variant="outlined" type="submit" disabled={!isDirty}>Submit</Button>
+            <Button sx={{margin: 2}} variant="contained" type="submit" disabled={!isDirty}>Submit</Button>
           </Box>
-          {!!state.ShowAlertMessage
-          && <TemporaryAlert severity={ state.Severity ?? 'error' }>
-            { getAlertText(state.Severity) }
-          </TemporaryAlert>}
         </form>
       </Paper>
     </Container>

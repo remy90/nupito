@@ -12,6 +12,7 @@ import { IGuestProps } from '../components/Interfaces';
 import { MongoClient } from 'mongodb';
 import { existsSync } from 'fs';
 import { CircularProgress } from '@mui/material';
+import Image from 'next/image';
 
 // import { fileUpload } from './api/gridFSFileUpload';
 
@@ -21,17 +22,17 @@ const HomePage: NextPage<IGuestProps> = ({
   isAttending,
   isEating,
   hasPlusOne,
-  menuChoices,
+  menuChoice,
 }: IGuestProps) => {
   const { dispatch, state } = useContext(AppContext);
-  console.log('blem');
-  useEffect(() => dispatch({ type: 'UPDATE_GUEST', value: { id, firstName, isAttending, isEating, hasPlusOne, menuChoices } }),
-    ['UPDATE_GUEST', id, firstName, isAttending, isEating, hasPlusOne, menuChoices]);
+
+  useEffect(() => dispatch({ type: 'UPDATE_GUEST', value: { guest: {id, firstName, isAttending, isEating, hasPlusOne, menuChoice }}}),
+    ['UPDATE_GUEST', id, firstName, isAttending, isEating, hasPlusOne, menuChoice]);
   useEffect(() => localStorage.setItem('shaun_char_guest_id', id), [id]);
   Sentry.captureMessage(`guestId dispatched for ${id}`, Sentry.Severity.Debug);
   console.log(state);
   const memoizedAttendanceMessage = useMemo(() => showAttendanceMessage(isAttending, hasPlusOne), [isAttending, hasPlusOne]);
-  const memoizedMealSelection = useMemo(() => showMealSelection(menuChoices), [menuChoices]);
+  const memoizedMealSelection = useMemo(() => showMealSelection(menuChoice), [menuChoice]);
 
   // TODO: Check if person has id, if not, give a 404 oops message
   // ! TODO: Fix landing page for deployed page
@@ -49,13 +50,14 @@ const HomePage: NextPage<IGuestProps> = ({
       </Box>
       {isAttending && isEating && memoizedMealSelection}
       
-      <Suspense fallback={<CircularProgress color="inherit" />}>
-        <Box sx={{ my: 4 }}>
+      <Box sx={{ my: 4 }}>
+        <Suspense fallback={<CircularProgress color="inherit" />}>
           <Box style={{ width: '100%', maxWidth: '30rem' }}>
-            {/* <img width='100%' src={homePageImg} alt="shaun and charlotte" /> */}
+            <img width="100%" height="100%" alt="image of Shaun &amp; Charlotte" src="https://web.archive.org/web/20220428094213if_/https://scontent-lhr8-2.cdninstagram.com/v/t51.2885-15/273123452_478220913681949_7440377138742634667_n.jpg?stp=dst-jpg_e35_p750x750_sh0.08&amp;_nc_ht=scontent-lhr8-2.cdninstagram.com&amp;_nc_cat=101&amp;_nc_ohc=nwPWMTqTYeYAX-uqJjt&amp;edm=ALQROFkBAAAA&amp;ccb=7-4&amp;ig_cache_key=Mjc2MzYyNjUzNzMxODE4OTM2NQ%3D%3D.2-ccb7-4&amp;oh=00_AT9rsk2ZhC9j3GjE7CwjyHO5b4ehf-pcxRABNuzkwHpVrA&amp;oe=6270568D&amp;_nc_sid=30a2ef"
+            />
           </Box>
-        </Box>
-      </Suspense>
+        </Suspense>
+      </Box>
     </Container>
   );
 };
@@ -88,7 +90,7 @@ export const getServerSideProps: GetServerSideProps = async({params}: GetServerS
       isAttending: data.isAttending,
       isEating: data.isEating,
       hasPlusOne: data.hasPlusOne,
-      menuChoices: data.menuChoices
+      menuChoice: data.menuChoice
     }
   };
 };

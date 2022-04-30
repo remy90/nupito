@@ -1,12 +1,13 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, Dispatch, useReducer } from 'react';
 import { guestReducer, initialState } from '../reducers';
+import { RsvpData } from './Interfaces';
 
-const AppContext = createContext<{ state: any; dispatch: any; }>({
+const AppContext = createContext<{ state: RsvpData, dispatch: Dispatch<any> }>({
   state: initialState,
-  dispatch: () => null
+  dispatch: () => ({}),
 });
 
-const AppProvider: React.FC = ({ children }: any) => {
+const AppProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(guestReducer, initialState);
 
   return (

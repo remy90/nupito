@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import { Box, Link, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import Navigator from './Navigator';
 import { StickToEndOfContainer } from './styledcomponents';
 import { ProfileLink } from './ProfileLink';

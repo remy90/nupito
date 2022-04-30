@@ -1,6 +1,6 @@
-import React from 'react';
+import type React from 'react';
 import { Box, Input, Typography } from '@mui/material';
-import type { IFieldProps } from '../Interfaces';
+import type { IInputFieldProps } from '../Interfaces';
 import type { LiteralUnion } from 'react-hook-form';
 
 const getEmailValidationError = (errorType: LiteralUnion<string, string> | undefined) => {
@@ -23,11 +23,11 @@ const getEmailValidationError = (errorType: LiteralUnion<string, string> | undef
       </Box>)}
   </>;
 };
-export const EmailFormField = ({ errors, register }: IFieldProps) =>
+export const EmailFormField = ({ placeholder, errors, register }: IInputFieldProps) =>
   <Box sx={{marginTop: 2, marginBottom: 2, paddingLeft: 2}}>
     <Input
       sx={{ width: '90%', paddingLeft: 2, paddingRight: 2 }}
-      placeholder='Email address'
+      placeholder={placeholder}
       {...register('emailAddress', {
         pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
       }

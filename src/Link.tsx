@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import * as React from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';

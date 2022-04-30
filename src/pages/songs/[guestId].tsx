@@ -3,8 +3,7 @@ import Container from '@mui/material/Container';
 import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { Typography } from '@mui/material';
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-const Hymns: NextPage<{}> = () => (
+const Hymns: NextPage = () => (
   <Container maxWidth="sm">
     <Typography variant="h2">Songs of praise</Typography>
   </Container>

@@ -1,41 +1,37 @@
-import { IGuestProps } from './../components/Interfaces';
-import { AlertColor } from '@mui/material';
+import { initialState } from './../components/FormFields/FormHelpers';
+import { RsvpData, GuestDocument } from './../components/Interfaces';
 
-const initialState = {
-};
-type formValue = {
-  showAlertMessage: boolean,
-  severity?: AlertColor,
-};
 
 type reducerType = {
     type: string,
-    value: formValue | string | IGuestProps;
+    value: GuestDocument;
 }
-function guestReducer(state: any, action: reducerType) {
-  const formValue = action.value as formValue;
-
+function guestReducer(state: RsvpData, action: reducerType) {
   switch (action.type) {
   case 'UPDATE_GUEST':
     return {
       ...state,
-      ...(action.value as IGuestProps),
+      ...action.value,
     };
   case 'SUBMIT_GUEST_RSVP':
     return {
+      ...state,
       guest: {
-        ...formValue,
+        ...state.guest,
+        ...action.value,
       }
     };
   case 'SUBMIT_PLUS_ONE_RSVP':
     return {
+      ...state,
       plusOne: {
-        ...formValue,
+        ...action.value,
       }
     };
   case 'SUBMIT_RSVP_FORM':
     return {
-      ...formValue
+      ...state,
+      ...action.value
     };
   case 'RESET_FORM_ALERT':
     return {

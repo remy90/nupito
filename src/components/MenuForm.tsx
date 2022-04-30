@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import {  Box, Typography, FormControl, RadioGroup, Radio, FormControlLabel } from '@mui/material';
-import { Control, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { AfroMenuOptions } from './MenuOptions/AfroMenuOptions';
 import { DessertOptions } from './MenuOptions/DessertOptions';
 import { EuroMenuOptions } from './MenuOptions/EuroMenuOptions';
-import { Inputs, RHFormControlProps } from './Interfaces';
+import { RHFormControlProps } from './Interfaces';
 
 type CuisineType = 'euro' | 'afro';
-interface OtherProps {
+interface IMenuFormProps extends RHFormControlProps {
   eatsAnything: boolean;
-  control: Control<Inputs, object>;
 }
 
-export default function MenuForm({ eatsAnything, control }: RHFormControlProps & OtherProps) {
+export default function MenuForm({ eatsAnything, control }: IMenuFormProps) {
   const [isAfrican, setIsAfrican] = useState(false);
   const [isEuropean, setIsEuropean] = useState(false);
 
@@ -22,7 +21,7 @@ export default function MenuForm({ eatsAnything, control }: RHFormControlProps &
     const resetObject: any = {};
   
     for (let i = firstOptionNumber; i <= lastOptionNumber; i++) {
-      resetObject[`menuChoice.foodOption${i}`] = false;
+      resetObject[`menu.foodOption${i}`] = false;
     }
     return resetObject;
   };

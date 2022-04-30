@@ -1,18 +1,16 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { ChangeEvent, useContext, useState } from 'react';
-import { Paper, Box, AlertColor, Button } from '@mui/material';
+import { Paper, Box, Button } from '@mui/material';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { AppContext } from './AppProvider';
 import MenuForm from './MenuForm';
-import { TemporaryAlert } from './TemporaryAlert';
-import { DietType, Inputs } from './Interfaces';
+import { DietType, GuestDocument as GuestDocument } from './Interfaces';
 import { EmailFormField } from './FormFields/EmailFormField';
 import { AttendanceField } from './FormFields/AttendanceField';
 import { DietPreferenceField } from './FormFields/DietPreferenceField';
 import { formDefaults } from './FormFields/FormHelpers';
-import { registerGuest } from '../pages/api/guest';
+import { persistGuestAttendance } from '../pages/api/guest';
 import { Sentry } from '../utils';
-import { STATUS_CODES } from 'http';
 import { useRouter } from 'next/router';
 
 export default function Form() {
@@ -25,55 +23,32 @@ export default function Form() {
     errors,
     isDirty,
     isValid
-  }, control, getValues } = useForm<Inputs>({
+  }, control, getValues } = useForm<GuestDocument>({
     defaultValues: { ...formDefaults },
     mode: 'onChange'
   });
-  const showAlertMessage = true;
-  const getAlertText = (severity: AlertColor = 'info') => {
-    if (severity === 'info') { return; }
-    return severity === 'success'
-      ? 'Form submitted successfully'
-      : 'An error occured with your submission. Please ensure you used the correct invitation url and try again.';
-  };
-  const dispatchGuest = () => {
-    dispatch({
-      type: 'SUBMIT_GUEST_RSVP',
-      value: {
-        ...getValues(),
-        showAlertMessage: showAlertMessage,
-      },
-    });
-  };
-  const onSubmit: SubmitHandler<Inputs> = async data => {
-    console.log('add guests data to state');
+  const dispatchGuest = (value: GuestDocument) =>
+    dispatch({ type: 'SUBMIT_GUEST_RSVP', value });
+
+  const onSubmit: SubmitHandler<GuestDocument> = async data => {
     console.log('storing rsvp...');
-    if (!state?.id){
+    if (!state?.guest.id) {
       Sentry.captureException(`id not registered ${localStorage.getItem('shaun_char_guest_id')}`);
       return; //?
     }
 
     try {
-      const result = await registerGuest({
-        id: state?.id ?? localStorage.getItem('shaun_char_guest_id'),
-        ...data
-      });
-      dispatch({
-        type: 'SUBMIT_GUEST_RSVP',
-        value: {
-          ...data,
-          showAlertMessage: showAlertMessage,
-          severity: result?.status ? STATUS_CODES[result.status] : 'error',
-        },
-      });
+      const result = await persistGuestAttendance(data, '/api/guestUpdate');
+      dispatchGuest(data);
       console.log(state);
+      Sentry.captureMessage(`${state.guest.id} persisted: ${result!.text}`);
     } catch(e) {
-      Sentry.captureException(`failed to register guest ${state?.id}: ${e}`);
+      Sentry.captureException(`failed to register guest ${state?.guest.id}: ${e}`);
     }
   };
   const handleClickNext = () => {
-    dispatchGuest();
-    router.push('rsvp/plusOne');
+    dispatchGuest(getValues());
+    router.push('plusOne');
   };
   const handleAttendanceChange = (event: ChangeEvent<HTMLInputElement> ) =>
   //@ts-ignore
@@ -86,22 +61,21 @@ export default function Form() {
     <Paper style={{height: '100%'}}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <AttendanceField errors={errors} onChange={handleAttendanceChange} register={register} />
-        {isAttending && 
-          <DietPreferenceField errors={errors} onChange={handleDietChange} register={register} />}
-        {isAttending &&
-          !!getValues()?.diet && <MenuForm eatsAnything={!!eatsAnything} control={control} />}
         {isAttending &&
           <EmailFormField errors={errors} onChange={() => null} register={register} />}
+        {isAttending && 
+          <DietPreferenceField errors={errors} onChange={handleDietChange} register={register} />}
+
+        {/* // TODO: diet is unselected when I can't attend changes to I can attend,
+        the cuisine options are still displayed */}
+        {isAttending &&
+          state?.guest.isEating && <MenuForm eatsAnything={!!eatsAnything} control={control} />}
         <Box>
-          {state.hasPlusOne
+          {isAttending && state.guest.hasPlusOne
             ? <Button sx={{margin: 2}} variant="outlined"  onClick={handleClickNext} disabled={!isDirty && isValid}>Next</Button>
             : <Button sx={{margin: 2}} variant="outlined" type="submit" disabled={!isDirty && isValid}>Submit</Button>
           }
         </Box>
-        {!!state.ShowAlertMessage
-          && <TemporaryAlert severity={ state.Severity ?? 'error' }>
-            { getAlertText(state.Severity) }
-          </TemporaryAlert>}
       </form>
     </Paper>
   );

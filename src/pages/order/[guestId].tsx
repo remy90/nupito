@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type React from 'react';
 import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { Typography, Container } from '@mui/material';
 import { Timeline } from '@mui/lab';

@@ -6,6 +6,9 @@ const moduleExports = {
   reactStrictMode: true,
   publicRuntimeConfig: {
     staticFolder: '/static'
+  },
+  images: {
+    domains: ['web.archive.org']
   }
 };
 

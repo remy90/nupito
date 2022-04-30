@@ -25,7 +25,8 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-hook-form": "^7.22.5",
-    "react-is": "latest"
+    "react-is": "latest",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^12.0.7",

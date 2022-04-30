@@ -7,67 +7,67 @@ export const AfroMenuOptions = ({ control }: RHFormControlProps) =>
   <FormGroup>
     <Typography variant="h4" sx={{ my: '1rem'}}>Starters</Typography>
     <Controller
-      name='menuChoice.foodOption0'
+      name='menu.foodOption0'
       control={control}
       render={({field}) =>
         <FormControlLabel {...field} control={<Checkbox />} label="Spring roll  samosa &amp; puff puff" />}
     />
     <Typography  variant="h4" sx={{ my: '1rem'}}>Mains</Typography>
     <Controller
-      name='menuChoice.foodOption1'
+      name='menu.foodOption1'
       control={control}
       render={({field}) =>
         <FormControlLabel {...field} control={<Checkbox />} label="Jollof rice" />}
     />
     <Controller
-      name='menuChoice.foodOption2'
+      name='menu.foodOption2'
       control={control}
       render={({field}) =>
         <FormControlLabel {...field} control={<Checkbox />} label="Fried rice" />} />
     <Controller
-      name='menuChoice.foodOption3'
+      name='menu.foodOption3'
       control={control}
       render={({field}) =>
         <FormControlLabel {...field} control={<Checkbox />} label="Asaro with sauce" />} />
     <Controller
-      name='menuChoice.foodOption4'
+      name='menu.foodOption4'
       control={control}
       render={({field}) =>
         <FormControlLabel {...field} control={<Checkbox />} label="Ewa agoyin with sauce Ayamase with white rice" />} />
     <Controller
-      name='menuChoice.foodOption5'
+      name='menu.foodOption5'
       control={control}
       render={({field}) =>
         <FormControlLabel {...field} control={<Checkbox />} label="Assorted meat, chicken &amp; fish" />} />
     <Controller
-      name='menuChoice.foodOption6'
+      name='menu.foodOption6'
       control={control}
       render={({field}) =>
         <FormControlLabel {...field} control={<Checkbox />} label="Efo riro efo elegusi" />} />
     <Controller
-      name='menuChoice.foodOption7'
+      name='menu.foodOption7'
       control={control}
       render={({field}) =>
         <FormControlLabel {...field} control={<Checkbox />} label="Pounded yam" />} />
     <Controller
-      name='menuChoice.foodOption8'
+      name='menu.foodOption8'
       control={control}
       render={({field}) =>
         <FormControlLabel {...field} control={<Checkbox />} label="Abula (Gbegiri ewedu amala soup with assorted meat stew)" />} />
     <Typography>Side</Typography>
     <Controller
-      name='menuChoice.foodOption9'
+      name='menu.foodOption9'
       control={control}
       render={({field}) =>
         <FormControlLabel {...field} control={<Checkbox />} label="Dodogizzard" />} />
     <Typography variant="h4" sx={{ my: '1rem'}}>Sides</Typography>
     <Controller
-      name='menuChoice.foodOption10'
+      name='menu.foodOption10'
       control={control}
       render={({field}) =>
         <FormControlLabel {...field} control={<Checkbox />} label="Moin-moin" />} />
     <Controller
-      name='menuChoice.foodOption11'
+      name='menu.foodOption11'
       control={control}
       render={({field}) =>
         <FormControlLabel {...field} control={<Checkbox />} label="Salad" />} />

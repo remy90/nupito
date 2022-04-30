@@ -8,7 +8,7 @@ import { AppContext } from '../../components/AppProvider';
 
 const RSVP: NextPage = () => {
   const { state } = useContext(AppContext);
-  const isAttending = state.isAttending; // add db check in getStaticProps here?
+  const isAttending = state.guest.isAttending; // add db check in getStaticProps here?
   return (
     <Container maxWidth="sm">
       <Box sx={{ my: 4 }}>
