@@ -32,7 +32,7 @@
     "@next/eslint-plugin-next": "^12.0.7",
     "@types/jest": "^27.0.3",
     "@types/node": "^16.11.11",
-    "@types/react": "latest",
+    "@types/react": "^18.0.8",
     "@typescript-eslint/eslint-plugin": "^5.8.1",
     "@typescript-eslint/parser": "^5.8.1",
     "eslint": "^7.32.0",

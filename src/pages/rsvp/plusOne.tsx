@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext, useState } from 'react';
+import React, { ChangeEvent, useContext, useState, useId } from 'react';
 import { Paper, Box, Button, Container, Typography } from '@mui/material';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Sentry } from '../../utils';
@@ -18,6 +18,7 @@ export default function plusOne() {
   const { state, dispatch } = useContext(AppContext);
   const [eatsAnything, setEatsAnything] = useState<boolean>(false);
   const [decision, setDecision] = useState<boolean>(false);
+  const guestIdSuffix = useId();
   const tempFunc = (val) => {
     console.log(val);
     setDecision(val);
@@ -30,13 +31,19 @@ export default function plusOne() {
   const { register, handleSubmit, formState: { errors, isDirty }, getValues, control } = useForm<GuestDocument>({
     defaultValues: { ...formDefaults }
   });
+  const getPlusOneData = (data: any) => {
+    const d = { ...data, id: plusOneId };
+    debugger;
+    return d;
+  };
 
+  const plusOneId = state.guest.id.concat(`-${guestIdSuffix.slice(1,3)}`);
   const onSubmit: SubmitHandler<GuestDocument> = async data => {
+    debugger;
+    const plusOneData = getPlusOneData(data);
+    debugger;
     console.log('add plus one data to state');
     console.log('storing rsvp...');
-    const plusOneId = randomUUID().slice(0,5);
-    const plusOneData = data; // ? the following doesn't work? const plusOneData = { ...data, id: plusOneId };
-    plusOneData.id = plusOneId;
     console.log(JSON.stringify(state));
     if (!state?.guest.id){
       Sentry.captureException(`id not registered ${localStorage.getItem('shaun_char_guest_id')}`);
