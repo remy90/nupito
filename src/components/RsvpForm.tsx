@@ -40,7 +40,8 @@ export default function Form() {
     try {
       const result = await persistGuestAttendance(data, '/api/guestUpdate');
       dispatchGuest(data);
-      console.log(state);
+      localStorage.setItem(`shaun_char_guest_id-${state.guest.id}`, JSON.stringify(state));
+
       Sentry.captureMessage(`${state.guest.id} persisted: ${result!.text}`);
     } catch(e) {
       Sentry.captureException(`failed to register guest ${state?.guest.id}: ${e}`);
@@ -51,7 +52,7 @@ export default function Form() {
     router.push('plusOne');
   };
   const handleAttendanceChange = (event: ChangeEvent<HTMLInputElement> ) =>
-  //@ts-ignore
+    //@ts-ignore
     setAttending(event.target.value == true);
 
   const handleDietChange =  (event: ChangeEvent<HTMLInputElement>) => 

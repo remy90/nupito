@@ -1,10 +1,10 @@
 import type React from 'react';
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import { useForm } from 'react-hook-form';
-// import { Dispatch, SetStateAction } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 
 interface IPlusOneDecisionProps {
-  setDecision: (val: boolean) => boolean; // Dispatch<SetStateAction<boolean>>;
+  setDecision: Dispatch<SetStateAction<boolean>>;
 }
 export const PlusOneDecision = ({setDecision}: IPlusOneDecisionProps) => {
   const {getValues} = useForm();

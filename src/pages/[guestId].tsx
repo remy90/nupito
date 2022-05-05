@@ -28,7 +28,7 @@ const HomePage: NextPage<IGuestProps> = ({
 
   useEffect(() => dispatch({ type: 'UPDATE_GUEST', value: { guest: {id, firstName, isAttending, isEating, hasPlusOne, menuChoice }}}),
     ['UPDATE_GUEST', id, firstName, isAttending, isEating, hasPlusOne, menuChoice]);
-  useEffect(() => localStorage.setItem('shaun_char_guest_id', id), [id]);
+  useEffect(() => localStorage.setItem(`shaun_char_guest_id-${id}`, JSON.stringify(state.guest)), [id]);
   Sentry.captureMessage(`guestId dispatched for ${id}`, Sentry.Severity.Debug);
   console.log(state);
   const memoizedAttendanceMessage = useMemo(() => showAttendanceMessage(isAttending, hasPlusOne), [isAttending, hasPlusOne]);

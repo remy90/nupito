@@ -19,10 +19,7 @@ export default function plusOne() {
   const [eatsAnything, setEatsAnything] = useState<boolean>(false);
   const [decision, setDecision] = useState<boolean>(false);
   const guestIdSuffix = useId();
-  const tempFunc = (val) => {
-    console.log(val);
-    setDecision(val);
-  };
+
   const handleDietChange =  (event: ChangeEvent<HTMLInputElement>) => 
     setEatsAnything(event.target?.value === DietType.Meat);
 
@@ -33,15 +30,13 @@ export default function plusOne() {
   });
   const getPlusOneData = (data: any) => {
     const d = { ...data, id: plusOneId };
-    debugger;
     return d;
   };
 
   const plusOneId = state.guest.id.concat(`-${guestIdSuffix.slice(1,3)}`);
   const onSubmit: SubmitHandler<GuestDocument> = async data => {
-    debugger;
     const plusOneData = getPlusOneData(data);
-    debugger;
+
     console.log('add plus one data to state');
     console.log('storing rsvp...');
     console.log(JSON.stringify(state));
@@ -57,6 +52,7 @@ export default function plusOne() {
       const result = await persistGuestAttendance(plusOneData, '/api/addPlusOne');
 
       dispatch({ type: 'SUBMIT_PLUS_ONE_RSVP', value: plusOneData });
+      localStorage.setItem(`shaun_char_guest_id-${state.guest.id}`, JSON.stringify(state));
       Sentry.captureMessage(`${state.plusOne.id} persisted: ${result!.text}`);
     } catch(e) {
       Sentry.captureException(`failed to register guest ${state?.plusOne.id}: ${e}`);
@@ -71,7 +67,7 @@ export default function plusOne() {
           <InputField errors={errors} inputName="firstName" placeholder='First name' register={register} />
           <InputField errors={errors} inputName="lastName" placeholder='Last name' register={register} />
           <EmailFormField inputName="emailAddress" placeholder="Email address" errors={errors} register={register} />
-          <PlusOneDecision setDecision={tempFunc} />
+          <PlusOneDecision setDecision={setDecision} />
           {decision && state.guest.isEating &&
             <DietPreferenceField inputName="plusOne.diet" errors={errors} onChange={handleDietChange} register={register} />}
           {decision && getValues().diet &&<MenuForm eatsAnything={!!eatsAnything} control={control} />}
