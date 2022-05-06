@@ -49,7 +49,7 @@ export default function Form() {
   };
   const handleClickNext = () => {
     dispatchGuest(getValues());
-    router.push('plusOne');
+    router.push('rsvp/plusOne');
   };
   const handleAttendanceChange = (event: ChangeEvent<HTMLInputElement> ) =>
     //@ts-ignore
@@ -64,13 +64,13 @@ export default function Form() {
         <AttendanceField errors={errors} onChange={handleAttendanceChange} register={register} />
         {isAttending &&
           <EmailFormField errors={errors} onChange={() => null} register={register} />}
-        {isAttending && 
+        {isAttending && state.guest.isEating &&
           <DietPreferenceField errors={errors} onChange={handleDietChange} register={register} />}
 
         {/* // TODO: diet is unselected when I can't attend changes to I can attend,
         the cuisine options are still displayed */}
-        {isAttending &&
-          state?.guest.isEating && <MenuForm eatsAnything={!!eatsAnything} control={control} />}
+        {isAttending && state?.guest.isEating && getValues().diet &&
+          <MenuForm eatsAnything={!!eatsAnything} control={control} />}
         <Box>
           {isAttending && state.guest.hasPlusOne
             ? <Button sx={{margin: 2}} variant="outlined"  onClick={handleClickNext} disabled={!isDirty && isValid}>Next</Button>
