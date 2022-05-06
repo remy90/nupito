@@ -25,7 +25,8 @@
     "**/*.ts",
     "**/*.tsx",
     "*.mjs",
-    "src/pages/_error.js"
+    "src/pages/_error.js",
+    "next.config.js"
   ],
   "exclude": ["node_modules"]
 }

@@ -1,4 +1,4 @@
-import { GuestDocument } from './../../components/Interfaces';
+import { GuestDocument } from '../../components/Interfaces';
 import { Sentry } from '../../utils';
 
 export const persistGuestAttendance = async (data: GuestDocument, endpoint: string) => {

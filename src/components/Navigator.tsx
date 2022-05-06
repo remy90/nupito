@@ -7,6 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Menu, MenuItem } from '@mui/material';
 import Link from '../Link';
 import { AppContext } from './AppProvider';
+import useUser from '../lib/useUser';
 
 export default function ButtonAppBar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -16,6 +17,7 @@ export default function ButtonAppBar() {
 
   const handleClose = () => setAnchorEl(null);
   const {state} = useContext(AppContext);
+  const {user} = useUser();
   const {id} = state?.guest;
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -28,20 +30,23 @@ export default function ButtonAppBar() {
             onClose={handleClose}
             MenuListProps={{ 'aria-labelledby': 'basic-button' }}
           >
-            {id &&
-              <><MenuItem onClick={handleClose}><Link href={`/${id}`} color="secondary">Home</Link></MenuItem>
-                {/* {id && (state?.guest?.isAttending != false) && */}
-                <MenuItem onClick={handleClose}><Link href={`/rsvp/${id}`} color="secondary">RSVP</Link></MenuItem>
-                {/* } */}
-                <MenuItem onClick={handleClose}><Link href={`/order/${id}`} color="secondary">Order of service</Link></MenuItem>
-                <MenuItem onClick={handleClose}><Link href={`/registry/${id}`} color="secondary">Registry</Link></MenuItem>
-                <MenuItem onClick={handleClose}><Link href={`/location/${id}`} color="secondary">Location</Link></MenuItem>
-                <MenuItem onClick={handleClose}><Link href={`/songs/${id}`} color="secondary">Songs</Link></MenuItem>
-                <MenuItem onClick={handleClose}><Link href={`/readings/${id}`} color="secondary">Readings</Link></MenuItem>
-              </>
-            }
+            <>
+              <MenuItem onClick={handleClose}><Link href={`/${id}`} color="secondary">Home</Link></MenuItem>
+              {id && (state?.guest?.isAttending != false) &&
+                <MenuItem onClick={handleClose}><Link href={'/rsvp/'} color="secondary">RSVP</Link></MenuItem>
+              }
+              {user?.isLoggedIn && user.id &&
+                <MenuItem onClick={handleClose}><Link href={'/order/'} color="secondary">Order of service</Link></MenuItem>
+              }
+              <MenuItem onClick={handleClose}><Link href={'/registry/'} color="secondary">Registry</Link></MenuItem>
+              {user?.isLoggedIn && user.id &&
+                <MenuItem onClick={handleClose}><Link href={'/location/'} color="secondary">Location</Link></MenuItem>
+              }
+              <MenuItem onClick={handleClose}><Link href={'/songs/'} color="secondary">Songs</Link></MenuItem>
+              <MenuItem onClick={handleClose}><Link href={'/readings/'} color="secondary">Readings</Link></MenuItem>
+            </>
           </Menu>
-          <Link color='inherit' underline='none' variant="h6"  href={`/${id}`} sx={{ flexGrow: 1 }}  type="button" align="justify">
+          <Link color='inherit' underline='none' variant="h6"  href={'/'} sx={{ flexGrow: 1 }}  type="button" align="justify">
             Shaun &amp; Char
           </Link>
           <IconButton

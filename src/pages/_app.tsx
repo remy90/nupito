@@ -9,6 +9,8 @@ import theme from '../theme';
 import createEmotionCache from '../utils/createEmotionCache';
 import Layout from '../components/Layout';
 import { AppProvider } from '../components/AppProvider';
+import { SWRConfig } from 'swr';
+import fetchJson from '../lib/fetchJson';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -29,12 +31,19 @@ export default function MyApp(props: MyAppProps) {
         <link href="/favicon.ico" rel="icon" />
       </Head>
       <ThemeProvider theme={theme}>
-        <AppProvider>
-          <Layout>
-            <CssBaseline />
-            <Component {...pageProps} />
-          </Layout>
-        </AppProvider>
+        <SWRConfig
+          value={{
+            fetcher: fetchJson,
+            onError: console.error,
+          }}
+        >
+          <AppProvider>
+            <Layout>
+              <CssBaseline />
+              <Component {...pageProps} />
+            </Layout>
+          </AppProvider>
+        </SWRConfig>
       </ThemeProvider>
     </CacheProvider>
   );

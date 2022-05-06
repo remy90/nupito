@@ -13,6 +13,8 @@ import { MongoClient } from 'mongodb';
 import { existsSync } from 'fs';
 import { CircularProgress } from '@mui/material';
 import Image from 'next/image';
+import fetchJson from '../lib/fetchJson';
+import useUser from '../lib/useUser';
 
 // import { fileUpload } from './api/gridFSFileUpload';
 
@@ -25,12 +27,26 @@ const HomePage: NextPage<IGuestProps> = ({
   menuChoice,
 }: IGuestProps) => {
   const { dispatch, state } = useContext(AppContext);
-
+  const {mutateUser} = useUser();
   useEffect(() => dispatch({ type: 'UPDATE_GUEST', value: { guest: {id, firstName, isAttending, isEating, hasPlusOne, menuChoice }}}),
     ['UPDATE_GUEST', id, firstName, isAttending, isEating, hasPlusOne, menuChoice]);
   useEffect(() => localStorage.setItem(`shaun_char_guest_id-${id}`, JSON.stringify(state.guest)), [id]);
+
+  useEffect(() => {
+    (async () => {
+      mutateUser(
+        await fetchJson('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(state.guest),
+        }),
+        false,
+      );
+    })();
+  }, [id]);
+
   Sentry.captureMessage(`guestId dispatched for ${id}`, Sentry.Severity.Debug);
-  console.log(state);
+  // console.log(state);
   const memoizedAttendanceMessage = useMemo(() => showAttendanceMessage(isAttending, hasPlusOne), [isAttending, hasPlusOne]);
   const memoizedMealSelection = useMemo(() => showMealSelection(menuChoice), [menuChoice]);
 

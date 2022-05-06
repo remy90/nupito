@@ -15,7 +15,7 @@ const menuMap = [{key: 0, value: 'blem'}];
 export const showMealSelection = (menuChoices: Menu) => {
   return (
     <Box>
-      <Typography variant="h3">You have chosen:</Typography>
+      {/* <Typography variant="h3">You have chosen:</Typography> */}
       <List>
         {/* {menuChoices.map(x => <ListItem key={x}>• {menuMap[x]?.value}</ListItem>)} */}
       </List>

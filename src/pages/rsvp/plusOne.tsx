@@ -39,7 +39,7 @@ export default function plusOne() {
 
     console.log('add plus one data to state');
     console.log('storing rsvp...');
-    console.log(JSON.stringify(state));
+    // console.log(JSON.stringify(state));
     if (!state?.guest.id){
       Sentry.captureException(`id not registered ${localStorage.getItem('shaun_char_guest_id')}`);
       return; //?
@@ -48,7 +48,7 @@ export default function plusOne() {
     try {
       await persistGuestAttendance(state.guest, '/api/guestUpdate');
 
-      console.log(JSON.stringify(plusOneData));
+      // console.log(JSON.stringify(plusOneData));
       const result = await persistGuestAttendance(plusOneData, '/api/addPlusOne');
 
       dispatch({ type: 'SUBMIT_PLUS_ONE_RSVP', value: plusOneData });

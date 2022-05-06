@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import { Container } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
+import type {  NextPage } from 'next';
 import RsvpForm from '../../components/RsvpForm';
 import { AppContext } from '../../components/AppProvider';
 
@@ -19,10 +19,6 @@ const RSVP: NextPage = () => {
       </Box>
     </Container>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async({params}: GetServerSidePropsContext) => {
-  return {props: { id: params?.guestId } };
 };
 
 export default RSVP;

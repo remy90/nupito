@@ -1,8 +1,8 @@
 import type React from 'react';
-import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
+import type { NextPage } from 'next';
 import { Typography, Container } from '@mui/material';
 import { Timeline } from '@mui/lab';
-import { TimelineElement } from '../../components/TimelineElement';
+import { TimelineElement } from '../components/TimelineElement';
 
 const Order: NextPage =  () => (
   <Container maxWidth="sm">
@@ -20,8 +20,5 @@ const Order: NextPage =  () => (
     </Timeline>
   </Container>
 );
-
-export const getServerSideProps: GetServerSideProps = async({params}: GetServerSidePropsContext) =>
-{ return {props: { id: params?.guestId } }; };
 
 export default Order;

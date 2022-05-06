@@ -17,4 +17,4 @@ const handler = async(req: NextApiRequest, res: NextApiResponse) => {
     return res.status(200).json({ status: 'OK' });
   }
 };
-export default withSentry(handler);
+export default (handler);

@@ -2,8 +2,8 @@ import type React from 'react';
 import Container from '@mui/material/Container';
 import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { Typography } from '@mui/material';
-import { GMapCanvas, MapOuter } from '../../components/styled';
-import { marginTop } from '../../styles/sxConstants';
+import { GMapCanvas, MapOuter } from '../components/styled';
+import { marginTop } from '../styles/sxConstants';
 
 const Location: NextPage = () => (
   <Container maxWidth="sm" style={{height: '100%'}}>
@@ -31,8 +31,5 @@ const Location: NextPage = () => (
     </Typography>
   </Container>
 );
-
-export const getServerSideProps: GetServerSideProps = async({params}: GetServerSidePropsContext) =>
-{ return {props: { id: params?.guestId } };};
 
 export default Location;
