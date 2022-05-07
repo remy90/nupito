@@ -10,7 +10,6 @@ type DietType = typeof DietType[keyof typeof DietType];
 
 // Full mongodb document
 export type GuestDocument = {
-  // "id" | "isAttending" | "firstName" | "lastName" | "emailAddress" | "isEating" | "hasPlusOne" | "menuChoice" | "diet" | "menu.foodOption0" | "menu.foodOption1" | ... 12 more ... | "menu.euroDessert
   id: string
   firstName: string;
   lastName: string;

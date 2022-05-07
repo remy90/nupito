@@ -2,8 +2,8 @@ import React from 'react';
 import Head from 'next/head';
 import { Box } from '@mui/material';
 import Navigator from './Navigator';
-import { StickToEndOfContainer } from './styledcomponents';
-import { ProfileLink } from './ProfileLink';
+// import { StickToEndOfContainer } from './styledcomponents';
+// import { ProfileLink } from './ProfileLink';
 
 export default function Layout({ children }: ({children: React.ReactChild | Array<React.ReactChild>})) {
   return (
@@ -16,9 +16,9 @@ export default function Layout({ children }: ({children: React.ReactChild | Arra
       <Navigator />
       <Box sx={{display: 'flex', flexDirection: 'column', height: '100%'}}>
         <main style={{height: '100%'}}>{ children }</main>
-        <StickToEndOfContainer>
+        {/* <StickToEndOfContainer>
           <ProfileLink />
-        </ StickToEndOfContainer>
+        </ StickToEndOfContainer> */}
       </Box>
     </Box>
   );
