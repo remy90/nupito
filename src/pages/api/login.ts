@@ -11,11 +11,14 @@ async function loginRoute(req: NextApiRequest, res: NextApiResponse) {
 
   try {
     const result = await getGuestData(id);
-
-    const user = { isLoggedIn: true, id: result?.id } as User;
+    if (!result?.id) {
+      req?.session?.destroy();
+      return res.status(404).json({ isLoggedIn: false, id: '', message: 'User not found' });
+    }
+    const user = { isLoggedIn: true, id: result.id } as User;
     req.session.user = user;
     await req.session.save();
-    res.json(user);
+    return res.json(user);
   } catch (error) {
     res.status(500).json({ message: (error as Error).message });
   }

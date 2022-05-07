@@ -24,7 +24,7 @@ export default function Form() {
     isDirty,
     isValid
   }, control, getValues } = useForm<GuestDocument>({
-    defaultValues: { ...formDefaults },
+    defaultValues: formDefaults(state, 'guest'),
     mode: 'onChange'
   });
   const dispatchGuest = (value: GuestDocument) =>
@@ -33,14 +33,14 @@ export default function Form() {
   const onSubmit: SubmitHandler<GuestDocument> = async data => {
     console.log('storing rsvp...');
     if (!state?.guest.id) {
-      Sentry.captureException(`id not registered ${localStorage.getItem('shaun_char_guest_id')}`);
+      Sentry.captureException(`id not registered ${localStorage.getItem('shaun_char_guest_2022')}`);
       return; //?
     }
 
     try {
       const result = await persistGuestAttendance(data, '/api/guestUpdate');
       dispatchGuest(data);
-      localStorage.setItem(`shaun_char_guest_id-${state.guest.id}`, JSON.stringify(state));
+      localStorage.setItem('shaun_char_guest_2022', JSON.stringify(state));
 
       Sentry.captureMessage(`${state.guest.id} persisted: ${result!.text}`);
     } catch(e) {
@@ -63,7 +63,7 @@ export default function Form() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <AttendanceField errors={errors} onChange={handleAttendanceChange} register={register} />
         {isAttending &&
-          <EmailFormField errors={errors} onChange={() => null} register={register} />}
+          <EmailFormField placeholder='email address' errors={errors} onChange={() => null} register={register} />}
         {isAttending && state.guest.isEating &&
           <DietPreferenceField errors={errors} onChange={handleDietChange} register={register} />}
 

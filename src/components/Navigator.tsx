@@ -34,16 +34,19 @@ export default function ButtonAppBar() {
             {user?.isLoggedIn && user.id && (state?.guest?.isAttending != false) &&
                 <MenuItem onClick={handleClose}><Link href={'/rsvp/'} color="secondary">RSVP</Link></MenuItem>
             }
-            {user?.isLoggedIn && user.id && <MenuItem onClick={handleClose}><Link href={`/${state.guest.id}`} color="secondary">My page</Link></MenuItem>}
-            {user?.isLoggedIn && user.id &&
+            {user?.isLoggedIn && state.guest.id && <MenuItem onClick={handleClose}><Link href={`/${state.guest.id}`} color="secondary">My page</Link></MenuItem>}
+            {/* {user?.isLoggedIn && user.id &&
                 <MenuItem onClick={handleClose}><Link href={'/order/'} color="secondary">Order of service</Link></MenuItem>
-            }
+            } */}
             <MenuItem onClick={handleClose}><Link href={'/registry/'} color="secondary">Registry</Link></MenuItem>
             {user?.isLoggedIn && user.id &&
                 <MenuItem onClick={handleClose}><Link href={'/location/'} color="secondary">Location</Link></MenuItem>
             }
-            <MenuItem onClick={handleClose}><Link href={'/songs/'} color="secondary">Songs</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link href={'/readings/'} color="secondary">Readings</Link></MenuItem>
+            {user?.isLoggedIn && user.id &&
+                <MenuItem onClick={handleClose}><Link href={'/accomodation/'} color="secondary">Accommodation</Link></MenuItem>
+            }
+            {/* <MenuItem onClick={handleClose}><Link href={'/songs/'} color="secondary">Songs</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href={'/readings/'} color="secondary">Readings</Link></MenuItem> */}
           </Menu>
           <Link color='inherit' underline='none' variant="h6"  href={'/'} sx={{ flexGrow: 1 }}  type="button" align="justify">
             Shaun &amp; Char

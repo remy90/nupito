@@ -1,14 +1,24 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import { Container } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import type {  NextPage } from 'next';
 import RsvpForm from '../../components/RsvpForm';
 import { AppContext } from '../../components/AppProvider';
+import useUser from '../../lib/useUser';
 
 const RSVP: NextPage = () => {
-  const { state } = useContext(AppContext);
-  const isAttending = state.guest.isAttending; // add db check in getStaticProps here?
+  const { state, dispatch } = useContext(AppContext);
+
+  useEffect(() => {
+    if (!state.guest.id) {
+      dispatch({type: 'UPDATE_GUEST', value: {...JSON.parse(localStorage.getItem('shaun_char_guest_2022') ?? '{}')}});
+    }
+  }, [state.guest.id]);
+
+  const isAttending = state.guest?.isAttending;
+  useUser({ redirectTo: '/invitation-only' });
+
   return (
     <Container maxWidth="sm">
       <Box sx={{ my: 4 }}>

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext, useState, useId } from 'react';
+import React, { ChangeEvent, useContext, useState, useId, useEffect } from 'react';
 import { Paper, Box, Button, Container, Typography } from '@mui/material';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Sentry } from '../../utils';
@@ -10,15 +10,23 @@ import { EmailFormField } from '../../components/FormFields/EmailFormField';
 import { DietType, GuestDocument } from '../../components/Interfaces';
 import { AppContext } from '../../components/AppProvider';
 import { useRouter } from 'next/router';
-import { randomUUID } from 'crypto';
 import { InputField } from '../../components/FormFields/InputField';
 import { PlusOneDecision } from '../../components/FormFields/PlusOneDecision';
+import useUser from '../../lib/useUser';
 
 export default function plusOne() {
   const { state, dispatch } = useContext(AppContext);
   const [eatsAnything, setEatsAnything] = useState<boolean>(false);
   const [decision, setDecision] = useState<boolean>(false);
   const guestIdSuffix = useId();
+
+  useEffect(() => {
+    if (!state.guest.id) {
+      dispatch({type: 'UPDATE_GUEST', value: {...JSON.parse(localStorage.getItem('shaun_char_guest_2022') ?? '{}')}});
+    }
+  }, [state.guest.id]);
+  
+  useUser({ redirectTo: '/invitation-only' });
 
   const handleDietChange =  (event: ChangeEvent<HTMLInputElement>) => 
     setEatsAnything(event.target?.value === DietType.Meat);
@@ -38,10 +46,9 @@ export default function plusOne() {
     const plusOneData = getPlusOneData(data);
 
     console.log('add plus one data to state');
-    console.log('storing rsvp...');
-    // console.log(JSON.stringify(state));
+
     if (!state?.guest.id){
-      Sentry.captureException(`id not registered ${localStorage.getItem('shaun_char_guest_id')}`);
+      Sentry.captureException(`id not registered ${localStorage.getItem('shaun_char_guest_2022')}`);
       return; //?
     }
 
@@ -49,7 +56,7 @@ export default function plusOne() {
       await persistGuestAttendance(state.guest, '/api/guestUpdate');
 
       const additionalPlusOneProps = {
-        isAttending: 1,
+        isAttending: true,
         isEating: state.guest.isEating,
         hasPlusOne: false,
       };
@@ -59,7 +66,7 @@ export default function plusOne() {
       }, '/api/addPlusOne');
 
       dispatch({ type: 'SUBMIT_PLUS_ONE_RSVP', value: plusOneData });
-      localStorage.setItem(`shaun_char_guest_id-${state.guest.id}`, JSON.stringify(state));
+      localStorage.setItem('shaun_char_guest_2022', JSON.stringify(state));
       Sentry.captureMessage(`${state.plusOne.id} persisted: ${result!.text}`);
     } catch(e) {
       Sentry.captureException(`failed to register guest ${state?.plusOne.id}: ${e}`);

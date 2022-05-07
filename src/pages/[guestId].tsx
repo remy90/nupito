@@ -27,26 +27,25 @@ const HomePage: NextPage<IGuestProps> = ({
   menu,
 }: IGuestProps) => {
   const { dispatch, state } = useContext(AppContext);
-  const {mutateUser, user} = useUser();
+  const {mutateUser} = useUser();
   const guest = {id, firstName, isAttending, isEating, hasPlusOne, menu };
   const body = state.guest.id ? state.guest : guest;
 
   useEffect(() => dispatch({ type: 'UPDATE_GUEST', value: {guest} }), [id]);
-  useEffect(() => localStorage.setItem(`shaun_char_guest_id-${id}`, JSON.stringify({guest:{...body}, ...user})), [id, body.id]);
+  useEffect(() => localStorage.setItem('shaun_char_guest_2022', JSON.stringify({guest:{...body}})), [id, body.id]);
 
   useEffect(() => {
     (async () => {
       mutateUser(
-        await fetchJson('/api/login', {
+        await fetchJson(`/api/login?id=${id}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(guest),
         }),
         false,
       );
-      console.log(state);
     })();
-  }, [id]);
+  }, [state.guest.id]);
   Sentry.captureMessage(`guestId dispatched for ${id}`, Sentry.Severity.Debug);
 
   const memoizedAttendanceMessage = useMemo(() => showAttendanceMessage(isAttending, hasPlusOne), [isAttending, hasPlusOne]);
