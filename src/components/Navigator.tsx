@@ -31,10 +31,10 @@ export default function ButtonAppBar() {
             MenuListProps={{ 'aria-labelledby': 'basic-button' }}
           >
             <MenuItem onClick={handleClose}><Link href={'/'} color="secondary">Home</Link></MenuItem>
-            {user?.isLoggedIn && user.id && (state?.guest?.isAttending != false) &&
+            {user?.isLoggedIn && user.id && // (state?.guest?.isAttending != false) &&
                 <MenuItem onClick={handleClose}><Link href={'/rsvp/'} color="secondary">RSVP</Link></MenuItem>
             }
-            {user?.isLoggedIn && state.guest.id && <MenuItem onClick={handleClose}><Link href={`/${state.guest.id}`} color="secondary">My page</Link></MenuItem>}
+            {user?.isLoggedIn && state.guest.id && <MenuItem onClick={handleClose}><Link href={`/${state.guest.id}`} color="secondary">{state.guest.firstName}&apos;s page</Link></MenuItem>}
             {/* {user?.isLoggedIn && user.id &&
                 <MenuItem onClick={handleClose}><Link href={'/order/'} color="secondary">Order of service</Link></MenuItem>
             } */}
