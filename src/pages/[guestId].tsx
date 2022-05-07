@@ -8,7 +8,7 @@ import { fileDownload } from './api/gridFSFileDownload';
 import { AppContext } from '../components/AppProvider';
 import { showAttendanceMessage, showMealSelection } from '../components/formSubmissionTextHelper';
 import { Sentry } from '../utils';
-import { IGuestProps } from '../components/Interfaces';
+import { GuestDocument, IGuestProps } from '../components/Interfaces';
 import { MongoClient } from 'mongodb';
 import { existsSync } from 'fs';
 import { CircularProgress } from '@mui/material';
@@ -24,13 +24,15 @@ const HomePage: NextPage<IGuestProps> = ({
   isAttending,
   isEating,
   hasPlusOne,
-  menuChoice,
+  menu,
 }: IGuestProps) => {
   const { dispatch, state } = useContext(AppContext);
-  const {mutateUser} = useUser();
-  useEffect(() => dispatch({ type: 'UPDATE_GUEST', value: { guest: {id, firstName, isAttending, isEating, hasPlusOne, menuChoice }}}),
-    ['UPDATE_GUEST', id, firstName, isAttending, isEating, hasPlusOne, menuChoice]);
-  useEffect(() => localStorage.setItem(`shaun_char_guest_id-${id}`, JSON.stringify(state.guest)), [id]);
+  const {mutateUser, user} = useUser();
+  const guest = {id, firstName, isAttending, isEating, hasPlusOne, menu };
+  const body = state.guest.id ? state.guest : guest;
+
+  useEffect(() => dispatch({ type: 'UPDATE_GUEST', value: {guest} }), [id]);
+  useEffect(() => localStorage.setItem(`shaun_char_guest_id-${id}`, JSON.stringify({guest:{...body}, ...user})), [id, body.id]);
 
   useEffect(() => {
     (async () => {
@@ -38,17 +40,17 @@ const HomePage: NextPage<IGuestProps> = ({
         await fetchJson('/api/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(state.guest),
+          body: JSON.stringify(guest),
         }),
         false,
       );
+      console.log(state);
     })();
   }, [id]);
-
   Sentry.captureMessage(`guestId dispatched for ${id}`, Sentry.Severity.Debug);
-  // console.log(state);
+
   const memoizedAttendanceMessage = useMemo(() => showAttendanceMessage(isAttending, hasPlusOne), [isAttending, hasPlusOne]);
-  const memoizedMealSelection = useMemo(() => showMealSelection(menuChoice), [menuChoice]);
+  const memoizedMealSelection = useMemo(() => showMealSelection(menu), [menu]);
 
   // TODO: Check if person has id, if not, give a 404 oops message
   // ! TODO: Fix landing page for deployed page
@@ -98,17 +100,9 @@ export const getServerSideProps: GetServerSideProps = async({params}: GetServerS
     Sentry.captureMessage('possible randomer');
     return { notFound: true };
   }
+  const {_id, ...guestData} = data;
 
-  return {
-    props: {
-      id: data.id,
-      firstName: data.firstName,
-      isAttending: data.isAttending,
-      isEating: data.isEating,
-      hasPlusOne: data.hasPlusOne,
-      menuChoice: data.menuChoice
-    }
-  };
+  return { props: guestData };
 };
 
 export default HomePage;

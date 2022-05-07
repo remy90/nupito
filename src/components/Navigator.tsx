@@ -18,7 +18,7 @@ export default function ButtonAppBar() {
   const handleClose = () => setAnchorEl(null);
   const {state} = useContext(AppContext);
   const {user} = useUser();
-  const {id} = state?.guest;
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static"  sx={{ backgroundColor: '#222222'}}>
@@ -30,21 +30,20 @@ export default function ButtonAppBar() {
             onClose={handleClose}
             MenuListProps={{ 'aria-labelledby': 'basic-button' }}
           >
-            <>
-              <MenuItem onClick={handleClose}><Link href={`/${id}`} color="secondary">Home</Link></MenuItem>
-              {id && (state?.guest?.isAttending != false) &&
+            <MenuItem onClick={handleClose}><Link href={'/'} color="secondary">Home</Link></MenuItem>
+            {user?.isLoggedIn && user.id && (state?.guest?.isAttending != false) &&
                 <MenuItem onClick={handleClose}><Link href={'/rsvp/'} color="secondary">RSVP</Link></MenuItem>
-              }
-              {user?.isLoggedIn && user.id &&
+            }
+            {user?.isLoggedIn && user.id && <MenuItem onClick={handleClose}><Link href={`/${state.guest.id}`} color="secondary">My page</Link></MenuItem>}
+            {user?.isLoggedIn && user.id &&
                 <MenuItem onClick={handleClose}><Link href={'/order/'} color="secondary">Order of service</Link></MenuItem>
-              }
-              <MenuItem onClick={handleClose}><Link href={'/registry/'} color="secondary">Registry</Link></MenuItem>
-              {user?.isLoggedIn && user.id &&
+            }
+            <MenuItem onClick={handleClose}><Link href={'/registry/'} color="secondary">Registry</Link></MenuItem>
+            {user?.isLoggedIn && user.id &&
                 <MenuItem onClick={handleClose}><Link href={'/location/'} color="secondary">Location</Link></MenuItem>
-              }
-              <MenuItem onClick={handleClose}><Link href={'/songs/'} color="secondary">Songs</Link></MenuItem>
-              <MenuItem onClick={handleClose}><Link href={'/readings/'} color="secondary">Readings</Link></MenuItem>
-            </>
+            }
+            <MenuItem onClick={handleClose}><Link href={'/songs/'} color="secondary">Songs</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href={'/readings/'} color="secondary">Readings</Link></MenuItem>
           </Menu>
           <Link color='inherit' underline='none' variant="h6"  href={'/'} sx={{ flexGrow: 1 }}  type="button" align="justify">
             Shaun &amp; Char

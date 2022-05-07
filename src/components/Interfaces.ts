@@ -71,6 +71,6 @@ export interface IGuestProps {
   isAttending: boolean;
   isEating: boolean;
   hasPlusOne: boolean;
-  menuChoice: Menu;
+  menu: Menu;
   homePageImg: string;
 }

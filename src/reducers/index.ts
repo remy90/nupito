@@ -26,6 +26,9 @@ function guestReducer(state: RsvpData, action: reducerType) {
       ...state,
       plusOne: {
         ...action.value,
+        isAttending: 1,
+        isEating: state.guest.isEating,
+        hasPlusOne: false,
       }
     };
   case 'SUBMIT_RSVP_FORM':

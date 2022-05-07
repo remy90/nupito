@@ -48,8 +48,15 @@ export default function plusOne() {
     try {
       await persistGuestAttendance(state.guest, '/api/guestUpdate');
 
-      // console.log(JSON.stringify(plusOneData));
-      const result = await persistGuestAttendance(plusOneData, '/api/addPlusOne');
+      const additionalPlusOneProps = {
+        isAttending: 1,
+        isEating: state.guest.isEating,
+        hasPlusOne: false,
+      };
+      const result = await persistGuestAttendance({
+        ...plusOneData,
+        ...additionalPlusOneProps
+      }, '/api/addPlusOne');
 
       dispatch({ type: 'SUBMIT_PLUS_ONE_RSVP', value: plusOneData });
       localStorage.setItem(`shaun_char_guest_id-${state.guest.id}`, JSON.stringify(state));

@@ -7,10 +7,10 @@ import { getGuestData } from '../../fetches';
 export default withIronSessionApiRoute(loginRoute, sessionOptions);
 
 async function loginRoute(req: NextApiRequest, res: NextApiResponse) {
-  const { username } = await req.body;
+  const { id } = await req.body;
 
   try {
-    const result = await getGuestData(username);
+    const result = await getGuestData(id);
 
     const user = { isLoggedIn: true, id: result?.id } as User;
     req.session.user = user;

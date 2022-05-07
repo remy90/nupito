@@ -4,19 +4,33 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import type { GetStaticProps, NextPage } from 'next';
 import { fileDownload } from './api/gridFSFileDownload';
+import { useContext, useEffect } from 'react';
+import { AppContext } from '../components/AppProvider';
+import { GuestDocument } from '../components/Interfaces';
 // import { fileUpload } from './api/gridFSFileUpload';
 
 const HomePage: NextPage = () =>
-  (<Container maxWidth="sm">
-    <Box sx={{ my: 4 }}>
-      <Typography variant="h4" component="h1" gutterBottom>
-        {'Welcome to Shaun and Charlotte\'s wedapp'}
-      </Typography>
-      <Box style={{ width: '100%', maxWidth: '30rem' }}>
-        <img width='100%' src="home-page.jpeg" alt="shaun and charlotte" />
+{
+  const {state} = useContext(AppContext);
+  useEffect(() => {
+    if (!state.guest.id){
+      return;
+    }
+    const guest: GuestDocument = JSON.parse(localStorage.getItem(`shaun_char_guest_id-${state.guest.id ?? ''}`) ?? '');
+    console.log(guest);
+  }, [state.guest.id]);
+  return (
+    <Container maxWidth="sm">
+      <Box sx={{ my: 4 }}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          {'Welcome to Shaun and Charlotte\'s wedapp'}
+        </Typography>
+        <Box style={{ width: '100%', maxWidth: '30rem' }}>
+          <img width='100%' src="home-page.jpeg" alt="shaun and charlotte" />
+        </Box>
       </Box>
-    </Box>
-  </Container>);
+    </Container>);
+};
 
 export const getStaticProps: GetStaticProps = async () => {
   const fs = require('fs');
