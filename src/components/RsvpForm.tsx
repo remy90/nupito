@@ -19,7 +19,7 @@ import { ACTIONS } from '../reducers/actions';
 
 export default function Form() {
   const { state, dispatch } = useContext(AppContext);
-  const [formAttendance, setFormAttendance] = useState<boolean>(state?.guest?.isAttending);
+  const [formAttendance, setFormAttendance] = useState<boolean>(state?.guest?.isAttending || false);
   const [showCuisineType, shouldShowCuisineType] = useState<boolean>((!!state.guest?.diet || !!state.guest?.menu) ?? false);
   const router = useRouter();
   const defaults = formDefaults(state, 'guest');
@@ -67,7 +67,7 @@ export default function Form() {
   };
   const handleAttendanceChange = (event: ChangeEvent<HTMLInputElement> ) =>
     //@ts-ignore
-    setFormAttendance((event.target.value as boolean) === true);
+    setFormAttendance((event.target.value as boolean) == true);
 
   const handleDietChange =  (event: ChangeEvent<HTMLInputElement>) => 
     shouldShowCuisineType(event.target?.value === DietType.Meat);
@@ -90,8 +90,8 @@ export default function Form() {
           defaultValue={state.guest?.emailAddress}
         />
 
-        {((isAttending && state?.guest.isEating) || !!state.guest.diet) &&
-          <DietPreferenceField errors={errors} onChange={handleDietChange} register={register} defaultValue={state.guest.diet}/>}
+        {((isAttending && state?.guest.isEating)) &&
+          <DietPreferenceField errors={errors} onChange={handleDietChange} register={register} defaultValue={state.guest.diet}/>} 
 
         {isAttending && showCuisineType && <MenuForm control={control} defaultValues={state.guest} />}
         <Box>
