@@ -1,14 +1,15 @@
 import type React from 'react';
 import { FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material';
 import { Controller } from 'react-hook-form';
-import { RHFormControlProps } from '../Interfaces';
+import { IMenuDefaultProps } from '../Interfaces';
 
-export const DessertOptions = ({control}: RHFormControlProps) =>
+export const DessertOptions = ({control, defaultValues }: IMenuDefaultProps) =>
   <>
     <Typography variant="h4" sx={{ my: '1rem', fontSize: '2rem'}}>Dessert</Typography>
     <Controller
       name='menu.euroDessert'
       control={control}
+      defaultValue={defaultValues?.euroDessert ?? ''}
       render={({field}) =>
         <RadioGroup {...field}>
           <FormControlLabel value={28} control={<Radio />} label="Cheese &amp; Roquito Pepper Tart" />

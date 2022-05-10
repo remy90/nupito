@@ -5,12 +5,13 @@ import { TimelineElement } from '../components/TimelineElement';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '../components/AppProvider';
 import useUser from '../lib/useUser';
+import { ACTIONS } from '../reducers/actions';
 
 const Order = () => {
   const {state, dispatch} = useContext(AppContext);
   useEffect(() => {
     if (!state.guest.id) {
-      dispatch({type: 'UPDATE_GUEST', value: {...JSON.parse(localStorage.getItem('shaun_char_guest_2022') ?? '{}')}});
+      dispatch({type: ACTIONS.UPDATE_GUEST, value: {...JSON.parse(localStorage.getItem('shaun_char_guest_2022') ?? '{}')}});
     }
   }, [state.guest.id]);
 

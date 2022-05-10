@@ -6,8 +6,7 @@ import { User } from '../pages/api/user';
 export default function useUser({
   redirectTo = '',
   redirectIfFound = false,
-} = {}, id = '') {
-  // ! changed /api/user to api/login
+} = {}) {
   const { data: user, mutate: mutateUser } = useSWR<User>('/api/user');
 
   useEffect(() => {

@@ -6,13 +6,14 @@ import type {  NextPage } from 'next';
 import RsvpForm from '../../components/RsvpForm';
 import { AppContext } from '../../components/AppProvider';
 import useUser from '../../lib/useUser';
+import { ACTIONS } from '../../reducers/actions';
 
 const RSVP: NextPage = () => {
   const { state, dispatch } = useContext(AppContext);
 
   useEffect(() => {
     if (!state.guest.id) {
-      dispatch({type: 'UPDATE_GUEST', value: {...JSON.parse(localStorage.getItem('shaun_char_guest_2022') ?? '{}')}});
+      dispatch({type: ACTIONS.UPDATE_GUEST, value: {...JSON.parse(localStorage.getItem('shaun_char_guest_2022') ?? '{}')}});
     }
   }, [state.guest.id]);
 

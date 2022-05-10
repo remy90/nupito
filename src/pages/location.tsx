@@ -1,18 +1,19 @@
 import type React from 'react';
 import Container from '@mui/material/Container';
-import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
+import type { NextPage } from 'next';
 import { Typography } from '@mui/material';
 import { GMapCanvas, MapOuter } from '../components/styled';
 import { marginTop } from '../styles/sxConstants';
 import useUser from '../lib/useUser';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '../components/AppProvider';
+import { ACTIONS } from '../reducers/actions';
 
 const Location: NextPage = () => {
   const {state, dispatch} = useContext(AppContext);
   useEffect(() => {
     if (!state.guest.id) {
-      dispatch({type: 'UPDATE_GUEST', value: {...JSON.parse(localStorage.getItem('shaun_char_guest_2022') ?? '{}')}});
+      dispatch({type: ACTIONS.UPDATE_GUEST, value: {...JSON.parse(localStorage.getItem('shaun_char_guest_2022') ?? '{}')}});
     }
   }, [state.guest.id]);
 

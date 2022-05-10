@@ -6,12 +6,13 @@ import useUser from '../lib/useUser';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '../components/AppProvider';
 import Link from '../Link';
+import { ACTIONS } from '../reducers/actions';
 
 const Accommodation: NextPage = () => {
   const {state, dispatch} = useContext(AppContext);
   useEffect(() => {
     if (!state.guest.id) {
-      dispatch({type: 'UPDATE_GUEST', value: {...JSON.parse(localStorage.getItem('shaun_char_guest_2022') ?? '{}')}});
+      dispatch({type: ACTIONS.UPDATE_GUEST, value: {...JSON.parse(localStorage.getItem('shaun_char_guest_2022') ?? '{}')}});
     }
   }, [state.guest.id]);
 

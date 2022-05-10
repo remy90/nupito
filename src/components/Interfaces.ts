@@ -2,9 +2,11 @@ import { ChangeEvent } from 'react';
 import { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
 
 export const DietType = {
+  Unknown: '',
   Meat: 'anything goes',
   Vegetarian: 'veggie',
   Vegan: 'vegan',
+  NoFood: 'no food'
 } as const;
 type DietType = typeof DietType[keyof typeof DietType];
 
@@ -17,20 +19,18 @@ export type GuestDocument = {
   isAttending: boolean;
   isEating: boolean;
   hasPlusOne: boolean;
-  // TODO: Create RadioOptionFormField template with label, key and default value
+  cuisine: CuisineType;
   menu: Menu;
   diet: DietType;
 }
 export type InputType = 'firstName' | 'lastName';
-export type RsvpData = {
-  guest: GuestDocument,
-  plusOne: GuestDocument
-};
+export type RsvpData = { guest: GuestDocument, plusOne: GuestDocument };
 export interface IFieldProps {
   errors?: FieldErrors<GuestDocument>;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   register: UseFormRegister<GuestDocument>;
   inputName?: any;
+  defaultValue?: any;
 }
 
 export interface IInputFieldProps extends IFieldProps {
@@ -43,7 +43,6 @@ export interface IEmailFormFieldProps {
 }
 
 export type Menu = {
-  foodOption0: boolean;
   foodOption1: boolean,
   foodOption2: boolean,
   foodOption3: boolean,
@@ -55,21 +54,29 @@ export type Menu = {
   foodOption9: boolean,
   foodOption10: boolean,
   foodOption11: boolean,
-  euroStarter: number | undefined,
-  euroMain: number | undefined,
-  euroDessert: number | undefined,
+  foodOption12: boolean,
+  foodOption13: boolean,
+  euroStarter: number | string,
+  euroMain: number | string,
+  euroDessert: number | string,
 }
+
+export type MenuType = 'foodOption1' | 'foodOption2' | 'foodOption3' |
+'foodOption4' | 'foodOption5' | 'foodOption6' | 'foodOption7' |
+'foodOption8' | 'foodOption9' | 'foodOption10' | 'foodOption11'|
+'foodOption11'| 'foodOption12'| 'foodOption13' | 'euroStarter' |
+'euroMain' | 'euroDessert';
 export interface RHFormControlProps {
   control: Control<GuestDocument, object>;
 }
+export type CuisineType = 'euro' | 'afro';
+export interface ICuisineOptionProps extends RHFormControlProps{
+  defaultValues?: GuestDocument;
+}
+export interface IMenuOptionProps extends RHFormControlProps{
+  defaultValues?: MenuType;
+}
 
-/** Used for initial data fetch on guests */ 
-export interface IGuestProps {
-  id: string;
-  firstName: string;
-  isAttending: boolean;
-  isEating: boolean;
-  hasPlusOne: boolean;
-  menu: Menu;
-  homePageImg: string;
+export interface IMenuDefaultProps extends RHFormControlProps{
+  defaultValues?: Menu;
 }

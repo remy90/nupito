@@ -1,73 +1,67 @@
 import React, { useState } from 'react';
 import {  Box, Typography, FormControl, RadioGroup, Radio, FormControlLabel } from '@mui/material';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { AfroMenuOptions } from './MenuOptions/AfroMenuOptions';
 import { DessertOptions } from './MenuOptions/DessertOptions';
 import { EuroMenuOptions } from './MenuOptions/EuroMenuOptions';
-import { RHFormControlProps } from './Interfaces';
+import { CuisineType, ICuisineOptionProps } from './Interfaces';
 
-type CuisineType = 'euro' | 'afro';
-interface IMenuFormProps extends RHFormControlProps {
-  eatsAnything: boolean;
-}
-
-export default function MenuForm({ eatsAnything, control }: IMenuFormProps) {
-  const [isAfrican, setIsAfrican] = useState(false);
-  const [isEuropean, setIsEuropean] = useState(false);
+export default function MenuForm({ control, defaultValues }: ICuisineOptionProps) {
+  const [isEuropean, setIsEuropean] = useState(defaultValues?.cuisine === 'euro' ?? true);
 
   const { reset } = useForm();
 
-  const resetFoodOptions = (firstOptionNumber: number, lastOptionNumber: number, defaultValue: false | string) => {
-    const resetObject: any = {};
+  // const resetFoodOptions = (firstOptionNumber: number, lastOptionNumber: number, defaultValue: false | string) => {
+  //   const resetObject: any = {};
   
-    for (let i = firstOptionNumber; i <= lastOptionNumber; i++) {
-      resetObject[`menu.foodOption${i}`] = defaultValue;
-    }
-    return resetObject;
-  };
-  const handleEuroCuisine = () => {
-    // 0 - 11 is euro
-    setIsAfrican(false);
-    setIsEuropean(true);
-    eatsAnything = false;
-    reset(resetFoodOptions(0, 11, false));
-  };
-  const handleAfroCuisine = () => {
-    setIsEuropean(false);
-    setIsAfrican(true);
-    eatsAnything = true;
-    reset(resetFoodOptions(12, 27, ''));
-  };
+  //   for (let i = firstOptionNumber; i <= lastOptionNumber; i++) {
+  //     resetObject[`menu.foodOption${i}`] = defaultValue;
+  //   }
+  //   return resetObject;
+  // };
+  // const handleEuroCuisine = () => {
+  //   // 0 - 11 is euro
+  //   setIsAfrican(false);
+  //   setIsEuropean(true);
+  //   reset(resetFoodOptions(0, 11, false));
+  // };
+  // const handleAfroCuisine = () => {
+  //   setIsEuropean(false);
+  //   setIsAfrican(true);
+  //   reset(resetFoodOptions(12, 27, ''));
+  // };
 
-  const cuisines = {
-    euro: handleEuroCuisine,
-    afro: handleAfroCuisine
-  };
-  const handleClick = (cuisineType: CuisineType) =>
-    cuisines[cuisineType]();
+  const handleCuisineChange = (cuisine: CuisineType) =>
+    setIsEuropean(cuisine === 'euro');
 
   return (
     <Box sx={{marginTop: '2rem', marginBottom: '2rem'}}>
       <Typography variant="h3" sx={{ fontSize: '2.5rem'}}>What cuisine type would you like?</Typography>
-      {eatsAnything && <FormControl>
-        <RadioGroup name="radio-buttons-group">
-          <FormControlLabel
-            checked={isEuropean}
-            control={<Radio />}
-            label="European"
-            onClick={() => handleClick('euro')}
-          />
-          <FormControlLabel
-            checked={isAfrican}
-            control={<Radio />}
-            label="West African 🇳🇬"
-            onClick={() => handleClick('afro')}
-          />
-        </RadioGroup>
-      </FormControl>}
-      {eatsAnything && isAfrican && <AfroMenuOptions control={control} />}
-      {(isEuropean || !eatsAnything) && <EuroMenuOptions control={control} />}
-      {(isAfrican || isEuropean) && <DessertOptions control={control} />}
+      <FormControl>
+        <Controller
+          control={control}
+          defaultValue={defaultValues?.cuisine ?? 'euro'}
+          name="cuisine"
+          render={({field}) =>
+            <RadioGroup {...field}>
+              <FormControlLabel
+                value={'euro'}
+                control={<Radio />}
+                label="European"
+                onClick={() => handleCuisineChange('euro')}
+              />
+              <FormControlLabel
+                value={'afro'}
+                control={<Radio />}
+                label="West African 🇳🇬"
+                onClick={() => handleCuisineChange('afro')}
+              />
+            </RadioGroup>}
+        />
+      </FormControl>
+      { !isEuropean && <AfroMenuOptions control={control} defaultValues={defaultValues?.menu}/>}
+      { isEuropean && <EuroMenuOptions control={control} defaultValues={defaultValues?.menu}/>}
+      <DessertOptions control={control} defaultValues={defaultValues?.menu} />
     </Box>
   );
 }

@@ -8,7 +8,6 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
-import Link from '../../Link';
 import { ButtonContent } from '../ButtonContent';
 import { AppContext } from '../AppProvider';
 
@@ -59,19 +58,19 @@ interface IDialogProps {
   handleClose: (t: React.SetStateAction<boolean>) => void;
 }
 
-export default function CustomizedDialogs({ open, title, message, handleClose: close, extraButtonRoute }: IDialogProps) {
+export default function SubmissionModal({ open, title, message, handleClose: close, extraButtonRoute }: IDialogProps) {
   const handleClose = () => close(false);
   const {state} = useContext(AppContext);
 
   return (
     <BootstrapDialog
       onClose={handleClose}
-      aria-labelledby="customized-dialog-title"
+      aria-labelledby="form-submission-modal"
       open={open}
-      
+      maxWidth="lg"
       sx={{px: '2rem'}}
     >
-      <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
+      <BootstrapDialogTitle id="form-submission-modal" onClose={handleClose}>
         {title}
       </BootstrapDialogTitle>
       <DialogContent>
@@ -80,7 +79,7 @@ export default function CustomizedDialogs({ open, title, message, handleClose: c
         </Typography>
       </DialogContent>
       <DialogActions>
-        <Button autoFocus onClick={handleClose}>{state.guest.firstName}'s page</Button>
+        <Button autoFocus onClick={handleClose}>{state.guest.firstName}&apos;s page</Button>
         {extraButtonRoute && <Button href={extraButtonRoute.route}>{extraButtonRoute.name}</Button>}
       </DialogActions>
     </BootstrapDialog>

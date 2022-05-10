@@ -1,75 +1,21 @@
-import React from 'react';
-import { Checkbox, FormControlLabel, FormGroup, Typography } from '@mui/material';
-import { Controller } from 'react-hook-form';
-import { RHFormControlProps } from '../Interfaces';
+import type React from 'react';
+import { IMenuDefaultProps } from '../Interfaces';
+import CheckboxList, { listItem } from '../TextList';
 
-export const AfroMenuOptions = ({ control }: RHFormControlProps) =>
-  <FormGroup>
-    <Typography variant="h4" sx={{ my: '1rem'}}>Starters</Typography>
-    <Controller
-      name='menu.foodOption0'
-      control={control}
-      render={({field}) =>
-        <FormControlLabel {...field} control={<Checkbox />} label="Spring roll  samosa &amp; puff puff" />}
-    />
-    <Typography  variant="h4" sx={{ my: '1rem'}}>Mains</Typography>
-    <Controller
-      name='menu.foodOption1'
-      control={control}
-      render={({field}) =>
-        <FormControlLabel {...field} control={<Checkbox />} label="Jollof rice" />}
-    />
-    <Controller
-      name='menu.foodOption2'
-      control={control}
-      render={({field}) =>
-        <FormControlLabel {...field} control={<Checkbox />} label="Fried rice" />} />
-    <Controller
-      name='menu.foodOption3'
-      control={control}
-      render={({field}) =>
-        <FormControlLabel {...field} control={<Checkbox />} label="Asaro with sauce" />} />
-    <Controller
-      name='menu.foodOption4'
-      control={control}
-      render={({field}) =>
-        <FormControlLabel {...field} control={<Checkbox />} label="Ewa agoyin with sauce Ayamase with white rice" />} />
-    <Controller
-      name='menu.foodOption5'
-      control={control}
-      render={({field}) =>
-        <FormControlLabel {...field} control={<Checkbox />} label="Assorted meat, chicken &amp; fish" />} />
-    <Controller
-      name='menu.foodOption6'
-      control={control}
-      render={({field}) =>
-        <FormControlLabel {...field} control={<Checkbox />} label="Efo riro efo elegusi" />} />
-    <Controller
-      name='menu.foodOption7'
-      control={control}
-      render={({field}) =>
-        <FormControlLabel {...field} control={<Checkbox />} label="Pounded yam" />} />
-    <Controller
-      name='menu.foodOption8'
-      control={control}
-      render={({field}) =>
-        <FormControlLabel {...field} control={<Checkbox />} label="Abula (Gbegiri ewedu amala soup with assorted meat stew)" />} />
-    <Typography>Side</Typography>
-    <Controller
-      name='menu.foodOption9'
-      control={control}
-      render={({field}) =>
-        <FormControlLabel {...field} control={<Checkbox />} label="Dodogizzard" />} />
-    <Typography variant="h4" sx={{ my: '1rem'}}>Sides</Typography>
-    <Controller
-      name='menu.foodOption10'
-      control={control}
-      render={({field}) =>
-        <FormControlLabel {...field} control={<Checkbox />} label="Moin-moin" />} />
-    <Controller
-      name='menu.foodOption11'
-      control={control}
-      render={({field}) =>
-        <FormControlLabel {...field} control={<Checkbox />} label="Salad" />} />
-  </FormGroup>;
-  
+const listItems: listItem[] = [
+  { key: 'foodOption1', primary: 'Spring roll, samosa &amp; puff puff', secondary: 'A starter option. Puff puff is a snack made of fried dough.' },
+  { key: 'foodOption2', primary: 'Dodogizzard', secondary: 'Boiled pieces of gizzard are deeply fried and mixed fried plantains poured over a simmering pepper and Tomato Sauce.' },
+  { key: 'foodOption3', primary: 'Jollof rice', secondary: 'The dish is typically made with long-grain rice, tomatoes, onions, spices, vegetables and meat in a single pot' },
+  { key: 'foodOption4', primary: 'Fried rice', secondary: 'Rice mixed with vegetables, and spices. Sometimes contains prawns and various meats.' },
+  { key: 'foodOption5', primary: 'Asaro with sauce', secondary: 'Also known as Yam porridge.A yam dish cooked in a peppery mix until soft and fluffy with some yam chunks.' },
+  { key: 'foodOption6', primary: 'Ewa agoyin with sauce Ayamase with white rice', secondary: 'The beans are cooked till soft (or mashed). Commonly eaten with barley, ground pepper and a spicy tomato sauce. Can include palm oil, onion and crayfish.' },
+  { key: 'foodOption7', primary: 'Assorted meat, chicken &amp; fish', secondary: '' },
+  { key: 'foodOption8', primary: 'Efo riro efo elegusi', secondary: 'A stew made of bell peppers, assorted meats, egusi seeds, crayfish, scotch bonnets and basil. You can have this with white rice or pounded yam.' },
+  { key: 'foodOption9', primary: 'Pounded yam', secondary: 'Similar to mashed potatoes. It is served with stew. You may want to have this with egusi.' },
+  { key: 'foodOption10', primary: 'Abula (Gbegiri ewedu amala soup with assorted meat stew)', secondary: 'It is made out of yam and/or cassava flour, or unripe plantain flour.' },
+  { key: 'foodOption11', primary: 'dodogizzard', secondary: 'Boiled pieces of gizzard are deeply fried and mixed fried plantains poured over a simmering pepper and Tomato Sauce.' },
+  { key: 'foodOption12', primary: 'Moin-moin', secondary: 'A protein rich dish, with Yoruba steamed bean pudding made from a mixture of washed and peeled black-eyed beans, onions and fresh ground red peppers' },
+  { key: 'foodOption13', primary: 'Salad', secondary: '' },
+];
+export const AfroMenuOptions = ({control, defaultValues}: IMenuDefaultProps) =>
+  <CheckboxList listItems={listItems} control={control} defaultValues={defaultValues} />;

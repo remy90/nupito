@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { MongoClient } from 'mongodb';
-import { withSentry } from '@sentry/nextjs';
 
 const client = new MongoClient(process.env.MONGODB_URI!);
 

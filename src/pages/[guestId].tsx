@@ -8,31 +8,34 @@ import { fileDownload } from './api/gridFSFileDownload';
 import { AppContext } from '../components/AppProvider';
 import { showAttendanceMessage, showMealSelection } from '../components/formSubmissionTextHelper';
 import { Sentry } from '../utils';
-import { GuestDocument, IGuestProps } from '../components/Interfaces';
+import { GuestDocument } from '../components/Interfaces';
 import { MongoClient } from 'mongodb';
 import { existsSync } from 'fs';
 import { CircularProgress } from '@mui/material';
 import Image from 'next/image';
 import fetchJson from '../lib/fetchJson';
 import useUser from '../lib/useUser';
+import { ACTIONS } from '../reducers/actions';
 
 // import { fileUpload } from './api/gridFSFileUpload';
 
-const HomePage: NextPage<IGuestProps> = ({
+const HomePage: NextPage<GuestDocument> = ({
   id,
   firstName,
+  lastName,
   isAttending,
   isEating,
+  diet,
   hasPlusOne,
+  cuisine,
   menu,
-}: IGuestProps) => {
+}: GuestDocument) => {
   const { dispatch, state } = useContext(AppContext);
   const {mutateUser} = useUser();
-  const guest = {id, firstName, isAttending, isEating, hasPlusOne, menu };
-  const body = state.guest.id ? state.guest : guest;
+  const guest = {id, firstName, lastName, isAttending, isEating, diet, hasPlusOne, cuisine, menu };
 
-  useEffect(() => dispatch({ type: 'UPDATE_GUEST', value: {guest} }), [id]);
-  useEffect(() => localStorage.setItem('shaun_char_guest_2022', JSON.stringify({guest:{...body}})), [id, body.id]);
+  useEffect(() => dispatch({ type: ACTIONS.UPDATE_GUEST, value: {guest} }), [id]);
+  useEffect(() => localStorage.setItem('shaun_char_guest_2022', JSON.stringify({guest})), [id]);
 
   useEffect(() => {
     (async () => {
@@ -51,9 +54,7 @@ const HomePage: NextPage<IGuestProps> = ({
   const memoizedAttendanceMessage = useMemo(() => showAttendanceMessage(isAttending, hasPlusOne), [isAttending, hasPlusOne]);
   const memoizedMealSelection = useMemo(() => showMealSelection(menu), [menu]);
 
-  // TODO: Check if person has id, if not, give a 404 oops message
   // ! TODO: Fix landing page for deployed page
-
   return (
     <Container maxWidth="sm">
       <Box sx={{ my: 4 }}>
@@ -99,6 +100,7 @@ export const getServerSideProps: GetServerSideProps = async({params}: GetServerS
     Sentry.captureMessage('possible randomer');
     return { notFound: true };
   }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const {_id, ...guestData} = data;
 
   return { props: guestData };

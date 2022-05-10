@@ -13,34 +13,45 @@ import { useRouter } from 'next/router';
 import { InputField } from '../../components/FormFields/InputField';
 import { PlusOneDecision } from '../../components/FormFields/PlusOneDecision';
 import useUser from '../../lib/useUser';
-import CustomizedDialogs from '../../components/Modal';
+import SubmissionModal from '../../components/Modal';
 import { getConfirmationText } from '../../components/Modal/modalTextHelper';
 import { ButtonContent } from '../../components/ButtonContent';
+import { ACTIONS } from '../../reducers/actions';
 
 export default function plusOne() {
   const { state, dispatch } = useContext(AppContext);
-  const [eatsAnything, setEatsAnything] = useState<boolean>(false);
-  const [decision, setDecision] = useState<boolean>(false);
+  const [showCuisineType, shouldShowCuisineType] = useState<boolean>(false);
+  const [foodIsChosen, setDecision] = useState<boolean>(false);
   const guestIdSuffix = useId();
   const [modalVisibility, setModalVisibility] = React.useState<boolean>(false);
   const handleClose = () => setModalVisibility(false);
   const [modalText, setModalText] = useState<string>('');
+  const router = useRouter();
 
   useEffect(() => {
     if (!state.guest.id) {
-      dispatch({type: 'UPDATE_GUEST', value: {...JSON.parse(localStorage.getItem('shaun_char_guest_2022') ?? '{}')}});
+      dispatch({type: ACTIONS.UPDATE_GUEST, value: {...JSON.parse(localStorage.getItem('shaun_char_guest_2022') ?? '{}')}});
     }
   }, [state.guest.id]);
   
   useUser({ redirectTo: '/invitation-only' });
 
   const handleDietChange =  (event: ChangeEvent<HTMLInputElement>) => 
-    setEatsAnything(event.target?.value === DietType.Meat);
+    shouldShowCuisineType(event.target?.value === DietType.Meat);
 
-  const router = useRouter();
 
+  const dispatchGuest = (value: GuestDocument) =>
+    dispatch({ type: ACTIONS.SUBMIT_PLUS_ONE_RSVP, value });
+
+  const handleBackClick = () => {
+    dispatchGuest(getValues());
+    router.back();
+  };
+
+  const defaults = formDefaults(state, 'plusOne');
   const { register, handleSubmit, formState: { errors, isDirty }, getValues, control } = useForm<GuestDocument>({
-    defaultValues: { ...formDefaults }
+    defaultValues: defaults
+    
   });
   const getPlusOneData = (data: any) => {
     const d = { ...data, id: plusOneId };
@@ -57,7 +68,7 @@ export default function plusOne() {
 
     if (!state?.guest.id){
       Sentry.captureException(`id not registered ${localStorage.getItem('shaun_char_guest_2022')}`);
-      return; //?
+      return;
     }
 
     try {
@@ -73,11 +84,19 @@ export default function plusOne() {
         ...additionalPlusOneProps
       }, '/api/addPlusOne');
 
-      dispatch({ type: 'SUBMIT_PLUS_ONE_RSVP', value: plusOneData });
+      dispatch({ type: ACTIONS.SUBMIT_PLUS_ONE_RSVP, value:{ plusOne: plusOneData} });
       localStorage.setItem('shaun_char_guest_2022', JSON.stringify(state));
       Sentry.captureMessage(`${state.plusOne.id} persisted: ${result!.text}`);
-      setModalText(getConfirmationText(data, state));
+      setModalText(getConfirmationText(plusOneData, state));
       setModalVisibility(true);
+
+      // after successful submission, prevent guest with plusOne from inviting another person
+      await persistGuestAttendance({
+        ...state.guest,
+        hasPlusOne: false
+      }
+      , '/api/guestUpdate');
+      dispatch({ type: ACTIONS.REMOVE_PLUS_ONE });
     } catch(e) {
       Sentry.captureException(`failed to register guest ${state?.plusOne.id}: ${e}`);
       setModalText('An error occured while trying to save your choices, there&apos;s already a chance that we are aware but let Shaun or Charlotte know');
@@ -94,20 +113,20 @@ export default function plusOne() {
           <InputField errors={errors} inputName="lastName" placeholder='Last name' register={register} />
           <EmailFormField inputName="emailAddress" placeholder="Email address" errors={errors} register={register} />
           <PlusOneDecision setDecision={setDecision} />
-          {decision && state.guest.isEating &&
+          {foodIsChosen && state.guest.isEating &&
             <DietPreferenceField inputName="plusOne.diet" errors={errors} onChange={handleDietChange} register={register} />}
-          {decision && getValues().diet &&<MenuForm eatsAnything={!!eatsAnything} control={control} />}
+          {foodIsChosen && showCuisineType && getValues().diet &&<MenuForm control={control} defaultValues={state.plusOne} />}
           <Box>
-            <Button sx={{margin: 2}} variant="outlined" onClick={router.back}>Back</Button>
+            <Button sx={{margin: 2}} variant="outlined" onClick={handleBackClick}>Back</Button>
             <Button sx={{margin: 2}} variant="contained" type="submit" disabled={!isDirty}>Submit</Button>
           </Box>
         </form>
       </Paper>
       
-      <CustomizedDialogs
+      <SubmissionModal
         open={modalVisibility}
         handleClose={handleClose}
-        title={getValues().isAttending ? 'Splendid' : 'Confirmed'}
+        title={(state.guest.isAttending || getValues().isAttending) ? 'Splendid' : 'Confirmed'}
         message={modalText}
         extraButtonRoute={extraButton}
       />

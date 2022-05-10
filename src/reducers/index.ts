@@ -1,7 +1,6 @@
 import { initialState } from './../components/FormFields/FormHelpers';
 import { RsvpData, GuestDocument } from './../components/Interfaces';
 
-
 type reducerType = {
     type: string,
     value: GuestDocument;
@@ -41,6 +40,14 @@ function guestReducer(state: RsvpData, action: reducerType) {
       ...state,
       showAlertMessage: false,
       severity: undefined,
+    };
+  case 'REMOVE_PLUS_ONE':
+    return {
+      ...state,
+      guest: {
+        ...state.guest,
+        plusOne: false
+      }
     };
   default:
     return state;
