@@ -13,9 +13,8 @@ import { useRouter } from 'next/router';
 import { InputField } from '../../components/FormFields/InputField';
 import { PlusOneDecision } from '../../components/FormFields/PlusOneDecision';
 import useUser from '../../lib/useUser';
-import SubmissionModal from '../../components/Modal';
+import { SubmissionModal } from '../../components/Modal';
 import { getConfirmationText } from '../../components/Modal/modalTextHelper';
-import { ButtonContent } from '../../components/ButtonContent';
 import { ACTIONS } from '../../reducers/actions';
 
 export default function plusOne() {
@@ -39,7 +38,6 @@ export default function plusOne() {
   const handleDietChange =  (event: ChangeEvent<HTMLInputElement>) => 
     shouldShowCuisineType(event.target?.value === DietType.Meat);
 
-
   const dispatchGuest = (value: GuestDocument) =>
     dispatch({ type: ACTIONS.SUBMIT_PLUS_ONE_RSVP, value });
 
@@ -53,13 +51,13 @@ export default function plusOne() {
     defaultValues: defaults
     
   });
+  const isAttending = state.guest.isAttending || getValues().isAttending;
   const getPlusOneData = (data: any) => {
     const d = { ...data, id: plusOneId };
     return d;
   };
 
   const plusOneId = state.guest.id.concat(`-${guestIdSuffix.slice(1,3)}`);
-  const extraButton: ButtonContent = {name: 'Registry', route: '/registry'};
 
   const onSubmit: SubmitHandler<GuestDocument> = async data => {
     const plusOneData = getPlusOneData(data);
@@ -122,14 +120,14 @@ export default function plusOne() {
           </Box>
         </form>
       </Paper>
-      
       <SubmissionModal
         open={modalVisibility}
         handleClose={handleClose}
-        title={(state.guest.isAttending || getValues().isAttending) ? 'Splendid' : 'Confirmed'}
+        title={isAttending ? 'Splendid' : 'Confirmed'}
         message={modalText}
-        extraButtonRoute={extraButton}
-      />
+      >
+        <Button href="/Registry">Registry</Button>
+      </SubmissionModal>
     </Container>
   );
 }

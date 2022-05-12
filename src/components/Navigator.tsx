@@ -43,7 +43,7 @@ export default function ButtonAppBar() {
                 <MenuItem onClick={handleClose}><Link href={'/location/'} color="secondary">Location</Link></MenuItem>
             }
             {user?.isLoggedIn && user.id &&
-                <MenuItem onClick={handleClose}><Link href={'/accomodation/'} color="secondary">Accommodation</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link href={'/accommodation/'} color="secondary">Accommodation</Link></MenuItem>
             }
             {/* <MenuItem onClick={handleClose}><Link href={'/songs/'} color="secondary">Songs</Link></MenuItem>
             <MenuItem onClick={handleClose}><Link href={'/readings/'} color="secondary">Readings</Link></MenuItem> */}

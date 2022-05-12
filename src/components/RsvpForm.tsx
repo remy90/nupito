@@ -12,7 +12,7 @@ import { formDefaults } from './FormFields/FormHelpers';
 import { persistGuestAttendance } from '../pages/api/guest';
 import { Sentry } from '../utils';
 import { useRouter } from 'next/router';
-import SubmissionModal from './Modal';
+import { SubmissionModal, PlusOneModal } from './Modal';
 import { getConfirmationText } from './Modal/modalTextHelper';
 import { ButtonContent } from './ButtonContent';
 import { ACTIONS } from '../reducers/actions';
@@ -21,6 +21,8 @@ export default function Form() {
   const { state, dispatch } = useContext(AppContext);
   const [formAttendance, setFormAttendance] = useState<boolean>(state?.guest?.isAttending || false);
   const [showCuisineType, shouldShowCuisineType] = useState<boolean>((!!state.guest?.diet || !!state.guest?.menu) ?? false);
+  const [showPlusOneModal, setShowPlusOneModal] = useState<boolean>(false);
+
   const router = useRouter();
   const defaults = formDefaults(state, 'guest');
   const { register, handleSubmit, formState: {
@@ -62,8 +64,8 @@ export default function Form() {
     }
   };
   const handleClickNext = () => {
+    setShowPlusOneModal(true);
     dispatchGuest(getValues());
-    router.push('rsvp/plusOne');
   };
   const handleAttendanceChange = (event: ChangeEvent<HTMLInputElement> ) =>
     //@ts-ignore
@@ -71,7 +73,7 @@ export default function Form() {
 
   const handleDietChange =  (event: ChangeEvent<HTMLInputElement>) => 
     shouldShowCuisineType(event.target?.value === DietType.Meat);
-  const extraButton: ButtonContent = {name: 'Registry', route: '/registry'};
+
   return (
     <Paper style={{height: '100%'}}>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -104,10 +106,21 @@ export default function Form() {
       <SubmissionModal
         open={modalVisibility}
         handleClose={handleClose}
-        title={getValues().isAttending ? 'Splendid' : 'Confirmed'}
+        title={isAttending ? 'Splendid' : 'Confirmed'}
         message={modalText}
-        extraButtonRoute={extraButton}
-      />
+      >
+        <Button autoFocus onClick={handleClose}>{state.guest.firstName}&apos;s page</Button>
+        <Button href="/Registry" variant="contained">Registry</Button>
+      </SubmissionModal>
+      <PlusOneModal
+        open={showPlusOneModal}
+        handleClose={handleClose}
+        title="Plus one?"
+        message={modalText}
+      >
+        <Button  onClick={() => router.push('rsvp/plusOne')}>Add plus one</Button>
+        <Button autoFocus sx={{margin: 2}} variant="contained" type="submit" >No thanks, Submit</Button>
+      </PlusOneModal>
     </Paper>
   );
 }
