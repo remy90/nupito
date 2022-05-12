@@ -1,5 +1,5 @@
 import type React from 'react';
-import { ReactNode, useContext } from 'react';
+import { ReactNode } from 'react';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -7,14 +7,8 @@ import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 import { Controller } from 'react-hook-form';
 import { Checkbox } from '@mui/material';
-import type { IMenuDefaultProps, MenuType, RHFormControlProps } from '../Interfaces';
-import { AppContext } from '../AppProvider';
-
-export type listItem = {
-  key: MenuType,
-  primary: string,
-  secondary: string,
-};
+import type { IMenuDefaultProps, MenuType } from '../Interfaces';
+import { listItem } from '../MenuOptions/MenuHelpers';
 
 interface ICheckboxListProps extends IMenuDefaultProps{
   listItems: listItem[];
@@ -29,11 +23,13 @@ export default function CheckboxList({ listItems, control, defaultValues }: IChe
             { listItems.map<ReactNode>(x => (
               <Controller
                 key={x.key}
-                name={`menu.${x.key}`}
+                name={`menu.${x.key as MenuType}`}
                 control={control}
                 render={({field}) => (
                   <ListItem>
-                    <Checkbox {...field } defaultChecked={defaultValues && defaultValues[x.key] as boolean}/>
+                    <Checkbox
+                      {...field }
+                      defaultChecked={defaultValues && defaultValues[x.key as MenuType] as boolean}/>
                     <ListItemText primary={x.primary} secondary={x.secondary} />
                   </ListItem>
                 )}
