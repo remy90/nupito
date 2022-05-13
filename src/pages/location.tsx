@@ -37,14 +37,14 @@ const Location: NextPage = () => {
         </GMapCanvas>
       </MapOuter>
       <Typography sx={marginTop}>Copy the the following into your satnav:<br />
-        <Typography component="data">51°51&apos;29.0&quot;N 0°26&apos;07.7&quot;E</Typography><br />
+        <Typography component="data">Click on the map for directions</Typography><br /><br />
     There will be plenty of parking available on Stebbing road. <br />
-    If you don&apos;t wish to use the coordinates above, you can use the following:</Typography><br />
-      <Typography component="address" sx={{textAlign: 'center'}}>
+    If you don&apos;t wish to use google maps, you can use the following address:</Typography><br />
+      <Typography sx={{mb: '1rem'}} component="address" sx={{textAlign: 'center'}}>
       Felsted School <br />
       Essex <br />
       CM6 3LL
-      </Typography>
+      </Typography> <br />
     </Container>
   );};
 

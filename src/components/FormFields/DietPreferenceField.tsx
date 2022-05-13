@@ -2,7 +2,7 @@ import type React from 'react';
 import { Box, MenuItem, TextField } from '@mui/material';
 import { IFieldProps } from '../Interfaces';
 
-export const DietPreferenceField = ({ onChange, errors, register, defaultValue }: IFieldProps) =>
+export const DietPreferenceField = ({ onChange, errors, register, defaultValue='' }: IFieldProps) =>
 {
   return(
     <Box sx={{marginBottom: '2rem'}}>

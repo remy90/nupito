@@ -21,6 +21,14 @@ const theme = createTheme({
           '&:before': { flex: 0 }
         }
       }
+    },
+    MuiListItem: {
+      styleOverrides: {
+        root: {
+          padding: 0,
+          marginLeft: 3
+        }
+      }
     }
   }
 });

@@ -166,16 +166,16 @@ export default function Form() {
         message={modalText}
       >
         <Button autoFocus onClick={handleClose}>{state.guest.firstName}&apos;s page</Button>
-        <Button href="/Registry" variant="contained">Registry</Button>
+        <Button href="/registry" variant="contained">Registry</Button>
       </SubmissionModal>
       <PlusOneModal
         open={showPlusOneModal}
         handleClose={handleClose}
-        title="Plus one?"
+        title="All set?"
         message={modalText}
       >
-        <Button onClick={() => router.push('rsvp/plusOne')}>Add plus one</Button>
-        <Button autoFocus sx={{margin: 2}} variant="contained" type="submit" >No thanks, Submit</Button>
+        <Button variant="outlined" onClick={() => router.push('rsvp/plusOne')}>Plus one</Button>
+        <Button autoFocus sx={{margin: 2}} variant="contained" type="submit" >Yes, submit</Button>
       </PlusOneModal>
     </Paper>
   );

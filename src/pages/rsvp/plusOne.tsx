@@ -126,7 +126,7 @@ export default function plusOne() {
         title={isAttending ? 'Splendid' : 'Confirmed'}
         message={modalText}
       >
-        <Button variant="contained" href="/Registry">Registry</Button>
+        <Button variant="contained" href="/registry">Registry</Button>
       </SubmissionModal>
     </Container>
   );
