@@ -1,67 +1,22 @@
 import React, { useState } from 'react';
-import {  Box, Typography, FormControl, RadioGroup, Radio, FormControlLabel } from '@mui/material';
-import { Controller, useForm } from 'react-hook-form';
+import {  Box, Typography } from '@mui/material';
+import { useForm } from 'react-hook-form';
 import { AfroMenuOptions } from './MenuOptions/AfroMenuOptions';
 import { DessertOptions } from './MenuOptions/DessertOptions';
 import { EuroMenuOptions } from './MenuOptions/EuroMenuOptions';
-import { CuisineType, ICuisineOptionProps } from './Interfaces';
+import { CuisineType, ICuisineOptionProps, IMenuDefaultProps } from './Interfaces';
+import { CuisineTypeOptions } from './MenuOptions/CuisineTypeOptions';
 
-export default function MenuForm({ control, defaultValues }: ICuisineOptionProps) {
+export default function MenuForm({ control, cuisineType, diet, defaultValues }: IMenuDefaultProps) {
   const [isEuropean, setIsEuropean] = useState(defaultValues?.cuisine === 'euro' ?? true);
 
   const { reset } = useForm();
 
-  // const resetFoodOptions = (firstOptionNumber: number, lastOptionNumber: number, defaultValue: false | string) => {
-  //   const resetObject: any = {};
-  
-  //   for (let i = firstOptionNumber; i <= lastOptionNumber; i++) {
-  //     resetObject[`menu.foodOption${i}`] = defaultValue;
-  //   }
-  //   return resetObject;
-  // };
-  // const handleEuroCuisine = () => {
-  //   // 0 - 11 is euro
-  //   setIsAfrican(false);
-  //   setIsEuropean(true);
-  //   reset(resetFoodOptions(0, 11, false));
-  // };
-  // const handleAfroCuisine = () => {
-  //   setIsEuropean(false);
-  //   setIsAfrican(true);
-  //   reset(resetFoodOptions(12, 27, ''));
-  // };
-
-  const handleCuisineChange = (cuisine: CuisineType) =>
-    setIsEuropean(cuisine === 'euro');
-
   return (
-    <Box sx={{marginTop: '2rem', marginBottom: '2rem'}}>
-      <Typography variant="h3" sx={{ fontSize: '2.5rem'}}>What cuisine type would you like?</Typography>
-      <FormControl>
-        <Controller
-          control={control}
-          defaultValue={defaultValues?.cuisine ?? 'euro'}
-          name="cuisine"
-          render={({field}) =>
-            <RadioGroup {...field}>
-              <FormControlLabel
-                value={'euro'}
-                control={<Radio />}
-                label="European"
-                onClick={() => handleCuisineChange('euro')}
-              />
-              <FormControlLabel
-                value={'afro'}
-                control={<Radio />}
-                label="West African 🇳🇬"
-                onClick={() => handleCuisineChange('afro')}
-              />
-            </RadioGroup>}
-        />
-      </FormControl>
-      { !isEuropean && <AfroMenuOptions control={control} defaultValues={defaultValues?.menu}/>}
-      { isEuropean && <EuroMenuOptions control={control} defaultValues={defaultValues?.menu}/>}
-      <DessertOptions control={control} defaultValues={defaultValues?.menu} />
+    <Box sx={{my: '2rem'}}>
+      { cuisineType === 'afro' && <AfroMenuOptions control={control} diet={diet} defaultValues={defaultValues?.menu}/>}
+      { cuisineType === 'euro' && <EuroMenuOptions control={control} diet={diet} defaultValues={defaultValues?.menu}/>}
+      <DessertOptions control={control} defaultValues={defaultValues?.menu} diet={diet} />
     </Box>
   );
 }

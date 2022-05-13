@@ -1,14 +1,7 @@
 import { ChangeEvent } from 'react';
 import { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
 
-export const DietType = {
-  Unknown: '',
-  Meat: 'anything goes',
-  Vegetarian: 'veggie',
-  Vegan: 'vegan',
-  NoFood: 'no food'
-} as const;
-type DietType = typeof DietType[keyof typeof DietType];
+export type DietType = 'Meat' | 'Vegetarian' | 'Vegan' | 'NoFood';
 
 // Full mongodb document
 export type GuestDocument = {
@@ -54,8 +47,6 @@ export type Menu = {
   foodOption9: boolean,
   foodOption10: boolean,
   foodOption11: boolean,
-  foodOption12: boolean,
-  foodOption13: boolean,
   euroStarter: number | string,
   euroMain: number | string,
   euroDessert: number | string,
@@ -64,19 +55,25 @@ export type Menu = {
 export type MenuType = 'foodOption1' | 'foodOption2' | 'foodOption3' |
 'foodOption4' | 'foodOption5' | 'foodOption6' | 'foodOption7' |
 'foodOption8' | 'foodOption9' | 'foodOption10' | 'foodOption11'|
-'foodOption11'| 'foodOption12'| 'foodOption13' | 'euroStarter' |
-'euroMain' | 'euroDessert';
+ 'euroStarter' | 'euroMain' | 'euroDessert';
 export interface RHFormControlProps {
   control: Control<GuestDocument, object>;
 }
-export type CuisineType = 'euro' | 'afro';
-export interface ICuisineOptionProps extends RHFormControlProps{
-  defaultValues?: GuestDocument;
+export type CuisineType = 'euro' | 'afro' | 'neither';
+export interface ICuisineOptionProps extends IMenuDefaultProps{
+  cuisineType: CuisineType;
 }
-export interface IMenuOptionProps extends RHFormControlProps{
-  defaultValues?: MenuType;
+export interface IMenuTypeOptionProps extends RHFormControlProps{
+  defaultValues?: MenuType | undefined;
+  diet: DietType;
 }
 
 export interface IMenuDefaultProps extends RHFormControlProps{
-  defaultValues?: Menu;
+  defaultValues?: GuestDocument;
+  cuisineType: CuisineType;
+  diet: DietType;
+}
+export interface IMenuOptionProps extends RHFormControlProps{
+  defaultValues?: Menu | undefined;
+  diet: DietType;
 }

@@ -1,4 +1,4 @@
-import { DietType, GuestDocument, Menu } from './../Interfaces';
+import { GuestDocument, Menu } from './../Interfaces';
 import { RsvpData } from '../Interfaces';
 
 const initialMenu: Menu = {
@@ -13,8 +13,6 @@ const initialMenu: Menu = {
   foodOption9: false,
   foodOption10: false,
   foodOption11: false,
-  foodOption12: false,
-  foodOption13: false,
   euroStarter: '',
   euroMain: '',
   euroDessert: ''
@@ -29,7 +27,7 @@ const initialGuest: GuestDocument = {
   hasPlusOne: false,
   menu: initialMenu,
   cuisine: 'euro',
-  diet: DietType.Meat
+  diet: 'Meat'
 };
 
 export const initialState: RsvpData = {

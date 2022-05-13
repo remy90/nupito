@@ -36,7 +36,7 @@ export default function plusOne() {
   useUser({ redirectTo: '/invitation-only' });
 
   const handleDietChange =  (event: ChangeEvent<HTMLInputElement>) => 
-    shouldShowCuisineType(event.target?.value === DietType.Meat);
+    shouldShowCuisineType(event.target?.value as DietType === 'Meat');
 
   const dispatchGuest = (value: GuestDocument) =>
     dispatch({ type: ACTIONS.SUBMIT_PLUS_ONE_RSVP, value });
@@ -113,9 +113,9 @@ export default function plusOne() {
           <PlusOneDecision setDecision={setDecision} />
           {foodIsChosen && state.guest.isEating &&
             <DietPreferenceField inputName="plusOne.diet" errors={errors} onChange={handleDietChange} register={register} />}
-          {foodIsChosen && showCuisineType && getValues().diet &&<MenuForm control={control} defaultValues={state.plusOne} />}
+          {foodIsChosen && showCuisineType && getValues().diet &&<MenuForm control={control} cuisineType={getValues().cuisine} diet={getValues().diet} defaultValues={state.plusOne} />}
           <Box>
-            <Button sx={{margin: 2}} variant="outlined" onClick={handleBackClick}>Back</Button>
+            <Button sx={{margin: 2}} onClick={handleBackClick}>Back</Button>
             <Button sx={{margin: 2}} variant="contained" type="submit" disabled={!isDirty}>Submit</Button>
           </Box>
         </form>
@@ -126,7 +126,7 @@ export default function plusOne() {
         title={isAttending ? 'Splendid' : 'Confirmed'}
         message={modalText}
       >
-        <Button href="/Registry">Registry</Button>
+        <Button variant="contained" href="/Registry">Registry</Button>
       </SubmissionModal>
     </Container>
   );
