@@ -8,8 +8,6 @@ import { CuisineType, ICuisineOptionProps, IMenuDefaultProps } from './Interface
 import { CuisineTypeOptions } from './MenuOptions/CuisineTypeOptions';
 
 export default function MenuForm({ control, cuisineType, diet, defaultValues }: IMenuDefaultProps) {
-  const [isEuropean, setIsEuropean] = useState(defaultValues?.cuisine === 'euro' ?? true);
-
   const { reset } = useForm();
 
   return (

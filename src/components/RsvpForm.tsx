@@ -24,7 +24,8 @@ export default function Form() {
   const [showPlusOneModal, setShowPlusOneModal] = useState<boolean>(false);
   const [modalVisibility, setModalVisibility] = React.useState<boolean>(false);
   const [modalText, setModalText] = useState<string>('');
-  const [dietChange, setDietChange] = useState<DietType>('NoFood');
+  const [diet, setDietChange] = useState<DietType>('NoFood');
+  const [cuisineType, setCuisineType] = useState(state.guest?.cuisine ?? 'euro');
   const defaults = formDefaults(state, 'guest');
   const isAttending = formAttendance || state?.guest?.isAttending;
 
@@ -82,8 +83,7 @@ export default function Form() {
     }
   };
 
-  // const handleCuisineChange = (cuisine: CuisineType) =>
-  //   setIsEuropean(cuisine === 'euro');
+  const handleCuisineChange = (cuisine: CuisineType) => setCuisineType(cuisine);
 
   return (
     <Paper style={{height: '100%'}}>
@@ -108,14 +108,14 @@ export default function Form() {
         {showCuisineType && <CuisineTypeOptions
           control={control}
           defaultValues={state?.guest?.cuisine}
-          // handleCuisineChange={handleCuisineChange}
+          handleCuisineChange={handleCuisineChange}
         />}
-        {getValues().diet !== 'NoFood' &&
+        {diet !== 'NoFood' &&
           <MenuForm
             control={control}
             defaultValues={state.guest}
-            diet={dietChange}
-            cuisineType={getValues().cuisine ?? state.guest?.cuisine ?? 'euro'}
+            diet={diet}
+            cuisineType={cuisineType ?? state.guest?.cuisine ?? 'euro'}
           />}
         <Box>
           {isAttending && state.guest.hasPlusOne

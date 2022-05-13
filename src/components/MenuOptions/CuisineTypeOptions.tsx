@@ -6,10 +6,10 @@ import { CuisineType, GuestDocument } from '../Interfaces';
 interface ICuisineTypeOptions {
   defaultValues: CuisineType | undefined;
   control: Control<GuestDocument, object>;
-  // handleCuisineChange: (cuisine: CuisineType) => void;
+  handleCuisineChange: (cuisine: CuisineType) => void;
 }
 
-export const CuisineTypeOptions = ({defaultValues = 'euro', control /*, handleCuisineChange*/}: ICuisineTypeOptions) =>
+export const CuisineTypeOptions = ({defaultValues = 'euro', control, handleCuisineChange}: ICuisineTypeOptions) =>
   <Box>
     <Typography variant="h3" sx={{ fontSize: '2.5rem'}}>What cuisine type would you like?</Typography>
     <FormControl>
@@ -23,13 +23,13 @@ export const CuisineTypeOptions = ({defaultValues = 'euro', control /*, handleCu
               value={'euro'}
               control={<Radio />}
               label="European"
-              // onClick={() => handleCuisineChange('euro')}
+              onClick={() => handleCuisineChange('euro')}
             />
             <FormControlLabel
               value={'afro'}
               control={<Radio />}
               label="West African 🇳🇬"
-              // onClick={() => handleCuisineChange('afro')}
+              onClick={() => handleCuisineChange('afro')}
             />
           </RadioGroup>}
       />
