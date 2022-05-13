@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { ChangeEvent, useContext, useState } from 'react';
 import { Paper, Box, Button } from '@mui/material';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -7,7 +8,7 @@ import { CuisineType, DietType, GuestDocument as GuestDocument } from './Interfa
 import { EmailFormField } from './FormFields/EmailFormField';
 import { AttendanceField } from './FormFields/AttendanceField';
 import { DietPreferenceField } from './FormFields/DietPreferenceField';
-import { formDefaults } from './FormFields/FormHelpers';
+import { formDefaults, initialState } from './FormFields/FormHelpers';
 import { persistGuestAttendance } from '../pages/api/guest';
 import { Sentry } from '../utils';
 import { useRouter } from 'next/router';
@@ -16,6 +17,7 @@ import { getConfirmationText } from './Modal/modalTextHelper';
 import { ACTIONS } from '../reducers/actions';
 import { isTruthy } from '../utils/createEmotionCache';
 import { CuisineTypeOptions } from './MenuOptions/CuisineTypeOptions';
+import { afroMenuItems, euroStarterItems } from './MenuOptions/MenuHelpers';
 
 export default function Form() {
   const { state, dispatch } = useContext(AppContext);
@@ -34,7 +36,7 @@ export default function Form() {
     errors,
     isDirty,
     isValid
-  }, control, getValues, setValue } = useForm<GuestDocument>({
+  }, control, getValues, setValue, resetField, reset } = useForm<GuestDocument>({
     defaultValues: defaults,
     mode: 'onChange'
   });
@@ -82,8 +84,41 @@ export default function Form() {
         : setValue('cuisine', 'euro');
     }
   };
+  const resetAfroMenuChoices = () => {
+    //@ts-ignore key is limited to available possibilities
+    const euroIsTouched =
+      getValues().menu.euroStarter !== initialState.guest.menu.euroStarter
+      || getValues().menu.euroMain !== initialState.guest.menu.euroMain;
 
-  const handleCuisineChange = (cuisine: CuisineType) => setCuisineType(cuisine);
+    if (euroIsTouched) {
+      resetField('menu.foodOption1', {defaultValue: false});
+      resetField('menu.foodOption2', {defaultValue: false});
+      resetField('menu.foodOption3', {defaultValue: false});
+      resetField('menu.foodOption4', {defaultValue: false});
+      resetField('menu.foodOption5', {defaultValue: false});
+      resetField('menu.foodOption6', {defaultValue: false});
+      resetField('menu.foodOption7', {defaultValue: false});
+      resetField('menu.foodOption8', {defaultValue: false});
+      resetField('menu.foodOption9', {defaultValue: false});
+      resetField('menu.foodOption10', {defaultValue: false});
+      resetField('menu.foodOption11', {defaultValue: false});
+      resetField('menu.foodOption12', {defaultValue: false});
+      resetField('menu.foodOption13', {defaultValue: false});
+    }
+  };
+  const resetEuroChoices = () => {
+    //@ts-ignore key is limited to available possibilities
+    const afroIsTouched = afroMenuItems.some(x => getValues().menu[`foodOption${x.key}`] !== false);
+    if (afroIsTouched) {
+      resetField('menu.euroStarter', {defaultValue: ''});
+      resetField('menu.euroMain', {defaultValue: ''});
+    }
+  };
+
+  const handleCuisineChange = (cuisine: CuisineType) => {
+    cuisine === 'afro' ? resetAfroMenuChoices() : resetEuroChoices();
+    setCuisineType(cuisine);
+  };
 
   return (
     <Paper style={{height: '100%'}}>

@@ -47,6 +47,8 @@ export type Menu = {
   foodOption9: boolean,
   foodOption10: boolean,
   foodOption11: boolean,
+  foodOption12: boolean,
+  foodOption13: boolean,
   euroStarter: number | string,
   euroMain: number | string,
   euroDessert: number | string,

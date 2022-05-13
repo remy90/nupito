@@ -7,8 +7,8 @@ import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 import { Controller } from 'react-hook-form';
 import { Checkbox } from '@mui/material';
-import type { IMenuDefaultProps, IMenuOptionProps, MenuType } from '../Interfaces';
-import { listItem, shouldShowBasedOnDietChoice } from '../MenuOptions/MenuHelpers';
+import type { IMenuOptionProps, MenuType } from '../Interfaces';
+import { listItem, shouldShowBasedOnDietChoice } from './MenuHelpers';
 
 interface ICheckboxListProps extends IMenuOptionProps {
   listItems: listItem[];
@@ -25,7 +25,7 @@ export default function CheckboxList({ listItems, control, defaultValues, diet }
                 key={x.key}
                 name={`menu.${x.key as MenuType}`}
                 control={control}
-                render={({field}) => (
+                render={({ field }) => (
                   <ListItem>
                     <Checkbox
                       {...field }

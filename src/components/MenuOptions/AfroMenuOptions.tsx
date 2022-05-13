@@ -1,6 +1,6 @@
 import type React from 'react';
 import { IMenuOptionProps } from '../Interfaces';
-import CheckboxList from '../TextList';
+import CheckboxList from './MenuCheckboxList';
 import { afroMenuItems } from './MenuHelpers';
 
 export const AfroMenuOptions = ({control, diet, defaultValues}: IMenuOptionProps) =>

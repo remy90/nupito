@@ -20,7 +20,7 @@ export const afroMenuItems: listItem[] = [
   { key: 'foodOption8', primary: 'Efo riro efo elegusi', secondary: 'A stew made of bell peppers, assorted meats, egusi seeds, crayfish, scotch bonnets and basil. You can have this with white rice or pounded yam.', diet: 'Meat' },
   { key: 'foodOption9', primary: 'Pounded yam', secondary: 'Similar to mashed potatoes. It is served with stew. You may want to have this with egusi.', diet: 'Meat' },
   { key: 'foodOption10', primary: 'Abula (Gbegiri ewedu amala soup with assorted meat stew)', secondary: 'It is made out of yam and/or cassava flour, or unripe plantain flour.', diet: 'Meat' },
-  { key: 'foodOption11', primary: 'dodogizzard', secondary: 'Boiled pieces of gizzard are deeply fried and mixed fried plantains poured over a simmering pepper and Tomato Sauce.', diet: 'Meat' },
+  // { key: 'foodOption11', primary: 'dodogizzard', secondary: 'Boiled pieces of gizzard are deeply fried and mixed fried plantains poured over a simmering pepper and Tomato Sauce.', diet: 'Meat' },
   { key: 'foodOption12', primary: 'Moin-moin', secondary: 'A protein rich dish, with Yoruba steamed bean pudding made from a mixture of washed and peeled black-eyed beans, onions and fresh ground red peppers', diet: 'Meat' },
   { key: 'foodOption13', primary: 'Salad', secondary: '', diet: 'Meat' },
 ];
