@@ -24,7 +24,7 @@ const HomePage: NextPage<GuestDocument> = ({
   firstName,
   lastName,
   isAttending,
-  isEating,
+  isFed,
   diet,
   hasPlusOne,
   cuisine,
@@ -32,7 +32,7 @@ const HomePage: NextPage<GuestDocument> = ({
 }: GuestDocument) => {
   const { dispatch, state } = useContext(AppContext);
   const {mutateUser} = useUser();
-  const guest = {id, firstName, lastName, isAttending, isEating, diet, hasPlusOne, cuisine, menu };
+  const guest = {id, firstName, lastName, isAttending, isFed, diet, hasPlusOne, cuisine, menu };
 
   useEffect(() => dispatch({ type: 'UPDATE_GUEST', value: {guest} }), [id]);
   useEffect(() => localStorage.setItem('shaun_char_guest_2022', JSON.stringify({guest})), [id]);
@@ -67,7 +67,7 @@ const HomePage: NextPage<GuestDocument> = ({
           }
           <Typography>{memoizedAttendanceMessage}</Typography>
         </Box>
-        {/* {isAttending && isEating && memoizedMealSelection} */}
+        {/* {isAttending && isFed && memoizedMealSelection} */}
       
         <Box sx={{ my: 4 }}>
           <Typography>20th August, 2022</Typography>

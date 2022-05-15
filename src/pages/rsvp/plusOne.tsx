@@ -121,7 +121,7 @@ export default function plusOne() {
 
       const additionalPlusOneProps = {
         isAttending: true,
-        isEating: state.guest.isEating,
+        isFed: state.guest.isFed,
         hasPlusOne: false,
       };
       const result = await persistGuestAttendance({
@@ -164,7 +164,7 @@ export default function plusOne() {
           <EmailFormField inputName="emailAddress" placeholder="Email address" errors={errors} register={register} />
           <Box sx={{my: '1rem'}}><PlusOneDecision setDecision={setDecision} /></Box>
                
-          {foodIsChosen && state.guest.isEating &&
+          {foodIsChosen && state.guest.isFed &&
             <DietPreferenceField inputName="plusOne.diet" errors={errors} onChange={handleDietChange} register={register} />}
            
           {showCuisineType && <CuisineTypeOptions

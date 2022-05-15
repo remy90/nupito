@@ -30,6 +30,7 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 .env.local.example
+.env
 
 # vercel
 .vercel
@@ -43,4 +44,4 @@ private-assets
 home-page.jpg
 # Sentry
 .sentryclirc
-/.env
+wedding_guests.json

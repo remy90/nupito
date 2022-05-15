@@ -26,7 +26,7 @@ const initialGuest: GuestDocument = {
   lastName: '',
   emailAddress: '',
   isAttending: false,
-  isEating: false,
+  isFed: false,
   hasPlusOne: false,
   menu: initialMenu,
   cuisine: 'euro',

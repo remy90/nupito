@@ -10,7 +10,7 @@ export type GuestDocument = {
   lastName: string;
   emailAddress: string;
   isAttending: boolean;
-  isEating: boolean;
+  isFed: boolean;
   hasPlusOne: boolean;
   cuisine: CuisineType;
   menu: Menu;

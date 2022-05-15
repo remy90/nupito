@@ -143,7 +143,7 @@ export default function Form() {
           defaultValue={state.guest?.emailAddress}
         />
 
-        {((isAttending && state?.guest.isEating)) &&
+        {((isAttending && state?.guest.isFed)) &&
           <DietPreferenceField errors={errors} onChange={handleDietChange} register={register} defaultValue={state.guest.diet}/>} 
       
         {showCuisineType && <CuisineTypeOptions

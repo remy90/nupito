@@ -27,7 +27,7 @@ function guestReducer(state: RsvpData, action: reducerType) {
       plusOne: {
         ...action.value,
         isAttending: true,
-        isEating: state.guest.isEating,
+        isFed: state.guest.isFed,
         hasPlusOne: false,
       }
     };
