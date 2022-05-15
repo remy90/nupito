@@ -46,6 +46,8 @@ export default function Form() {
   const dispatchGuest = (value: GuestDocument) => dispatch({ type: 'SUBMIT_GUEST_RSVP', value });
 
   const onSubmit: SubmitHandler<GuestDocument> = async data => {
+    setShowPlusOneModal(false);
+
     console.log('storing rsvp...');
     if (!state?.guest.id) {
       Sentry.captureException(`id not registered. Possibly: ${localStorage.getItem('shaun_char_guest_2022')}`);
@@ -126,7 +128,7 @@ export default function Form() {
 
   return (
     <Paper style={{height: '100%'}}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} id="guestForm">
         <AttendanceField
           errors={errors}
           onChange={handleAttendanceChange}
@@ -162,6 +164,15 @@ export default function Form() {
             : <Button sx={{margin: 2}} variant="contained" type="submit" disabled={!isDirty && isValid}>Submit</Button>
           }
         </Box>
+        <ConfirmationModal
+          open={showPlusOneModal}
+          onClose={handlePlusOneClose}
+          title="All set?"
+          message={modalText}
+        >
+          <Button variant="outlined" onClick={() => router.push('rsvp/plusOne')}>Plus one</Button>
+          <Button sx={{margin: 2}} variant="contained" onClick={handleSubmit(onSubmit)}>Yes, submit</Button>
+        </ConfirmationModal>
       </form>
       <ConfirmationModal
         open={isSubmitModalVisible}
@@ -169,19 +180,9 @@ export default function Form() {
         title={isAttending ? 'Splendid' : 'Confirmed'}
         message={modalText}
       >
-        <Button autoFocus href={`/${state.guest.id}`}>{state.guest.firstName}&apos;s page</Button>
+        <Button variant="outlined" autoFocus href={`/${state.guest.id}`}>{state.guest.firstName}&apos;s page</Button>
         <Button href="/registry" variant="contained">Registry</Button>
-      </ConfirmationModal>
-      <ConfirmationModal
-        open={showPlusOneModal}
-        onClose={handlePlusOneClose}
-        title="All set?"
-        message={modalText}
-      >
-        <Button variant="outlined" onClick={() => router.push('rsvp/plusOne')}>Plus one</Button>
-        <Button autoFocus sx={{margin: 2}} variant="contained" type="submit" >Yes, submit</Button>
       </ConfirmationModal>
     </Paper>
   );
-  
 }

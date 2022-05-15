@@ -181,7 +181,7 @@ export default function plusOne() {
               defaultValues={state.plusOne}
             />}
           <Box>
-            <Button sx={{margin: 2}} onClick={handleBackClick}>Back</Button>
+            <Button variant="outlined" sx={{margin: 2}} onClick={handleBackClick}>Back</Button>
             <Button sx={{margin: 2}} variant="contained" type="submit" disabled={!isDirty}>Submit</Button>
           </Box>
         </form>
