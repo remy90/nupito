@@ -10,7 +10,7 @@ export const DessertOptions = ({control, defaultValues, diet }: IMenuOptionProps
     <Controller
       name='menu.euroDessert'
       control={control}
-      defaultValue={defaultValues?.euroDessert}
+      defaultValue={defaultValues?.euroDessert ?? ''}
       render={({field}) =>
         <RadioGroup {...field}>
           {dessertItems.map(x => shouldShowBasedOnDietChoice(diet, x.diet) && <FormControlLabel key={x.key} value={x.key} control={<Radio />} label={x.primary} />)}

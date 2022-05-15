@@ -13,7 +13,7 @@ export const EuroMenuOptions = ({ control, defaultValues, diet }: IMenuOptionPro
       <Controller
         name='menu.euroStarter'
         control={control}
-        defaultValue={defaultValues?.euroStarter}
+        defaultValue={defaultValues?.euroStarter ?? ''}
         render={({field}) =><RadioGroup {...field} value={field.value}>
           {euroStarterItems.map(x => shouldShowBasedOnDietChoice(diet, x.diet) && <FormControlLabel key={x.key} value={x.key} control={<Radio />} label={x.primary} />)}
         </RadioGroup>}
@@ -23,7 +23,7 @@ export const EuroMenuOptions = ({ control, defaultValues, diet }: IMenuOptionPro
       <Controller
         name='menu.euroMain'
         control={control}
-        defaultValue={defaultValues?.euroMain}
+        defaultValue={defaultValues?.euroMain ?? ''}
         render={({field}) => <RadioGroup {...field} value={field.value}>
           {euroMainItems.map(x => shouldShowBasedOnDietChoice(diet, x.diet) && <FormControlLabel key={x.key} value={x.key} control={<Radio />} label={x.primary} />)}
         </RadioGroup>}
