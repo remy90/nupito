@@ -13,7 +13,7 @@ const Location: NextPage = () => {
   const {state, dispatch} = useContext(AppContext);
   useEffect(() => {
     if (!state.guest.id) {
-      dispatch({type: ACTIONS.UPDATE_GUEST, value: {...JSON.parse(localStorage.getItem('shaun_char_guest_2022') ?? '{}')}});
+      dispatch({type: 'UPDATE_GUEST', value: {...JSON.parse(localStorage.getItem('shaun_char_guest_2022') ?? '{}')}});
     }
   }, [state.guest.id]);
 

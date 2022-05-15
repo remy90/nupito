@@ -7,7 +7,7 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
-import { ButtonContent } from '../ButtonContent';
+import { CopySelection } from '../CopySelection';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -52,53 +52,40 @@ interface IDialogProps {
   open: boolean;
   title: string;
   message: string;
-  extraButtonRoute?: ButtonContent;
-  handleClose: (t: React.SetStateAction<boolean>) => void;
+  onClose: (t: React.SetStateAction<boolean>) => void;
   children: JSX.Element | JSX.Element[];
+  copyText?: string;
 }
 
-export function SubmissionModal({ open, title, message, handleClose: close, extraButtonRoute, children }: IDialogProps) {
-  const handleClose = () => close(false);
+export function ConfirmationModal({ open, title, message, onClose, children, copyText }: IDialogProps) {
+  const handleClose = () => onClose(false);
 
   return (
     <BootstrapDialog
       onClose={handleClose}
       aria-labelledby="form-submission-modal"
       open={open}
-      maxWidth="lg"
-      sx={{px: '2rem'}}
+      // maxWidth="xs"
+      fullWidth
+      sx={{px: '2rem', maxWidth: '36rem'}}
     >
       <BootstrapDialogTitle id="form-submission-modal" onClose={handleClose}>
         {title}
       </BootstrapDialogTitle>
       <DialogContent>
-        <Typography gutterBottom>
-          {message}
+        <Typography sx={{display: 'inline', flexWrap: 'wrap'}} gutterBottom>
+          <>
+            <span>
+              {`${message}`}
+            </span>
+            {copyText && <span>
+              &nbsp;<a href={copyText}>here:</a> <CopySelection copyText={copyText} />
+            </span>}
+          </>
         </Typography>
       </DialogContent>
       <DialogActions>{children}
       </DialogActions>
-    </BootstrapDialog>
-  );
-}
-
-export function PlusOneModal({ open, title, message, handleClose: close, children }: IDialogProps) {
-  const handleClose = () => close(false);
-  return (
-    <BootstrapDialog
-      onClose={handleClose}
-      aria-labelledby="form-submission-modal"
-      open={open}
-      maxWidth="lg"
-      sx={{px: '2rem'}}
-    >
-      <BootstrapDialogTitle id="form-submission-modal" onClose={handleClose}>
-        {title}
-      </BootstrapDialogTitle>
-      <DialogContent>
-        <Typography gutterBottom>{message}</Typography>
-      </DialogContent>
-      <DialogActions>{children}</DialogActions>
     </BootstrapDialog>
   );
 }

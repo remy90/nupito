@@ -12,21 +12,20 @@ import { formDefaults, initialState } from './FormFields/FormHelpers';
 import { persistGuestAttendance } from '../pages/api/guest';
 import { Sentry } from '../utils';
 import { useRouter } from 'next/router';
-import { SubmissionModal, PlusOneModal } from './Modal';
+import { ConfirmationModal } from './Modal';
 import { getConfirmationText } from './Modal/modalTextHelper';
-import { ACTIONS } from '../reducers/actions';
 import { isTruthy } from '../utils/createEmotionCache';
 import { CuisineTypeOptions } from './MenuOptions/CuisineTypeOptions';
-import { afroMenuItems, euroStarterItems } from './MenuOptions/MenuHelpers';
+import { afroMenuItems } from './MenuOptions/MenuHelpers';
 
 export default function Form() {
   const { state, dispatch } = useContext(AppContext);
   const [formAttendance, setFormAttendance] = useState<boolean>(state?.guest?.isAttending || false);
   const [showCuisineType, shouldShowCuisineType] = useState<boolean>((!!state.guest?.diet || !!state.guest?.menu) ?? false);
   const [showPlusOneModal, setShowPlusOneModal] = useState<boolean>(false);
-  const [modalVisibility, setModalVisibility] = React.useState<boolean>(false);
+  const [isSubmitModalVisible, setIsSubmitModalVisible] = React.useState<boolean>(false);
   const [modalText, setModalText] = useState<string>('');
-  const [diet, setDietChange] = useState<DietType>('NoFood');
+  const [diet, setDietChange] = useState<DietType>(state?.guest?.diet ?? 'NoFood');
   const [cuisineType, setCuisineType] = useState(state.guest?.cuisine ?? 'euro');
   const defaults = formDefaults(state, 'guest');
   const isAttending = formAttendance || state?.guest?.isAttending;
@@ -36,19 +35,20 @@ export default function Form() {
     errors,
     isDirty,
     isValid
-  }, control, getValues, setValue, resetField, reset } = useForm<GuestDocument>({
+  }, control, getValues, setValue, resetField } = useForm<GuestDocument>({
     defaultValues: defaults,
     mode: 'onChange'
   });
 
-  const handleClose = () => setModalVisibility(false);
+  const handleSubmitClose = () => setIsSubmitModalVisible(false);
+  const handlePlusOneClose = () => setShowPlusOneModal(false);
 
-  const dispatchGuest = (value: GuestDocument) => dispatch({ type: ACTIONS.SUBMIT_GUEST_RSVP, value });
+  const dispatchGuest = (value: GuestDocument) => dispatch({ type: 'SUBMIT_GUEST_RSVP', value });
 
   const onSubmit: SubmitHandler<GuestDocument> = async data => {
     console.log('storing rsvp...');
     if (!state?.guest.id) {
-      Sentry.captureException(`id not registered ${localStorage.getItem('shaun_char_guest_2022')}`);
+      Sentry.captureException(`id not registered. Possibly: ${localStorage.getItem('shaun_char_guest_2022')}`);
       return;
     }
 
@@ -59,11 +59,11 @@ export default function Form() {
 
       Sentry.captureMessage(`${state.guest.id} persisted: ${result!.text}`);
       setModalText(getConfirmationText(data, state));
-      setModalVisibility(true);
+      setIsSubmitModalVisible(true);
     } catch(e) {
       Sentry.captureException(`failed to register guest ${state?.guest.id}: ${e}`);
       setModalText('An error occured while trying to save your choices, there&apos;s already a chance that we are aware but let Shaun or Charlotte know');
-      setModalVisibility(true);
+      setIsSubmitModalVisible(true);
     }
   };
   const handleClickNext = () => {
@@ -76,12 +76,16 @@ export default function Form() {
   const handleDietChange =  (event: ChangeEvent<HTMLInputElement>) => {
     const selection: DietType = event.target?.value as DietType;
     shouldShowCuisineType(selection === 'Meat'); // if not meat, no rerender is triggered
-    console.log(getValues().diet);
+
     setDietChange(selection); // for required rerender
     if (selection !== 'Meat') {
-      selection === 'NoFood'
-        ? setValue('cuisine', 'neither')
-        : setValue('cuisine', 'euro');
+      if(selection === 'NoFood') {
+        setValue('cuisine', 'neither');
+        setCuisineType('neither');
+      } else{
+        setValue('cuisine', 'euro');
+        setCuisineType('euro');
+      }
     }
   };
   const resetAfroMenuChoices = () => {
@@ -108,7 +112,7 @@ export default function Form() {
   };
   const resetEuroChoices = () => {
     //@ts-ignore key is limited to available possibilities
-    const afroIsTouched = afroMenuItems.some(x => getValues().menu[`foodOption${x.key}`] !== false);
+    const afroIsTouched = afroMenuItems.some(x => getValues().menu[x.key] !== false);
     if (afroIsTouched) {
       resetField('menu.euroStarter', {defaultValue: ''});
       resetField('menu.euroMain', {defaultValue: ''});
@@ -154,29 +158,30 @@ export default function Form() {
           />}
         <Box>
           {isAttending && state.guest.hasPlusOne
-            ? <Button sx={{margin: 2}} variant="outlined" onClick={handleClickNext} disabled={!isDirty && isValid}>Next</Button>
-            : <Button sx={{margin: 2}} variant="outlined" type="submit" disabled={!isDirty && isValid}>Submit</Button>
+            ? <Button sx={{margin: 2}} variant="contained" onClick={handleClickNext} disabled={!isDirty && isValid}>Next</Button>
+            : <Button sx={{margin: 2}} variant="contained" type="submit" disabled={!isDirty && isValid}>Submit</Button>
           }
         </Box>
       </form>
-      <SubmissionModal
-        open={modalVisibility}
-        handleClose={handleClose}
+      <ConfirmationModal
+        open={isSubmitModalVisible}
+        onClose={handleSubmitClose}
         title={isAttending ? 'Splendid' : 'Confirmed'}
         message={modalText}
       >
-        <Button autoFocus onClick={handleClose}>{state.guest.firstName}&apos;s page</Button>
+        <Button autoFocus href={`/${state.guest.id}`}>{state.guest.firstName}&apos;s page</Button>
         <Button href="/registry" variant="contained">Registry</Button>
-      </SubmissionModal>
-      <PlusOneModal
+      </ConfirmationModal>
+      <ConfirmationModal
         open={showPlusOneModal}
-        handleClose={handleClose}
+        onClose={handlePlusOneClose}
         title="All set?"
         message={modalText}
       >
         <Button variant="outlined" onClick={() => router.push('rsvp/plusOne')}>Plus one</Button>
         <Button autoFocus sx={{margin: 2}} variant="contained" type="submit" >Yes, submit</Button>
-      </PlusOneModal>
+      </ConfirmationModal>
     </Paper>
   );
+  
 }

@@ -14,6 +14,13 @@ const theme = createTheme({
       main: red.A400,
     },
   },
+  typography: {
+    h1: { fontSize: '4rem', fontWeight: 200 },
+    h2: { fontSize: '3rem', fontWeight: 200 },
+    h3: { fontSize: '1.5rem', fontWeight: 175 },
+    h4: { fontSize: '2rem' },
+    h5: { fontSize: '1.5rem' },
+  },
   components: {
     MuiTimelineItem: {
       styleOverrides: {

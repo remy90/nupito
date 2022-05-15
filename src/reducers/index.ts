@@ -1,8 +1,9 @@
+import { ACTIONS } from './actions';
 import { initialState } from './../components/FormFields/FormHelpers';
 import { RsvpData, GuestDocument } from './../components/Interfaces';
 
 type reducerType = {
-    type: string,
+    type: ACTIONS,
     value: GuestDocument;
 }
 function guestReducer(state: RsvpData, action: reducerType) {

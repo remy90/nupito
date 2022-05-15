@@ -14,8 +14,8 @@ export const PlusOneDecision = ({setDecision}: IPlusOneDecisionProps) => {
       defaultValue="chooseLater"
       name="radio-buttons-group"
     >
-      <FormControlLabel value="chooseNow" onChange={() => setDecision(true)} control={<Radio />} label={`Choose for ${getValues().firstName ?? 'them'}`} />
-      <FormControlLabel value="chooseLater" onChange={() => setDecision(false)} control={<Radio />} label="Let them decide" />
+      <FormControlLabel value="chooseNow" onChange={() => setDecision(true)} control={<Radio />} label={`Choose food for ${getValues().firstName ?? 'them'}`} />
+      <FormControlLabel value="chooseLater" onChange={() => setDecision(false)} control={<Radio />} label={`Let ${getValues().firstName ?? 'them'} decide`} />
     </RadioGroup>
   );
 };

@@ -11,7 +11,7 @@ interface ICuisineTypeOptions {
 
 export const CuisineTypeOptions = ({defaultValues = 'euro', control, handleCuisineChange}: ICuisineTypeOptions) =>
   <Box>
-    <Typography variant="h3" sx={{ fontSize: '2.5rem'}}>What cuisine type would you like?</Typography>
+    <Typography variant="h3">What cuisine type would you like?</Typography>
     <FormControl>
       <Controller
         control={control}

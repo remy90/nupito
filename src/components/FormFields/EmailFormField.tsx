@@ -7,16 +7,14 @@ const getEmailValidationError = (errorType: LiteralUnion<string, string> | undef
   return <>
     {errorType === 'pattern' && (
       <Box sx={{width: '80%'}}>
-        <Typography style={{
-          fontSize: '0.75rem',
+        <Typography variant="subtitle1" style={{
           fontWeight: 400,
           color: '#ff1744'
         }}>Please supply a valid email address for our wedding updates</Typography>
       </Box>)}
     {errorType === 'required' && (
       <Box sx={{width: '80%'}}>
-        <Typography style={{
-          fontSize: '0.75rem',
+        <Typography variant="subtitle1" style={{
           fontWeight: 400,
           color: '#ff1744'
         }}>A valid email address is required</Typography>
