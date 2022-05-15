@@ -40,7 +40,7 @@ const Location: NextPage = () => {
         <Typography component="data">Click on the map for directions</Typography><br /><br />
     There will be plenty of parking available on Stebbing road. <br />
     If you don&apos;t wish to use google maps, you can use the following address:</Typography><br />
-      <Typography sx={{mb: '1rem'}} component="address" sx={{textAlign: 'center'}}>
+      <Typography sx={{mb: '1rem', textAlign: 'center'}} component="address">
       Felsted School <br />
       Essex <br />
       CM6 3LL

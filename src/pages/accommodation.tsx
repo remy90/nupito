@@ -27,7 +27,7 @@ const Accommodation: NextPage = () => {
           target="_blank"
           rel="noopener noreferrer"
           href="https://www.ihg.com/holidayinnexpress/hotels/us/en/braintree/wxfbt/hoteldetail?fromRedirect=true&amp;qSrt=sBR&amp;qIta=99502056&amp;icdv=99502056&amp;qSlH=WXFBT&amp;qCpid=100235822&amp;qAAR=IL4D4&amp;qRtP=IL4D4&amp;setPMCookies=true&amp;qSHBrC=EX&amp;qDest=Panners%20%20Roundabout,%20Braintree,%20GB&amp;srb_u=1"
-        >Holiday inn, <strong>20% off</strong></a></ListItem>
+        >Holiday inn express, Braintree. <strong>20% off</strong></a></ListItem>
         <ListItem  sx={{ display: 'list-item' }}><a
           target="_blank"
           rel="noopener noreferrer"
