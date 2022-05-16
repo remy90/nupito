@@ -3,7 +3,7 @@ import Container from '@mui/material/Container';
 import type { NextPage } from 'next';
 import { Typography } from '@mui/material';
 import { GMapCanvas, MapOuter } from '../components/styled';
-import { marginTop } from '../styles/sxConstants';
+import { marginBottom, marginTop } from '../styles/sxConstants';
 import useUser from '../lib/useUser';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '../components/AppProvider';
@@ -36,11 +36,10 @@ const Location: NextPage = () => {
           ></iframe>    
         </GMapCanvas>
       </MapOuter>
-      <Typography sx={marginTop}>Copy the the following into your satnav:<br />
-        <Typography component="data">Click on the map for directions</Typography><br /><br />
+      <Typography sx={marginTop}>
     There will be plenty of parking available on Stebbing road. <br />
     If you don&apos;t wish to use google maps, you can use the following address:</Typography><br />
-      <Typography sx={{mb: '1rem', textAlign: 'center'}} component="address">
+      <Typography sx={{ textAlign: 'center'}} component="address">
       The Felsted school chapel<br />
       Essex <br />
       CM6 3LL
