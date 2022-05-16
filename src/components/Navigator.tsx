@@ -8,6 +8,7 @@ import { Menu, MenuItem } from '@mui/material';
 import Link from '../Link';
 import { AppContext } from './AppProvider';
 import useUser from '../lib/useUser';
+import { ColouredWord } from './ColouredWord';
 
 export default function ButtonAppBar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -21,7 +22,7 @@ export default function ButtonAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static"  sx={{ backgroundColor: '#222222'}}>
+      <AppBar position="static"  sx={{ backgroundColor: '#B9A181'}}>
         <Toolbar>
           <Menu
             id="basic-menu"
@@ -49,7 +50,7 @@ export default function ButtonAppBar() {
             <MenuItem onClick={handleClose}><Link href={'/readings/'} color="secondary">Readings</Link></MenuItem> */}
           </Menu>
           <Link color='inherit' underline='none' variant="h6"  href={'/'} sx={{ flexGrow: 1 }}  type="button" align="justify">
-            Shaun &amp; Char
+            Shaun &amp; Charlotte
           </Link>
           <IconButton
             size="small"

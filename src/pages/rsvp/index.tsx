@@ -6,6 +6,7 @@ import type {  NextPage } from 'next';
 import RsvpForm from '../../components/RsvpForm';
 import { AppContext } from '../../components/AppProvider';
 import useUser from '../../lib/useUser';
+import { ColouredWord } from 'src/components/ColouredWord';
 
 const RSVP: NextPage = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -21,8 +22,10 @@ const RSVP: NextPage = () => {
 
   return (
     <Container maxWidth="sm">
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h1" gutterBottom>Répondez, s&apos;il vous plaît</Typography>
+      <Box sx={{ my: 4, marginBottom: '1rem' }}>
+        <Typography variant="h1" gutterBottom>
+          <ColouredWord color="royalblue">R</ColouredWord>épondez, <ColouredWord color="royalblue">s</ColouredWord>&apos;il <ColouredWord color="royalblue">v</ColouredWord>ous <ColouredWord color="royalblue">p</ColouredWord>laît
+        </Typography>
         {isAttending === false
           ? <Typography>We&apos;re sad you&apos;re unable to make it to our special day. If you would still like to contribute towards our new life together, please find our wedding registry link here</Typography>
           : <RsvpForm />}

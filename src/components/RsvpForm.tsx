@@ -158,7 +158,7 @@ export default function Form() {
             diet={diet}
             cuisineType={cuisineType ?? state.guest?.cuisine ?? 'euro'}
           />}
-        <Box>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end'}}>
           {isAttending && state.guest.hasPlusOne
             ? <Button sx={{margin: 2}} variant="contained" onClick={handleClickNext} disabled={!isDirty && isValid}>Next</Button>
             : <Button sx={{margin: 2}} variant="contained" type="submit" disabled={!isDirty && isValid}>Submit</Button>
