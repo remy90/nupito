@@ -19,7 +19,7 @@ export const EuroMenuOptions = ({ control, defaultValues, diet }: IMenuOptionPro
         </RadioGroup>}
       />
       <Typography variant="h4" sx={{ mt: '1rem' }}>Mains</Typography>
-      <Typography variant="subtitle1" sx={{ mb: '1rem' }}>all are served with seasonal vegetables &amp; potatoes</Typography>
+      <Typography variant="subtitle1" sx={{ mb: '1rem' }}>All are served with seasonal vegetables &amp; potatoes</Typography>
       <Controller
         name='menu.euroMain'
         control={control}

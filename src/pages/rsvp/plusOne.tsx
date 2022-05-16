@@ -158,11 +158,11 @@ export default function plusOne() {
     <Container maxWidth="sm">
       <Typography variant="h1" gutterBottom>Plus one</Typography>
       <Paper style={{height: '100%'}}>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)}  style={{padding: '1rem'}}>
           <InputField errors={errors} inputName="firstName" placeholder='First name' register={register} />
           <InputField errors={errors} inputName="lastName" placeholder='Last name' register={register} />
           <EmailFormField inputName="emailAddress" placeholder="Email address" errors={errors} register={register} />
-          <Box sx={{my: '1rem'}}><PlusOneDecision setDecision={setDecision} /></Box>
+          {state.guest.isFed && <Box sx={{my: '1rem'}}><PlusOneDecision setDecision={setDecision} /></Box>}
                
           {foodIsChosen && state.guest.isFed &&
             <DietPreferenceField inputName="plusOne.diet" errors={errors} onChange={handleDietChange} register={register} />}

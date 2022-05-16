@@ -5,7 +5,6 @@ import { TimelineElement } from '../components/TimelineElement';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '../components/AppProvider';
 import useUser from '../lib/useUser';
-import { ACTIONS } from '../reducers/actions';
 
 const Order = () => {
   const {state, dispatch} = useContext(AppContext);
@@ -20,7 +19,7 @@ const Order = () => {
     <Container maxWidth="sm">
       <Typography variant="h2">Order of service</Typography>
       <Timeline>
-        <TimelineElement name="Procession - bridal party" />
+        <TimelineElement name="Procession - bridal party - 1200" />
         <TimelineElement name="Welcome &amp; prayer" />
         <TimelineElement name="Declatory &amp; contracting words" />
         <TimelineElement name="Scripture recital" />

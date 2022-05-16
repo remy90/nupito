@@ -4,20 +4,14 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
-import { fileDownload } from './api/gridFSFileDownload';
 import { AppContext } from '../components/AppProvider';
 import { showAttendanceMessage, showMealSelection } from '../components/formSubmissionTextHelper';
 import { Sentry } from '../utils';
 import { GuestDocument } from '../components/Interfaces';
 import { MongoClient } from 'mongodb';
-import { existsSync } from 'fs';
 import { CircularProgress } from '@mui/material';
-import Image from 'next/image';
 import fetchJson from '../lib/fetchJson';
 import useUser from '../lib/useUser';
-import { ACTIONS } from '../reducers/actions';
-
-// import { fileUpload } from './api/gridFSFileUpload';
 
 const HomePage: NextPage<GuestDocument> = ({
   id,
@@ -54,7 +48,6 @@ const HomePage: NextPage<GuestDocument> = ({
   const memoizedAttendanceMessage = useMemo(() => showAttendanceMessage(isAttending, hasPlusOne), [isAttending, hasPlusOne]);
   const memoizedMealSelection = useMemo(() => showMealSelection(menu), [menu]);
 
-  // ! TODO: Fix landing page for deployed page
   return (
     <Suspense fallback={<CircularProgress color="inherit" />}>
       <Container maxWidth="sm">

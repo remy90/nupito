@@ -128,7 +128,7 @@ export default function Form() {
 
   return (
     <Paper style={{height: '100%'}}>
-      <form onSubmit={handleSubmit(onSubmit)} id="guestForm">
+      <form onSubmit={handleSubmit(onSubmit)} id="guestForm" style={{padding: '1rem'}}>
         <AttendanceField
           errors={errors}
           onChange={handleAttendanceChange}

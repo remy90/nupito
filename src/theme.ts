@@ -1,6 +1,10 @@
 import { createTheme } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 import type {} from '@mui/lab/themeAugmentation';
+import '@fontsource/montserrat/400.css';
+import '@fontsource/montserrat/400-italic.css';
+import '@fontsource/montserrat/700.css';
+import '@fontsource/montserrat/700-italic.css';
 
 const theme = createTheme({
   palette: {
@@ -15,6 +19,9 @@ const theme = createTheme({
     },
   },
   typography: {
+    allVariants: {
+      fontFamily: 'montserrat'
+    },
     h1: { fontSize: '4rem', fontWeight: 200 },
     h2: { fontSize: '3rem', fontWeight: 200 },
     h3: { fontSize: '1.5rem', fontWeight: 175 },

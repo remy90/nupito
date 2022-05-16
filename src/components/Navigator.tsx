@@ -35,9 +35,9 @@ export default function ButtonAppBar() {
                 <MenuItem onClick={handleClose}><Link href={'/rsvp/'} color="secondary">RSVP</Link></MenuItem>
             }
             {user?.isLoggedIn && state.guest.id && <MenuItem onClick={handleClose}><Link href={`/${state.guest.id}`} color="secondary">{state.guest.firstName}&apos;s page</Link></MenuItem>}
-            {/* {user?.isLoggedIn && user.id &&
+            {user?.isLoggedIn && user.id && state.guest.isFed &&
                 <MenuItem onClick={handleClose}><Link href={'/order/'} color="secondary">Order of service</Link></MenuItem>
-            } */}
+            }
             <MenuItem onClick={handleClose}><Link href={'/registry/'} color="secondary">Registry</Link></MenuItem>
             {user?.isLoggedIn && user.id &&
                 <MenuItem onClick={handleClose}><Link href={'/location/'} color="secondary">Location</Link></MenuItem>
