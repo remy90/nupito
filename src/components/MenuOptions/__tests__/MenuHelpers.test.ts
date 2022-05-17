@@ -1,8 +1,10 @@
+import { initialState } from './../../FormFields/FormHelpers';
+import { Menu } from './../../Interfaces';
 /**
  * @jest-environment jsdom
  * @jest-environment-options {"url": "https://jestjs.io/"}
  */
-import { euroStarterItems } from './../MenuHelpers';
+import { euroStarterItems, euroMainItems } from './../MenuHelpers';
 import { shouldShowBasedOnDietChoice } from '../MenuHelpers';
 
 describe('DietChoice', () => {

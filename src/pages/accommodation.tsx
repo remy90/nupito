@@ -5,7 +5,7 @@ import { List, ListItem, Paper, Typography } from '@mui/material';
 import useUser from '../lib/useUser';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '../components/AppProvider';
-import { ACTIONS } from '../reducers/actions';
+import { marginTop } from 'src/styles/sxConstants';
 
 const Accommodation: NextPage = () => {
   const {state, dispatch} = useContext(AppContext);
@@ -19,7 +19,7 @@ const Accommodation: NextPage = () => {
 
   return (
     <Container maxWidth="sm" style={{height: '100%'}}>
-      <Typography variant="h2" sx={{fontSize: '2.7rem'}}>Accommodation suggestions</Typography>
+      <Typography variant="h2" sx={{marginTop, fontSize: '2.7rem'}}>Accommodation suggestions</Typography>
       <Paper sx={{ mt: '0.5rem', p: '0.5rem'}}>
         <Typography sx={{my: '1rem'}}>Unfortunately, there is a good chance uninvited guests will turn up, please dont share this information.</Typography>
         {state.guest.hasPlusOne && <Typography>If you have filled in your plus one and they can attend, they will also have access to this site</Typography>}

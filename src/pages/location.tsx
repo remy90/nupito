@@ -3,11 +3,10 @@ import Container from '@mui/material/Container';
 import type { NextPage } from 'next';
 import { Typography } from '@mui/material';
 import { GMapCanvas, MapOuter } from '../components/styled';
-import { marginBottom, marginTop } from '../styles/sxConstants';
+import { marginTop } from '../styles/sxConstants';
 import useUser from '../lib/useUser';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '../components/AppProvider';
-import { ACTIONS } from '../reducers/actions';
 
 const Location: NextPage = () => {
   const {state, dispatch} = useContext(AppContext);
@@ -21,7 +20,7 @@ const Location: NextPage = () => {
 
   return (
     <Container maxWidth="sm" style={{height: '100%'}}>
-      <Typography variant="h2">Location</Typography>
+      <Typography variant="h2" sx={{marginTop}}>Location</Typography>
       <Typography>There is a good chance uninvited guests will turn up, please dont share this information.</Typography>
       {state.guest.hasPlusOne && <Typography>If you have filled in your plus one and they can attend, they will also have access to this site</Typography>}
       <MapOuter>

@@ -4,9 +4,10 @@ import type { NextPage } from 'next';
 import { List, ListItem, Paper, Typography } from '@mui/material';
 import { CopySelection } from 'src/components/CopySelection';
 import Image from 'next/image';
+import {marginTop} from '../styles/sxConstants';
 
 const Registry: NextPage = () => 
-  <Container maxWidth="sm"><Typography variant="h2">Wedding registry</Typography>
+  <Container maxWidth="sm"><Typography variant="h2" sx={{marginTop}}>Wedding registry</Typography>
     <Paper sx={{p:'1rem', m: '1rem'}}>
       <List>
         <ListItem>

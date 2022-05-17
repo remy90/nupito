@@ -5,6 +5,7 @@ import { TimelineElement } from '../components/TimelineElement';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '../components/AppProvider';
 import useUser from '../lib/useUser';
+import {marginTop} from '../styles/sxConstants';
 
 const Order = () => {
   const {state, dispatch} = useContext(AppContext);
@@ -17,7 +18,7 @@ const Order = () => {
   useUser({ redirectTo: '/invitation-only' });
   return (
     <Container maxWidth="sm">
-      <Typography variant="h2">Order of service</Typography>
+      <Typography variant="h2" sx={{marginTop}}>Order of service</Typography>
       <Timeline>
         <TimelineElement name="Procession - bridal party - 1200" />
         <TimelineElement name="Welcome &amp; prayer" />

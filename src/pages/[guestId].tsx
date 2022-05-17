@@ -47,7 +47,7 @@ const HomePage: NextPage<GuestDocument> = ({
   Sentry.captureMessage(`guestId dispatched for ${id}`, Sentry.Severity.Debug);
 
   const memoizedAttendanceMessage = useMemo(() => showAttendanceMessage(isAttending, hasPlusOne), [isAttending, hasPlusOne]);
-  const memoizedMealSelection = useMemo(() => showMealSelection(menu), [menu]);
+  const memoizedMealSelection = useMemo(() => showMealSelection(menu, cuisine), [menu]);
 
   return (
     <Suspense fallback={<CircularProgress color="inherit" />}>
@@ -62,7 +62,7 @@ const HomePage: NextPage<GuestDocument> = ({
             }
             <Typography>{memoizedAttendanceMessage}</Typography>
           </Box>
-          {/* {isAttending && isFed && memoizedMealSelection} */}
+          {isAttending && isFed && memoizedMealSelection}
       
           <Box sx={{ my: 4 }}>
             <Typography>20th August, 2022</Typography>
