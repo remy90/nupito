@@ -13,6 +13,7 @@ import { CircularProgress} from '@mui/material';
 import fetchJson from '../lib/fetchJson';
 import useUser from '../lib/useUser';
 import Image from 'next/image';
+import { ImageContainer } from './styled';
 
 const HomePage: NextPage<GuestDocument> = ({
   id,
@@ -50,36 +51,28 @@ const HomePage: NextPage<GuestDocument> = ({
   const memoizedMealSelection = useMemo(() => showMealSelection(menu, cuisine), [menu]);
 
   return (
-    <Suspense fallback={<CircularProgress color="inherit" />}>
-      <Container maxWidth="sm" sx={{display: 'flex'}}>
-        <Box sx={{width: '100%'}}>
-          <Box sx={{ my: 4 }}>
-            {isAttending === undefined
-              ? <Typography variant="h4" gutterBottom>
-          Welcome {firstName}, to Shaun &amp; Charlotte&apos;s guest app
-              </Typography>
-              : <Typography>Hi, {firstName}</Typography>
-            }
-            <Typography>{memoizedAttendanceMessage}</Typography>
-          </Box>
-          {isAttending && isFed && memoizedMealSelection}
-      
-          <Box sx={{ my: 4 }}>
-            <Typography>20th August, 2022</Typography>
-            <Box style={{ width: '100%', maxWidth: '30rem' }}>
-              <Image
-                priority
-                height={600}
-                width={400}
-                layout='responsive'
-                alt="image of Shaun &amp; Charlotte"
-                src="https://web.archive.org/web/20220428094213if_/https://scontent-lhr8-2.cdninstagram.com/v/t51.2885-15/273123452_478220913681949_7440377138742634667_n.jpg?stp=dst-jpg_e35_p750x750_sh0.08&amp;_nc_ht=scontent-lhr8-2.cdninstagram.com&amp;_nc_cat=101&amp;_nc_ohc=nwPWMTqTYeYAX-uqJjt&amp;edm=ALQROFkBAAAA&amp;ccb=7-4&amp;ig_cache_key=Mjc2MzYyNjUzNzMxODE4OTM2NQ%3D%3D.2-ccb7-4&amp;oh=00_AT9rsk2ZhC9j3GjE7CwjyHO5b4ehf-pcxRABNuzkwHpVrA&amp;oe=6270568D&amp;_nc_sid=30a2ef"
-              />
-            </Box>
-          </Box>
+    <Container maxWidth="sm" sx={{display: 'flex', flexDirection: 'column', padding: 0}}>
+      <Box sx={{width: '100%', height: '100%'}}>
+        <img
+          height={'100%'}
+          width={'100%'}
+          alt="image of Shaun &amp; Charlotte"
+          src="/SandC.jpg"
+        />
+      </Box>
+      <Box sx={{width: '100%', px: '1rem'}}>
+        <Box sx={{ my: 4, mt: 0 }}>
+          {isAttending === undefined
+            ? <Typography variant="h4" gutterBottom>
+              Welcome {firstName}, to Shaun &amp; Charlotte&apos;s guest app
+            </Typography>
+            : <Typography>Hi, {firstName}</Typography>
+          }
+          <Typography>{memoizedAttendanceMessage}</Typography>
         </Box>
-      </Container>
-    </Suspense>
+        {isAttending && isFed && memoizedMealSelection}
+      </Box>
+    </Container>
   );
 };
 

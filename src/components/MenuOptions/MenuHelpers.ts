@@ -15,9 +15,11 @@ export type afroListItem = {
   secondary?: string,
 };
 
-// TODO: Separate starters?
-export const afroMenuItems: afroListItem[] = [
+export const afroMenuStarters: afroListItem[] = [
   { key: 'foodOption1', primary: 'Spring roll, samosa & puff puff', secondary: 'A starter option. Puff puff is a snack made of fried dough.', diet: 'Meat' },
+];
+
+export const afroMenuMains: afroListItem[] = [
   { key: 'foodOption2', primary: 'Dodogizzard', secondary: 'Boiled pieces of gizzard are deeply fried and mixed fried plantains poured over a simmering pepper and Tomato Sauce.', diet: 'Meat' },
   { key: 'foodOption3', primary: 'Jollof rice', secondary: 'The dish is typically made with long-grain rice, tomatoes, onions, spices, vegetables and meat in a single pot', diet: 'Meat' },
   { key: 'foodOption4', primary: 'Fried rice', secondary: 'Rice mixed with vegetables, and spices. Sometimes contains prawns and various meats.', diet: 'Meat' },

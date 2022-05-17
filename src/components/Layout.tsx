@@ -5,9 +5,9 @@ import Navigator from './Navigator';
 import { StickToEndOfContainer } from './styledcomponents';
 import { ProfileLink } from './ProfileLink';
 
-export default function Layout({ children }: ({children: React.ReactChild | Array<React.ReactChild>})) {
+export default function Layout({ children }: ({children: React.ReactNode | Array<React.ReactNode>})) {
   return (
-    <Box>
+    <Box sx={{ background: '#fecc9a'}}>
       <Head>
         <title>Shaun &#38; Char</title>
         <link href="/favicon.ico" rel="icon" />

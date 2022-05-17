@@ -17,7 +17,7 @@ import useUser from '../../lib/useUser';
 import { ConfirmationModal } from '../../components/Modal';
 import { getConfirmationText } from '../../components/Modal/modalTextHelper';
 import { CuisineTypeOptions } from 'src/components/MenuOptions/CuisineTypeOptions';
-import { afroMenuItems } from 'src/components/MenuOptions/MenuHelpers';
+import { afroMenuMains } from 'src/components/MenuOptions/MenuHelpers';
 
 export default function plusOne() {
   const { state, dispatch } = useContext(AppContext);
@@ -62,7 +62,7 @@ export default function plusOne() {
   };
   const resetEuroChoices = () => {
     //@ts-ignore key is limited to available possibilities
-    const afroIsTouched = afroMenuItems.some(x => getValues().menu[x.key] !== false);
+    const afroIsTouched = afroMenuMains.some(x => getValues().menu[x.key] !== false);
     if (afroIsTouched) {
       resetField('menu.euroStarter', {defaultValue: ''});
       resetField('menu.euroMain', {defaultValue: ''});

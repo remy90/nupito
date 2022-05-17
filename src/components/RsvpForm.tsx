@@ -16,7 +16,7 @@ import { ConfirmationModal } from './Modal';
 import { getConfirmationText } from './Modal/modalTextHelper';
 import { isTruthy } from '../utils/createEmotionCache';
 import { CuisineTypeOptions } from './MenuOptions/CuisineTypeOptions';
-import { afroMenuItems } from './MenuOptions/MenuHelpers';
+import { afroMenuMains } from './MenuOptions/MenuHelpers';
 
 export default function Form() {
   const { state, dispatch } = useContext(AppContext);
@@ -114,7 +114,7 @@ export default function Form() {
   };
   const resetEuroChoices = () => {
     //@ts-ignore key is limited to available possibilities
-    const afroIsTouched = afroMenuItems.some(x => getValues().menu[x.key] !== false);
+    const afroIsTouched = afroMenuMains.some(x => getValues().menu[x.key] !== false);
     if (afroIsTouched) {
       resetField('menu.euroStarter', {defaultValue: ''});
       resetField('menu.euroMain', {defaultValue: ''});

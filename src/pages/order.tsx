@@ -1,5 +1,5 @@
 import type React from 'react';
-import { Typography, Container } from '@mui/material';
+import { Typography, Container, Paper } from '@mui/material';
 import { Timeline } from '@mui/lab';
 import { TimelineElement } from '../components/TimelineElement';
 import { useContext, useEffect } from 'react';
@@ -19,7 +19,7 @@ const Order = () => {
   return (
     <Container maxWidth="sm">
       <Typography variant="h2" sx={{marginTop}}>Order of service</Typography>
-      <Timeline>
+      <Paper><Timeline>
         <TimelineElement name="Procession - bridal party - 1200" />
         <TimelineElement name="Welcome &amp; prayer" />
         <TimelineElement name="Declatory &amp; contracting words" />
@@ -30,6 +30,7 @@ const Order = () => {
         <TimelineElement name="Vows" />
         <TimelineElement name="Ring exchange" isLast/>
       </Timeline>
+      </Paper>
     </Container>
   );
 };
