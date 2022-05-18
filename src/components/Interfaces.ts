@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
+import { Control, Field, FieldErrors, UseFormRegister } from 'react-hook-form';
 
 export type DietType = 'Meat' | 'Vegetarian' | 'Vegan' | 'NoFood';
 
@@ -33,8 +33,11 @@ export interface IInputFieldProps extends IFieldProps {
 }
 
 export interface IEmailFormFieldProps {
+  placeholder: string;
   errors: FieldErrors<GuestDocument>;
-  register: UseFormRegister<GuestDocument>; //<Record<string, unknown>>;
+  control: Control<GuestDocument, object>;
+  defaultValue: string;
+  inputName: any;
 }
 
 export type Menu = {

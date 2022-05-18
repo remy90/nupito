@@ -94,7 +94,9 @@ export default function plusOne() {
   const defaults = formDefaults(state, 'plusOne');
   const { register, handleSubmit, formState: { errors, isDirty }, getValues, setValue, control, resetField } = useForm<GuestDocument>({
     defaultValues: defaults,
-    mode: 'onChange'
+    mode: 'onBlur',
+    shouldFocusError: true,
+    reValidateMode: 'onChange',
   });
   const isAttending = state.guest.isAttending || getValues().isAttending;
   const getPlusOneData = (data: any) => {
@@ -159,7 +161,7 @@ export default function plusOne() {
         <form onSubmit={handleSubmit(onSubmit)}  style={{padding: '1rem'}}>
           <InputField errors={errors} inputName="firstName" placeholder='First name' register={register} />
           <InputField errors={errors} inputName="lastName" placeholder='Last name' register={register} />
-          <EmailFormField inputName="emailAddress" placeholder="Email address" errors={errors} register={register} />
+          <EmailFormField control={control} inputName="emailAddress" placeholder="Email address" errors={errors} defaultValue={state.plusOne.emailAddress ?? ''} />
           {state.guest.isFed && <Box sx={{my: '1rem'}}><PlusOneDecision setDecision={setDecision} /></Box>}
                
           {foodIsChosen && state.guest.isFed &&

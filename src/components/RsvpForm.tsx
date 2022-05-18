@@ -36,7 +36,9 @@ export default function Form() {
     isValid
   }, control, getValues, setValue, resetField } = useForm<GuestDocument>({
     defaultValues: defaults,
-    mode: 'onChange'
+    mode: 'onBlur',
+    shouldFocusError: true,
+    reValidateMode: 'onChange'
   });
 
   const handleSubmitClose = () => setIsSubmitModalVisible(false);
@@ -133,11 +135,11 @@ export default function Form() {
           defaultValue={state.guest?.isAttending}
         />
         <EmailFormField
-          placeholder='email address'
-          errors={errors}
-          onChange={() => null}
-          register={register}
-          defaultValue={state.guest?.emailAddress}
+          inputName="emailAddress"
+          placeholder='Email address'
+          control={control}
+          errors={!!errors && errors}
+          defaultValue={state.guest?.emailAddress ?? ''}
         />
 
         {((isAttending && state?.guest.isFed)) &&

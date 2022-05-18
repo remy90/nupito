@@ -1,9 +1,10 @@
 import React from 'react';
-import { Box, MenuItem, TextField } from '@mui/material';
+import { MenuItem, TextField } from '@mui/material';
 import { IFieldProps } from '../Interfaces';
+import { FormFieldContainer } from './styled';
 
 export const AttendanceField = ({ errors, onChange, register, defaultValue = '' }: IFieldProps) =>
-  (<Box sx={{marginTop: '2rem', marginBottom: '2rem'}}>
+  (<FormFieldContainer>
     <TextField
       select
       sx={{width: '100%'}}
@@ -16,4 +17,4 @@ export const AttendanceField = ({ errors, onChange, register, defaultValue = '' 
       <MenuItem key={'true'} value={1}>I will attend</MenuItem>
       <MenuItem key={'false'} value={0}>I will not be able to attend</MenuItem>
     </TextField>
-  </Box>);
+  </FormFieldContainer>);

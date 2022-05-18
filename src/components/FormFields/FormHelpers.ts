@@ -28,6 +28,7 @@ const initialGuest: GuestDocument = {
   isAttending: false,
   isFed: false,
   hasPlusOne: false,
+  isPlusOne: false,
   menu: initialMenu,
   cuisine: 'euro',
   diet: 'Meat',

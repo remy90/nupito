@@ -1,7 +1,8 @@
 import type React from 'react';
-import { Box, Input, Typography } from '@mui/material';
-import type { IInputFieldProps } from '../Interfaces';
-import type { LiteralUnion } from 'react-hook-form';
+import { Box, TextField, Typography } from '@mui/material';
+import type { IEmailFormFieldProps } from '../Interfaces';
+import { Controller, LiteralUnion } from 'react-hook-form';
+import { FormFieldContainer } from './styled';
 
 const getEmailValidationError = (errorType: LiteralUnion<string, string> | undefined) => {
   return <>
@@ -21,16 +22,25 @@ const getEmailValidationError = (errorType: LiteralUnion<string, string> | undef
       </Box>)}
   </>;
 };
-export const EmailFormField = ({ placeholder, errors, register }: IInputFieldProps) =>
-  <Box sx={{marginTop: 2, marginBottom: 2, paddingLeft: 2}}>
-    <Input
-      sx={{ width: '90%', paddingLeft: 2, paddingRight: 2 }}
-      placeholder={placeholder}
-      {...register('emailAddress', {
+export const EmailFormField = ({ placeholder, errors, control, defaultValue, inputName }: IEmailFormFieldProps) =>
+  <FormFieldContainer>
+    <Controller
+      name={inputName}
+      control={control}
+      defaultValue={defaultValue || ''}
+      rules={{
+        required: true,
         pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
-      }
+      }}
+      render={({ field, fieldState }) => (
+        <TextField
+          {...field}
+          fullWidth
+          error={!!fieldState?.error}
+          helperText={fieldState?.error?.message}
+          label={placeholder}
+        />
       )}
-      error={!!errors}
     />
     { getEmailValidationError(errors?.emailAddress?.type)}
-  </Box>;
+  </ FormFieldContainer>;
