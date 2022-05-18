@@ -12,9 +12,11 @@ export type GuestDocument = {
   isAttending: boolean;
   isFed: boolean;
   hasPlusOne: boolean;
+  isPlusOne: boolean;
   cuisine: CuisineType;
   menu: Menu;
   diet: DietType;
+  guestName: string;
 }
 export type InputType = 'firstName' | 'lastName';
 export type RsvpData = { guest: GuestDocument, plusOne: GuestDocument };

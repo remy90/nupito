@@ -13,7 +13,7 @@ import { CircularProgress} from '@mui/material';
 import fetchJson from '../lib/fetchJson';
 import useUser from '../lib/useUser';
 import Image from 'next/image';
-import { ImageContainer } from './styled';
+import { ImageContainer } from '../styled';
 
 const HomePage: NextPage<GuestDocument> = ({
   id,
@@ -23,12 +23,14 @@ const HomePage: NextPage<GuestDocument> = ({
   isFed,
   diet,
   hasPlusOne,
+  isPlusOne,
   cuisine,
   menu,
+  guestName
 }: GuestDocument) => {
   const { dispatch, state } = useContext(AppContext);
   const {mutateUser} = useUser();
-  const guest = {id, firstName, lastName, isAttending, isFed, diet, hasPlusOne, cuisine, menu };
+  const guest = {id, firstName, lastName, isAttending, isFed, diet, hasPlusOne, isPlusOne, cuisine, menu };
 
   useEffect(() => dispatch({ type: 'UPDATE_GUEST', value: {guest} }), [id]);
   useEffect(() => localStorage.setItem('shaun_char_guest_2022', JSON.stringify({guest})), [id]);
@@ -46,8 +48,7 @@ const HomePage: NextPage<GuestDocument> = ({
     })();
   }, [state.guest.id]);
   Sentry.captureMessage(`guestId dispatched for ${id}`, Sentry.Severity.Debug);
-
-  const memoizedAttendanceMessage = useMemo(() => showAttendanceMessage(isAttending, hasPlusOne), [isAttending, hasPlusOne]);
+  const memoizedAttendanceMessage = useMemo(() => showAttendanceMessage(isAttending, hasPlusOne, guestName), [isAttending, hasPlusOne, guestName]);
   const memoizedMealSelection = useMemo(() => showMealSelection(menu, cuisine), [menu]);
 
   return (
@@ -64,11 +65,11 @@ const HomePage: NextPage<GuestDocument> = ({
         <Box sx={{ my: 4, mt: 0 }}>
           {isAttending === undefined
             ? <Typography variant="h4" gutterBottom>
-              Welcome {firstName}, to Shaun &amp; Charlotte&apos;s guest app
+              Welcome {firstName}, to our guest app
             </Typography>
             : <Typography>Hi, {firstName}</Typography>
           }
-          <Typography>{memoizedAttendanceMessage}</Typography>
+          {memoizedAttendanceMessage}
         </Box>
         {isAttending && isFed && memoizedMealSelection}
       </Box>
@@ -77,15 +78,7 @@ const HomePage: NextPage<GuestDocument> = ({
 };
 
 export const getServerSideProps: GetServerSideProps = async({params}: GetServerSidePropsContext) => {
-  // await fileUpload('home-page.jpeg', 'home-image01', 'public/private-assets/home-page.jpeg');
   const client = new MongoClient(process.env.MONGODB_URI!);
-  // if (!existsSync('./home-page.jpeg')) {
-  //   console.log('downloading image');
-  //   await fileDownload('home-page.jpeg', 'home-image01', './home-page.jpeg');
-  //   console.log('image upload complete');
-  // } else {
-  //   console.log('already on the server');
-  // }
 
   await client.connect();
   const database = client.db('shaun-charlotte');

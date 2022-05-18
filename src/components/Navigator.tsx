@@ -8,7 +8,6 @@ import { Menu, MenuItem } from '@mui/material';
 import Link from '../Link';
 import { AppContext } from './AppProvider';
 import useUser from '../lib/useUser';
-import { ColouredWord } from './ColouredWord';
 
 export default function ButtonAppBar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -49,15 +48,14 @@ export default function ButtonAppBar() {
             {/* <MenuItem onClick={handleClose}><Link href={'/songs/'} color="secondary">Songs</Link></MenuItem>
             <MenuItem onClick={handleClose}><Link href={'/readings/'} color="secondary">Readings</Link></MenuItem> */}
           </Menu>
-          <Link color='inherit' underline='none' variant="h6"  href={'/'} sx={{ flexGrow: 1 }}  type="button" align="justify">
-            Shaun &amp; Charlotte
+          <Link color='#3a3a3a' underline='none' variant="h6"  href={'/'} sx={{ flexGrow: 1 }}  type="button" align="justify">
+            Charlotte &amp; Shaun
           </Link>
           <IconButton
             size="small"
             edge="start"
-            color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
+            sx={{ mr: 2, color: '#3a3a3a' }}
             aria-controls="basic-menu"
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}

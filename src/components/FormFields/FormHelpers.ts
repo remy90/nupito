@@ -30,7 +30,8 @@ const initialGuest: GuestDocument = {
   hasPlusOne: false,
   menu: initialMenu,
   cuisine: 'euro',
-  diet: 'Meat'
+  diet: 'Meat',
+  guestName: ''
 };
 
 export const initialState: RsvpData = {

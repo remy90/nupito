@@ -11,6 +11,6 @@ export const getGuest = async (req: NextApiRequest, res: NextApiResponse) => {
   if (!result) {
     return res.status(404).json({error: `guest not found, \n ${JSON.stringify(req.body)}`});
   }
-  console.log(JSON.stringify(result));
+
   return res.status(200).json({ status: 'OK', ...result });
 };

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { ChangeEvent, useContext, useState, useId, useEffect } from 'react';
 import { Paper, Box, Button, Container, Typography } from '@mui/material';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -39,7 +38,7 @@ export default function plusOne() {
   
   useUser({ redirectTo: '/invitation-only' });
   const resetAfroMenuChoices = () => {
-    //@ts-ignore key is limited to available possibilities
+
     const euroIsTouched =
       getValues().menu.euroStarter !== initialState.guest.menu.euroStarter
       || getValues().menu.euroMain !== initialState.guest.menu.euroMain;
@@ -61,7 +60,6 @@ export default function plusOne() {
     }
   };
   const resetEuroChoices = () => {
-    //@ts-ignore key is limited to available possibilities
     const afroIsTouched = afroMenuMains.some(x => getValues().menu[x.key] !== false);
     if (afroIsTouched) {
       resetField('menu.euroStarter', {defaultValue: ''});
@@ -100,7 +98,7 @@ export default function plusOne() {
   });
   const isAttending = state.guest.isAttending || getValues().isAttending;
   const getPlusOneData = (data: any) => {
-    const d = { ...data, id: plusOneId };
+    const d = { ...data, id: plusOneId, isPlusOne: true, hasPlusOne: false, isAttending: true };
     return d;
   };
 
@@ -108,8 +106,6 @@ export default function plusOne() {
 
   const onSubmit: SubmitHandler<GuestDocument> = async data => {
     const plusOneData = getPlusOneData(data);
-
-    console.log('add plus one data to state');
 
     if (!state?.guest.id){
       Sentry.captureException(`id not registered ${localStorage.getItem('shaun_char_guest_2022')}`);
@@ -132,14 +128,16 @@ export default function plusOne() {
       dispatch({ type: 'SUBMIT_PLUS_ONE_RSVP', value:{ plusOne: plusOneData} });
       localStorage.setItem('shaun_char_guest_2022', JSON.stringify(state));
       Sentry.captureMessage(`${state.plusOne.id} persisted: ${result!.text}`);
-      const confirmationText = getConfirmationText(plusOneData, state);
+      console.log(JSON.stringify(plusOneData));
+      const confirmationText = getConfirmationText(plusOneData, plusOneData.firstName);
       setModalText(confirmationText);
       setModalVisibility(true);
 
       // after successful submission, prevent guest with plusOne from inviting another person
       await persistGuestAttendance({
         ...state.guest,
-        hasPlusOne: false
+        hasPlusOne: false,
+        guestName: plusOneData.firstName
       }
       , '/api/guestUpdate');
       dispatch({ type: 'REMOVE_PLUS_ONE' });

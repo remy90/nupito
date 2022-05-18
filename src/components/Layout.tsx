@@ -9,7 +9,7 @@ export default function Layout({ children }: ({children: React.ReactNode | Array
   return (
     <Box sx={{ background: '#fecc9a'}}>
       <Head>
-        <title>Shaun &#38; Char</title>
+        <title>Charlotte &#38; Shaun</title>
         <link href="/favicon.ico" rel="icon" />
         <meta content="initial-scale=1, width=device-width" name="viewport" />
       </Head>

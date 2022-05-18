@@ -27,7 +27,7 @@ const Registry: NextPage = () =>
         </ListItem>
       </List>
       <Typography  sx={{textAlign: 'center', mb: '0.5rem'}} variant="h3">Gift address: <CopySelection copyText='Shaun and Charlotte, 33 Plough rise, RM14 1XR' /></Typography>
-      <Typography sx={{textAlign: 'center'}}>Shaun &amp; Charlotte</Typography>  
+      <Typography sx={{textAlign: 'center'}}>Charlotte &amp; Shaun</Typography>  
       <Typography sx={{textAlign: 'center'}}>33 Plough rise</Typography>
       <Typography sx={{textAlign: 'center'}}>RM14 1XR</Typography> <br/>
 

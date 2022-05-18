@@ -1,13 +1,12 @@
 import type React from 'react';
 import Container from '@mui/material/Container';
 import type { NextPage } from 'next';
-import { List, ListItem, Paper, Typography } from '@mui/material';
+import { List, Paper, Typography } from '@mui/material';
 import useUser from '../lib/useUser';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '../components/AppProvider';
 import { marginTop } from 'src/styles/sxConstants';
-import Image from 'next/image';
-import { SpacedListItem } from './styled';
+import { SpacedListItem } from '../styled';
 
 const Accommodation: NextPage = () => {
   const {state, dispatch} = useContext(AppContext);

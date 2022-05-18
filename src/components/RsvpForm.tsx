@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { ChangeEvent, useContext, useState } from 'react';
 import { Paper, Box, Button } from '@mui/material';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -60,7 +59,7 @@ export default function Form() {
       localStorage.setItem('shaun_char_guest_2022', JSON.stringify(state));
 
       Sentry.captureMessage(`${state.guest.id} persisted: ${result!.text}`);
-      setModalText(getConfirmationText(data, state));
+      setModalText(getConfirmationText(data));
       setIsSubmitModalVisible(true);
     } catch(e) {
       Sentry.captureException(`failed to register guest ${state?.guest.id}: ${e}`);
@@ -91,7 +90,6 @@ export default function Form() {
     }
   };
   const resetAfroMenuChoices = () => {
-    //@ts-ignore key is limited to available possibilities
     const euroIsTouched =
       getValues().menu.euroStarter !== initialState.guest.menu.euroStarter
       || getValues().menu.euroMain !== initialState.guest.menu.euroMain;
@@ -113,7 +111,6 @@ export default function Form() {
     }
   };
   const resetEuroChoices = () => {
-    //@ts-ignore key is limited to available possibilities
     const afroIsTouched = afroMenuMains.some(x => getValues().menu[x.key] !== false);
     if (afroIsTouched) {
       resetField('menu.euroStarter', {defaultValue: ''});
@@ -159,7 +156,7 @@ export default function Form() {
             cuisineType={cuisineType ?? state.guest?.cuisine ?? 'euro'}
           />}
         <Box sx={{ display: 'flex', justifyContent: 'flex-end'}}>
-          {isAttending && state.guest.hasPlusOne
+          {isAttending && state.guest.hasPlusOne && !state.guest.guestName
             ? <Button sx={{margin: 2}} variant="contained" onClick={handleClickNext} disabled={!isDirty && isValid}>Next</Button>
             : <Button sx={{margin: 2}} variant="contained" type="submit" disabled={!isDirty && isValid}>Submit</Button>
           }

@@ -3,7 +3,6 @@ import { FormControl, FormControlLabel, Radio, RadioGroup, Typography } from '@m
 import { Controller } from 'react-hook-form';
 import type { IMenuOptionProps } from '../Interfaces';
 import { euroMainItems, euroStarterItems, shouldShowBasedOnDietChoice } from './MenuHelpers';
-import { useMemo } from 'react';
 
 export const EuroMenuOptions = ({ control, defaultValues, diet }: IMenuOptionProps) =>
 {
