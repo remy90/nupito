@@ -15,6 +15,7 @@ const initialMenu: Menu = {
   foodOption11: false,
   foodOption12: false,
   foodOption13: false,
+  foodOption14: false,
   euroStarter: '',
   euroMain: '',
   euroDessert: ''
@@ -25,6 +26,7 @@ const initialGuest: GuestDocument = {
   firstName: '',
   lastName: '',
   emailAddress: '',
+  dateCreated: new Date().toISOString(),
   isAttending: false,
   isFed: false,
   hasPlusOne: false,

@@ -48,7 +48,7 @@ const HomePage: NextPage<GuestDocument> = ({
     })();
   }, [state.guest.id]);
   Sentry.captureMessage(`guestId dispatched for ${id}`, Sentry.Severity.Debug);
-  const memoizedAttendanceMessage = useMemo(() => showAttendanceMessage(isAttending, hasPlusOne, guestName), [isAttending, hasPlusOne, guestName]);
+  const memoizedAttendanceMessage = useMemo(() => showAttendanceMessage(isAttending, hasPlusOne, guestName, isFed), [isAttending, hasPlusOne, guestName, isFed]);
   const memoizedMealSelection = useMemo(() => showMealSelection(menu, cuisine), [menu]);
 
   return (
@@ -65,9 +65,9 @@ const HomePage: NextPage<GuestDocument> = ({
         <Box sx={{ my: 4, mt: 0 }}>
           {isAttending === undefined
             ? <Typography variant="h4" gutterBottom>
-              Welcome {firstName}, to our guest app
+              Welcome {firstName}, to our wedding guest app ✨
             </Typography>
-            : <Typography>Hi, {firstName}</Typography>
+            : <Typography>Hi, {firstName}.</Typography>
           }
           {memoizedAttendanceMessage}
         </Box>

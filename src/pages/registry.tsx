@@ -9,6 +9,7 @@ import {marginTop} from '../styles/sxConstants';
 const Registry: NextPage = () => 
   <Container maxWidth="sm"><Typography variant="h2" sx={{marginTop}}>Wedding registry</Typography>
     <Paper sx={{p:'1rem', m: '1rem'}}>
+      <Typography variant="h3">Click on the brand logos below to view registry items: </Typography>
       <List>
         <ListItem sx={{justifyContent: 'center'}}>
           <a target="_blank" href="https://www.johnlewis.com/wish-list/HTQFMTT" rel="noopener noreferrer">

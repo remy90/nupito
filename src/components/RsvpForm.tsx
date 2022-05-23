@@ -56,7 +56,7 @@ export default function Form() {
     }
 
     try {
-      const result = await persistGuestAttendance({...data, id: state.guest.id}, '/api/guestUpdate');
+      const result = await persistGuestAttendance({...data, id: state.guest.id, dateUpdated: new Date().toISOString()}, '/api/guestUpdate');
       dispatchGuest(data);
       localStorage.setItem('shaun_char_guest_2022', JSON.stringify(state));
 
@@ -159,8 +159,8 @@ export default function Form() {
           />}
         <Box sx={{ display: 'flex', justifyContent: 'flex-end'}}>
           {isAttending && state.guest.hasPlusOne && !state.guest.guestName
-            ? <Button sx={{margin: 2}} variant="contained" onClick={handleClickNext} disabled={!isDirty && isValid}>Next</Button>
-            : <Button sx={{margin: 2}} variant="contained" type="submit" disabled={!isDirty && isValid}>Submit</Button>
+            ? <Button sx={{margin: 2}} variant="contained" onClick={handleClickNext} disabled={!isValid}>Next</Button>
+            : <Button sx={{margin: 2}} variant="contained" type="submit" disabled={!isValid}>Submit</Button>
           }
         </Box>
         <ConfirmationModal

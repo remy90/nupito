@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { Control, Field, FieldErrors, UseFormRegister } from 'react-hook-form';
+import { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
 
 export type DietType = 'Meat' | 'Vegetarian' | 'Vegan' | 'NoFood';
 
@@ -8,6 +8,8 @@ export type GuestDocument = {
   id: string
   firstName: string;
   lastName: string;
+  dateCreated: string;
+  dateUpdated?: string;
   emailAddress: string;
   isAttending: boolean;
   isFed: boolean;
@@ -54,6 +56,7 @@ export type Menu = {
   foodOption11: boolean,
   foodOption12: boolean,
   foodOption13: boolean,
+  foodOption14: boolean,
   euroStarter: string,
   euroMain: string,
   euroDessert: string,
@@ -62,6 +65,7 @@ export type Menu = {
 export type MenuType = 'foodOption1' | 'foodOption2' | 'foodOption3' |
 'foodOption4' | 'foodOption5' | 'foodOption6' | 'foodOption7' |
 'foodOption8' | 'foodOption9' | 'foodOption10' | 'foodOption11'| 'foodOption12' |
+'foodOption13' | 'foodOption14' |
  'euroStarter' | 'euroMain' | 'euroDessert';
 export interface RHFormControlProps {
   control: Control<GuestDocument, object>;

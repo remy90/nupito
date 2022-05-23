@@ -6,7 +6,7 @@ import { dessertItems, shouldShowBasedOnDietChoice } from './MenuHelpers';
 
 export const DessertOptions = ({control, defaultValues, diet }: IMenuOptionProps) =>
   <>
-    <Typography variant="h4" sx={{ my: '1rem', fontSize: '2rem'}}>Dessert</Typography>
+    <Typography variant="subtitle2" sx={{ mt: '1rem'}}>Dessert</Typography>
     <Controller
       name='menu.euroDessert'
       control={control}

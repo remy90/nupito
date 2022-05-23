@@ -30,23 +30,23 @@ export default function ButtonAppBar() {
             onClose={handleClose}
             MenuListProps={{ 'aria-labelledby': 'basic-button' }}
           >
-            <MenuItem onClick={handleClose}><Link href={'/'} color="secondary">Home</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href={'/'}  sx={{width: '100%', height: '100%'}} color="secondary">Home</Link></MenuItem>
             {user?.isLoggedIn && user.id && // (state?.guest?.isAttending != false) &&
-                <MenuItem onClick={handleClose}><Link href={'/rsvp/'} color="secondary">RSVP</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link href={'/rsvp/'}  sx={{width: '100%'}} color="secondary">RSVP</Link></MenuItem>
             }
-            {user?.isLoggedIn && state.guest.id && <MenuItem onClick={handleClose}><Link href={`/${state.guest.id}`} color="secondary">{state.guest.firstName}&apos;s page</Link></MenuItem>}
+            {user?.isLoggedIn && state.guest.id && <MenuItem onClick={handleClose}><Link href={`/${state.guest.id}`}  sx={{width: '100%'}} color="secondary">{state.guest.firstName}&apos;s page</Link></MenuItem>}
             {user?.isLoggedIn && user.id && state.guest.isFed &&
-                <MenuItem onClick={handleClose}><Link href={'/order/'} color="secondary">Order of service</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link href={'/order/'}  sx={{width: '100%'}} color="secondary">Order of service</Link></MenuItem>
             }
-            <MenuItem onClick={handleClose}><Link href={'/registry/'} color="secondary">Registry</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href={'/registry/'}  sx={{width: '100%'}} color="secondary">Registry</Link></MenuItem>
             {user?.isLoggedIn && user.id &&
-                <MenuItem onClick={handleClose}><Link href={'/location/'} color="secondary">Location</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link href={'/location/'} sx={{width: '100%'}} color="secondary">Location</Link></MenuItem>
             }
             {user?.isLoggedIn && user.id &&
-                <MenuItem onClick={handleClose}><Link href={'/accommodation/'} color="secondary">Accommodation</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link href={'/accommodation/'}  sx={{width: '100%'}} color="secondary">Accommodation</Link></MenuItem>
             }
-            {/* <MenuItem onClick={handleClose}><Link href={'/songs/'} color="secondary">Songs</Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link href={'/readings/'} color="secondary">Readings</Link></MenuItem> */}
+            {/* <MenuItem onClick={handleClose}><Link href={'/songs/'}  sx={{width: '100%'}} color="secondary">Songs</Link></MenuItem>
+            <MenuItem onClick={handleClose}><Link href={'/readings/'}  sx={{width: '100%'}} color="secondary">Readings</Link></MenuItem> */}
           </Menu>
           <Link color='#3a3a3a' underline='none' variant="h6"  href={'/'} sx={{ flexGrow: 1 }}  type="button" align="justify">
             Charlotte &amp; Shaun

@@ -8,7 +8,9 @@ export const EuroMenuOptions = ({ control, defaultValues, diet }: IMenuOptionPro
 {
   return (
     <FormControl>
-      <Typography variant="h4" sx={{ my: '1rem'}}>Starters</Typography>
+      <Typography variant="h4">Western menu</Typography>
+      <Typography variant="subtitle1">Choose one starter, main &amp; dessert</Typography>
+      <Typography variant="subtitle2" sx={{ mt: '1rem'}}>Starters</Typography>
       <Controller
         name='menu.euroStarter'
         control={control}
@@ -17,7 +19,7 @@ export const EuroMenuOptions = ({ control, defaultValues, diet }: IMenuOptionPro
           {euroStarterItems.map(x => shouldShowBasedOnDietChoice(diet, x.diet) && <FormControlLabel key={x.key} value={x.key} control={<Radio />} label={x.primary} />)}
         </RadioGroup>}
       />
-      <Typography variant="h4" sx={{ mt: '1rem' }}>Mains</Typography>
+      <Typography variant="subtitle2" sx={{ mt: '1rem'}}>Mains</Typography>
       <Typography variant="subtitle1" sx={{ mb: '1rem' }}>All are served with seasonal vegetables &amp; potatoes</Typography>
       <Controller
         name='menu.euroMain'

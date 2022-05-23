@@ -100,7 +100,13 @@ export default function plusOne() {
   });
   const isAttending = state.guest.isAttending || getValues().isAttending;
   const getPlusOneData = (data: any) => {
-    const d = { ...data, id: plusOneId, isPlusOne: true, hasPlusOne: false, isAttending: true };
+    const d = { ...data,
+      id: plusOneId,
+      isPlusOne: true,
+      hasPlusOne: false,
+      isAttending: true,
+      dateUpdated: new Date().toISOString()
+    };
     return d;
   };
 
