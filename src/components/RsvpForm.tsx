@@ -178,7 +178,7 @@ export default function Form() {
         title={isAttending ? 'Splendid' : 'Confirmed'}
         message={modalText}
       >
-        <Button variant="outlined" autoFocus href={`/${state.guest.id}`}>{state.guest.firstName ? `${state.guest.firstName}'s page` : 'Your'} page</Button>
+        <Button variant="outlined" autoFocus href={`/${state.guest.id}`}>{state.guest.firstName ? `${state.guest.firstName}'s page` : 'Your page'}</Button>
         <Button href="/registry" variant="contained">Registry</Button>
       </ConfirmationModal>
     </Paper>
