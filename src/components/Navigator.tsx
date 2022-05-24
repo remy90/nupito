@@ -40,7 +40,7 @@ export default function ButtonAppBar() {
             {user?.isLoggedIn && // (state?.guest?.isAttending != false) &&
               <MenuItem onClick={handleClose}><Link href={'/rsvp/'}  sx={{width: '100%'}} color="secondary">RSVP</Link></MenuItem>
             }
-            {user?.isLoggedIn && <MenuItem onClick={handleClose}><Link href={`/${user.id}`}  sx={{width: '100%'}} color="secondary">{state.guest.firstName ?? 'Your page'}&apos;s page</Link></MenuItem>}
+            {user?.isLoggedIn && <MenuItem onClick={handleClose}><Link href={`/${user.id}`}  sx={{width: '100%'}} color="secondary">{state.guest.firstName ? `${state.guest.firstName}'s page` : 'Your'} page</Link></MenuItem>}
             {user?.isLoggedIn && state.guest.isFed &&
               <MenuItem onClick={handleClose}><Link href={'/order/'}  sx={{width: '100%'}} color="secondary">Order of service</Link></MenuItem>
             }

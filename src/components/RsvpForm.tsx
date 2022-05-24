@@ -32,7 +32,6 @@ export default function Form() {
   const router = useRouter();
   const { register, handleSubmit, formState: {
     errors,
-    isDirty,
     isValid
   }, control, getValues, setValue, resetField } = useForm<GuestDocument>({
     defaultValues: defaults,
@@ -160,7 +159,7 @@ export default function Form() {
         <Box sx={{ display: 'flex', justifyContent: 'flex-end'}}>
           {isAttending && state.guest.hasPlusOne && !state.guest.guestName
             ? <Button sx={{margin: 2}} variant="contained" onClick={handleClickNext} disabled={!isValid}>Next</Button>
-            : <Button sx={{margin: 2}} variant="contained" type="submit" >Submit</Button>
+            : <Button sx={{margin: 2}} variant="contained" type="submit">Submit</Button>
           }
         </Box>
         <ConfirmationModal
@@ -179,7 +178,7 @@ export default function Form() {
         title={isAttending ? 'Splendid' : 'Confirmed'}
         message={modalText}
       >
-        <Button variant="outlined" autoFocus href={`/${state.guest.id}`}>{state.guest.firstName}&apos;s page</Button>
+        <Button variant="outlined" autoFocus href={`/${state.guest.id}`}>{state.guest.firstName ? `${state.guest.firstName}'s page` : 'Your'} page</Button>
         <Button href="/registry" variant="contained">Registry</Button>
       </ConfirmationModal>
     </Paper>

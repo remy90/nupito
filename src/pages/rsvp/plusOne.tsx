@@ -92,7 +92,7 @@ export default function plusOne() {
   };
 
   const defaults = formDefaults(state, 'plusOne');
-  const { register, handleSubmit, formState: { errors, isDirty }, getValues, setValue, control, resetField } = useForm<GuestDocument>({
+  const { register, handleSubmit, formState: { errors }, getValues, setValue, control, resetField } = useForm<GuestDocument>({
     defaultValues: defaults,
     mode: 'onBlur',
     shouldFocusError: true,
@@ -188,7 +188,7 @@ export default function plusOne() {
             />}
           <Box>
             <Button variant="outlined" sx={{margin: 2}} onClick={handleBackClick}>Back</Button>
-            <Button sx={{margin: 2}} variant="contained" type="submit" disabled={!isDirty}>Submit</Button>
+            <Button sx={{margin: 2}} variant="contained" type="submit">Submit</Button>
           </Box>
         </form>
       </Paper>

@@ -1,7 +1,7 @@
 import type React from 'react';
 import { List, ListItem, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { CuisineType, DietType, Menu } from './Interfaces';
+import { CuisineType, Menu } from './Interfaces';
 import { afroMenuMains, afroMenuStarters, dessertItems, euroMainItems, euroStarterItems } from './MenuOptions/MenuHelpers';
 import Link from 'src/Link';
 
