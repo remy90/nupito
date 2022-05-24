@@ -160,7 +160,7 @@ export default function Form() {
         <Box sx={{ display: 'flex', justifyContent: 'flex-end'}}>
           {isAttending && state.guest.hasPlusOne && !state.guest.guestName
             ? <Button sx={{margin: 2}} variant="contained" onClick={handleClickNext} disabled={!isValid}>Next</Button>
-            : <Button sx={{margin: 2}} variant="contained" type="submit" disabled={!isValid}>Submit</Button>
+            : <Button sx={{margin: 2}} variant="contained" type="submit" >Submit</Button>
           }
         </Box>
         <ConfirmationModal
