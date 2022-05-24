@@ -9,7 +9,9 @@ import {marginTop} from '../styles/sxConstants';
 const Registry: NextPage = () => 
   <Container maxWidth="sm"><Typography variant="h2" sx={{marginTop}}>Wedding registry</Typography>
     <Paper sx={{p:'1rem', m: '1rem'}}>
-      <Typography variant="h3">Click on the brand logos below to view registry items: </Typography>
+      <Typography variant="h5">Our registry is shared between John Lewis, MADE and Etsy.</Typography><br />
+      <Typography>Note: Charlotte &amp; Shaun aren&apos;t currently living together and are yet to confirm whether their property will be furnished</Typography><br />
+      <Typography variant="subtitle2">Click on the brand logos below to view registry items:</Typography>
       <List>
         <ListItem sx={{justifyContent: 'center'}}>
           <a target="_blank" href="https://www.johnlewis.com/wish-list/HTQFMTT" rel="noopener noreferrer">

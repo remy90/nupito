@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import type React from 'react';
 import './styles/global.css';
 import Head from 'next/head';
@@ -11,6 +12,10 @@ import Layout from '../components/Layout';
 import { AppProvider } from '../components/AppProvider';
 import { SWRConfig } from 'swr';
 import fetchJson from '../lib/fetchJson';
+import '@fontsource/montserrat/400.css';
+import '@fontsource/montserrat/400-italic.css';
+import '@fontsource/montserrat/700.css';
+import '@fontsource/montserrat/700-italic.css';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -21,7 +26,7 @@ interface MyAppProps extends AppProps {
 }
 
 export default function MyApp(props: MyAppProps) {
-  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  const { Component, emotionCache = clientSideEmotionCache, ...pageProps } = props;
 
   return (
     <CacheProvider value={emotionCache}>
@@ -40,6 +45,7 @@ export default function MyApp(props: MyAppProps) {
           <AppProvider>
             <Layout>
               <CssBaseline />
+              {/* @ts-ignore */}
               <Component {...pageProps} />
             </Layout>
           </AppProvider>
