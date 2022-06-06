@@ -10,7 +10,7 @@ const Registry: NextPage = () =>
   <Container maxWidth="sm"><Typography variant="h2" sx={{marginTop}}>Wedding registry</Typography>
     <Paper sx={{p:'1rem', m: '1rem'}}>
       <Typography variant="h5">Our registry is shared between John Lewis, MADE and Etsy.</Typography><br />
-      <Typography>Note: Charlotte &amp; Shaun aren&apos;t currently living together and are yet to confirm whether their property will be furnished</Typography><br />
+      <Typography>If you select anything from MADE/Etsy, please inform us so that we can remove them from the list</Typography><br />
       <Typography variant="subtitle2">Click on the brand logos below to view registry items:</Typography>
       <List>
         <ListItem sx={{justifyContent: 'center'}}>
@@ -30,14 +30,17 @@ const Registry: NextPage = () =>
         </ListItem>
       </List>
       <Typography  sx={{textAlign: 'center', mb: '0.5rem'}} variant="h3">Gift address: <CopySelection copyText='Shaun and Charlotte, 33 Plough rise, RM14 1XR' /></Typography>
-      <Typography sx={{textAlign: 'center'}}>Charlotte &amp; Shaun</Typography>  
-      <Typography sx={{textAlign: 'center'}}>33 Plough rise</Typography>
-      <Typography sx={{textAlign: 'center'}}>RM14 1XR</Typography> <br/>
+      { (new Date()) < (new Date(2022, 5, 28)) ? <><Typography sx={{textAlign: 'center'}}>Charlotte &amp; Shaun</Typography>  
+        <Typography sx={{textAlign: 'center'}}>33 Plough rise</Typography>
+        <Typography sx={{textAlign: 'center'}}>RM14 1XR</Typography> <br/></>
+        : <><Typography sx={{textAlign: 'center'}}>Charlotte &amp; Shaun</Typography>  
+          <Typography sx={{textAlign: 'center'}}>Flat 4, 19 Blake Hall Road</Typography>
+          <Typography sx={{textAlign: 'center'}}>E11 2QQ</Typography> <br/></>}
 
       <Typography variant="h5">If you would like to give:</Typography> <br />
       <Typography sx={{textAlign: 'center'}}>Jeremy Gaisie / Charlotte Brown </Typography>
-      <Typography sx={{textAlign: 'center'}}>Account number: 07990032 <CopySelection copyText="07930032" /></Typography>
-      <Typography sx={{textAlign: 'center'}}>Sort code: 608371 <CopySelection copyText="608371" /></Typography>
+      <Typography sx={{textAlign: 'center'}}>Account number: 07930032<CopySelection copyText="07930032" /></Typography>
+      <Typography sx={{textAlign: 'center'}}>Sort code: 60-83-71<CopySelection copyText="608371" /></Typography>
     </Paper>
   </Container>;
 
