@@ -37,7 +37,7 @@ const Registry: NextPage = () =>
           <Typography sx={{textAlign: 'center'}}>Flat 4, 19 Blake Hall Road</Typography>
           <Typography sx={{textAlign: 'center'}}>E11 2QQ</Typography> <br/></>}
 
-      <Typography variant="h5">If you would like to give:</Typography> <br />
+      <Typography variant="h5" sx={{textAlign: 'center'}}>If you would like to give:</Typography> <br />
       <Typography sx={{textAlign: 'center'}}>Jeremy Gaisie / Charlotte Brown </Typography>
       <Typography sx={{textAlign: 'center'}}>Account number: 07930032<CopySelection copyText="07930032" /></Typography>
       <Typography sx={{textAlign: 'center'}}>Sort code: 60-83-71<CopySelection copyText="608371" /></Typography>

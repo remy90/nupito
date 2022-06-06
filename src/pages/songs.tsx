@@ -7,6 +7,7 @@ import {marginTop} from '../styles/sxConstants';
 const Hymns: NextPage = () => (
   <Container maxWidth="sm">
     <Typography variant="h2" sx={{marginTop}}>Songs of praise</Typography>
+    <Typography>coming soon...</Typography>
   </Container>
 );
 
