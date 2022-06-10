@@ -1,5 +1,5 @@
 import type React from 'react';
-import { Suspense, useContext, useEffect, useMemo } from 'react';
+import { useContext, useEffect, useMemo } from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -9,11 +9,8 @@ import { showAttendanceMessage, showMealSelection } from '../components/formSubm
 import { Sentry } from '../utils';
 import { GuestDocument } from '../components/Interfaces';
 import { MongoClient } from 'mongodb';
-import { CircularProgress} from '@mui/material';
 import fetchJson from '../lib/fetchJson';
 import useUser from '../lib/useUser';
-import Image from 'next/image';
-import { ImageContainer } from '../styled';
 
 const HomePage: NextPage<GuestDocument> = ({
   id,

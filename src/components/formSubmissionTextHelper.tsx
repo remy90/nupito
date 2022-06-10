@@ -14,8 +14,8 @@ export const showAttendanceMessage = (isAttending: boolean, hasPlusOne: boolean,
   }
   return isAttending
     ? <Box>
-      <Typography>We&apos;re glad you {hasPlusOne && !!plusOneFirstName ? `and ${plusOneFirstName}`: ''} are attending!</Typography>
-      <Typography>Your arrival time is: {isFed ? '11:30' : '18:30'}</Typography>
+      <Typography>We&apos;re glad you {hasPlusOne && !!plusOneFirstName ? `and ${plusOneFirstName}`: ''} are attending!</Typography><br />
+      <Typography variant="h3">Your arrival time is: <strong>{isFed ? '11:30' : '18:30'}</strong>, for our {isFed ? <>ceremony, wedding breakfast &amp; evening reception.</>: <>evening reception.</>}</Typography>
     </Box>
     : <Typography>We&apos;ll miss you!</Typography>;
 };
@@ -26,7 +26,7 @@ export const showMealSelection = (menuChoices: Menu, cuisine: CuisineType) => {
 
   return cuisine === 'euro' || cuisine === 'afro' ? (
     <Box>
-      <Typography variant="h2">From the food menu, you have chosen:</Typography>
+      <Typography variant="h3">From the food menu, you have chosen:</Typography>
       <List dense={true} sx={{ listStyleType: 'disc', margin: '1rem', padding: '0.4rem' }}>
         <Typography variant="h3" sx={{my: '1rem'}}>Starter</Typography>
         {
