@@ -28,6 +28,12 @@ const Registry: NextPage = () =>
             <Image style={{color: 'orange'}} src="/etsy.svg" height={120} width={180} />
           </a>
         </ListItem>
+        <ListItem sx={{justifyContent: 'center'}}>
+          <a target="_blank" href="https://www.zarahome.com/gb/wishlist/5a4825313032353433333930333733256162397133315a58386a57704b72774853534c4f675a59596d474139503874754b42394e67784a4c42696f3d" rel="noopener noreferrer">
+            <Image style={{color: 'orange'}} src="/ZH.svg" height={120} width={180} />
+          </a>
+        </ListItem>
+        
       </List>
       <Typography  sx={{textAlign: 'center', mb: '0.5rem'}} variant="h3">Gift address: <CopySelection copyText='Shaun and Charlotte, 33 Plough rise, RM14 1XR' /></Typography>
       { (new Date()) < (new Date(2022, 5, 28)) ? <><Typography sx={{textAlign: 'center'}}>Charlotte &amp; Shaun</Typography>  
