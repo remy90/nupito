@@ -9,7 +9,7 @@ export const showAttendanceMessage = (isAttending: boolean, hasPlusOne: boolean,
 
   if (isAttending === undefined || isAttending === null) { // not false
     return (
-      <Typography>Head over to the <Link href="/rsvp">RSVP page</Link> to let us know if you can make it. The option to respond will be removed on Monday 11th July.</Typography>
+      <Typography>Head over to the <Link href="/rsvp">RSVP page</Link> to let us know if you can make it. The option to respond will be removed on 22nd July.</Typography>
     );
   }
   return isAttending
