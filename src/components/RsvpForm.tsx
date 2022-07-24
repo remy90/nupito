@@ -55,7 +55,13 @@ export default function Form() {
     }
 
     try {
-      const result = await persistGuestAttendance({...data, id: state.guest.id, dateUpdated: new Date().toISOString()}, '/api/guestUpdate');
+      const result = await persistGuestAttendance({
+        ...data,
+        id: state.guest.id,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore 
+        isAttending: data.isAttending === 1,
+        dateUpdated: new Date().toISOString()}, '/api/guestUpdate');
       dispatchGuest(data);
       localStorage.setItem('shaun_char_guest_2022', JSON.stringify(state));
 

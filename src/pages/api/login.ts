@@ -15,7 +15,9 @@ async function loginRoute(req: NextApiRequest, res: NextApiResponse) {
       req?.session?.destroy();
       return res.status(404).json({ isLoggedIn: false, id: '', message: 'User not found' });
     }
-    const user = { isLoggedIn: true, id: result.id } as User;
+
+    const admins = process.env.ADMINS?.split(',') ?? [''];
+    const user = { isLoggedIn: true, id: result.id, admin: admins.includes(result.id) } as User;
     req.session.user = user;
     await req.session.save();
     return res.json(user);
