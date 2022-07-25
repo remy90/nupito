@@ -137,7 +137,7 @@ export default function Form() {
           errors={errors}
           onChange={handleAttendanceChange}
           register={register}
-          defaultValue={state.guest?.isAttending}
+          defaultValue={state.guest?.isAttending ? 1 : 0}
         />
         <EmailFormField
           inputName="emailAddress"
@@ -150,12 +150,12 @@ export default function Form() {
         {((isAttending && state?.guest.isFed)) &&
           <DietPreferenceField errors={errors} onChange={handleDietChange} register={register} defaultValue={state.guest.diet}/>} 
       
-        {showCuisineType && <CuisineTypeOptions
+        {(state?.guest?.isFed ?? false) && showCuisineType && <CuisineTypeOptions
           control={control}
           defaultValues={state?.guest?.cuisine}
           handleCuisineChange={handleCuisineChange}
         />}
-        {diet !== 'NoFood' &&
+        {(state?.guest?.isFed ?? false) && diet !== 'NoFood' &&
           <MenuForm
             control={control}
             defaultValues={state.guest}
