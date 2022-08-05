@@ -134,7 +134,6 @@ export const getServerSideProps = withIronSessionSsr(
       };
     }
 
-
     const client = new MongoClient(process.env.MONGODB_URI!);
 
     await client.connect();
@@ -147,7 +146,7 @@ export const getServerSideProps = withIronSessionSsr(
       firstName: x?.firstName,
       lastName: x?.lastName ?? '',
       isAttending: x?.isAttending ?? null,
-      isFed: x.isFed,
+      isFed: x.isFed ?? null,
       cuisine: x?.cuisine ?? null,
       menu: x?.menu ?? {}
     }));
