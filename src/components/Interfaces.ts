@@ -19,6 +19,7 @@ export type GuestDocument = {
   menu: Menu;
   diet: DietType;
   guestName: string;
+  tableNo: number;
 }
 export type InputType = 'firstName' | 'lastName';
 export type RsvpData = { guest: GuestDocument, plusOne: GuestDocument };

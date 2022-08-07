@@ -39,6 +39,9 @@ export default function ButtonAppBar() {
             {user?.isLoggedIn && user?.admin &&
               <MenuItem onClick={handleClose}><Link href={'/admin/'}  sx={{width: '100%'}} color="secondary">Admin</Link></MenuItem>
             }
+            {user?.isLoggedIn && user?.admin &&
+              <MenuItem onClick={handleClose}><Link href={'/admin/guestMealSelection/'}  sx={{width: '100%'}} color="secondary">[Admin] Guest meal choices</Link></MenuItem>
+            }
             <MenuItem onClick={handleClose}><Link href={'/'}  sx={{width: '100%', height: '100%'}} color="secondary">Home</Link></MenuItem>
             {user?.isLoggedIn && (state?.guest?.isAttending !== false) &&
               <MenuItem onClick={handleClose}><Link href={'/rsvp/'}  sx={{width: '100%'}} color="secondary">RSVP</Link></MenuItem>

@@ -23,7 +23,8 @@ const HomePage: NextPage<GuestDocument> = ({
   isPlusOne,
   cuisine,
   menu,
-  guestName
+  guestName,
+  tableNo
 }: GuestDocument) => {
   const { dispatch, state } = useContext(AppContext);
   const {mutateUser} = useUser();
@@ -64,10 +65,14 @@ const HomePage: NextPage<GuestDocument> = ({
             ? <Typography variant="h4" gutterBottom>
               Welcome {firstName}, to our wedding guest app ✨
             </Typography>
-            : <Typography>Hi, {firstName}.</Typography>
+            : <Typography variant="h2">Hi, {firstName}.</Typography>
           }
+
           {memoizedAttendanceMessage}
+          {isAttending && <Typography sx={{mt: '1rem'}}>Please be aware: there is a rail strike on the day so be mindful of extra traffic on the roads for your journey to the venue</Typography>}
         </Box>
+        {isAttending && isFed && <Typography>You are on <strong>{tableNo === 0 ? 'the head table' : `table ${tableNo}`}</strong></Typography>}
+        {['afro', 'euro'].includes(cuisine) && <Typography variant="h3" sx={{mt: '1rem'}}>From the food menu, you have chosen:</Typography>}
         {isAttending && isFed && memoizedMealSelection}
       </Box>
     </Container>

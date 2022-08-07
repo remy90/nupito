@@ -24,9 +24,8 @@ export const showMealSelection = (menuChoices: Menu, cuisine: CuisineType) => {
   const afroMains = cuisine === 'afro' && afroMenuMains.filter(x => menuChoices[x.key]);
   const afroStarters = cuisine === 'afro' && afroMenuStarters.filter(x => menuChoices[x.key]);
 
-  return cuisine === 'euro' || cuisine === 'afro' ? (
+  return ['afro', 'euro'].includes(cuisine) ? (
     <Box>
-      <Typography variant="h3">From the food menu, you have chosen:</Typography>
       <List dense={true} sx={{ listStyleType: 'disc', margin: '1rem', padding: '0.4rem' }}>
         <Typography variant="h3" sx={{my: '1rem'}}>Starter</Typography>
         {

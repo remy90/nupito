@@ -34,7 +34,8 @@ const initialGuest: GuestDocument = {
   menu: initialMenu,
   cuisine: 'euro',
   diet: 'Meat',
-  guestName: ''
+  guestName: '',
+  tableNo: 13
 };
 
 export const initialState: RsvpData = {

@@ -29,8 +29,7 @@ export const CuisineTypeOptions = ({defaultValues = 'euro', control, handleCuisi
               value={'afro'}
               control={<Radio />}
               label="West African 🇳🇬"
-              // onClick={() => handleCuisineChange('afro')}
-              disabled
+              onClick={() => handleCuisineChange('afro')}
             />
           </RadioGroup>}
       />

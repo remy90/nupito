@@ -6,7 +6,7 @@ import { MongoClient } from 'mongodb';
 import { Box, Container, Divider, Paper, Typography } from '@mui/material';
 import { marginTop } from 'src/styles/sxConstants';
 
-interface IAdmin {
+export interface IAdmin {
   guests: GuestDocument[];
   user: User | undefined;
 }
