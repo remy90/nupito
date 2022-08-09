@@ -82,7 +82,7 @@ export const getServerSideProps = withIronSessionSsr(
       lastName: x?.lastName ?? '',
       cuisine: x?.cuisine ?? null,
       menu: x?.menu ?? {},
-      tableNo: x?.tableNo ?? 13
+      tableNo: x?.tableNo ?? 15
     }));
 
     return {

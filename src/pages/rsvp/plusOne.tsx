@@ -84,7 +84,13 @@ export default function plusOne() {
   };
 
   const dispatchGuest = (value: GuestDocument) =>
-    dispatch({ type: 'SUBMIT_PLUS_ONE_RSVP', value });
+    dispatch({
+      type: 'SUBMIT_PLUS_ONE_RSVP', value: {
+        ...value,
+        dateUpdated: new Date().toISOString(),
+        tableNo: state.guest.tableNo
+      } 
+    });
 
   const handleBackClick = () => {
     dispatchGuest(getValues());
@@ -105,7 +111,8 @@ export default function plusOne() {
       isPlusOne: true,
       hasPlusOne: false,
       isAttending: true,
-      dateUpdated: new Date().toISOString()
+      dateUpdated: new Date().toISOString(),
+      tableNo: state.guest.tableNo
     };
     return d;
   };
@@ -127,6 +134,7 @@ export default function plusOne() {
         isAttending: true,
         isFed: state.guest.isFed,
         hasPlusOne: false,
+        tableNo: state.guest?.tableNo ?? 15
       };
       const result = await persistGuestAttendance({
         ...plusOneData,

@@ -58,10 +58,9 @@ export default function Form() {
       const result = await persistGuestAttendance({
         ...data,
         id: state.guest.id,
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore 
-        isAttending: data.isAttending === 1,
-        dateUpdated: new Date().toISOString()}, '/api/guestUpdate');
+        dateUpdated: new Date().toISOString()
+      },
+      '/api/guestUpdate');
       dispatchGuest(data);
       localStorage.setItem('shaun_char_guest_2022', JSON.stringify(state));
 
@@ -132,12 +131,12 @@ export default function Form() {
 
   return (
     <Paper style={{height: '100%'}}>
-      <form onSubmit={handleSubmit(onSubmit)} id="guestForm" style={{padding: '1rem'}}>
+      <form /*onSubmit={handleSubmit(onSubmit)}*/ id="guestForm" style={{padding: '1rem'}}>
         <AttendanceField
           errors={errors}
           onChange={handleAttendanceChange}
           register={register}
-          defaultValue={state.guest?.isAttending ? 1 : 0}
+          defaultValue={state.guest?.isAttending}
         />
         <EmailFormField
           inputName="emailAddress"

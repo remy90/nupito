@@ -23,13 +23,15 @@ export const CuisineTypeOptions = ({defaultValues = 'euro', control, handleCuisi
               value={'euro'}
               control={<Radio />}
               label="European"
-              onClick={() => handleCuisineChange('euro')}
+              // onClick={() => handleCuisineChange('euro')}
+              disabled
             />
             <FormControlLabel
               value={'afro'}
               control={<Radio />}
               label="West African 🇳🇬"
-              onClick={() => handleCuisineChange('afro')}
+              disabled
+              // onClick={() => handleCuisineChange('afro')}
             />
           </RadioGroup>}
       />
