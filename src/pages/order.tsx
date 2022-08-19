@@ -12,7 +12,7 @@ const Order = () => {
     <Container maxWidth="sm">
       <Typography variant="h2" sx={{marginTop}}>Order of service</Typography>
       <Paper><Timeline>
-        <TimelineElement name="Procession - bridal party - 12:00" />
+        <TimelineElement name="Entrance of the Bride" />
         <TimelineElement name="Welcome &amp; prayer" />
         <TimelineElement name="Declatory &amp; contracting words" />
         <TimelineElement name="Scripture recital" />
@@ -22,6 +22,7 @@ const Order = () => {
         <TimelineElement name="Vows" />
         <TimelineElement name="Ring exchange" isLast/>
       </Timeline>
+      
       </Paper>
     </Container>
   );

@@ -11,6 +11,7 @@ import { GuestDocument } from '../components/Interfaces';
 import { MongoClient } from 'mongodb';
 import fetchJson from '../lib/fetchJson';
 import useUser from '../lib/useUser';
+import { Paper } from '@mui/material';
 
 const HomePage: NextPage<GuestDocument> = ({
   id,
@@ -69,9 +70,26 @@ const HomePage: NextPage<GuestDocument> = ({
           }
 
           {memoizedAttendanceMessage}
-          {isAttending && <Typography sx={{mt: '1rem'}}>Please be aware: there is a rail strike on the day so be mindful of extra traffic on the roads for your journey to the venue</Typography>}
         </Box>
         {isAttending && isFed && <Typography>You are on <strong>{tableNo === 0 ? 'the head table' : `table ${tableNo}`}</strong></Typography>}
+
+        {isAttending && <Paper sx={{p: '2rem', mt: '1rem' }}>
+          <Typography sx={{mt: '1rem'}}>Please be aware, there is a <strong>rail strike</strong> on the day so be mindful of extra traffic on the roads for your journey to the venue. National express coaches will still be operating between London and Stansted. Click <a href="https://www.nationalexpress.com/en/help/live-service-updates">here for more info</a></Typography>
+          <Typography sx={{mt: '1rem'}}>There are no restrictions on parking timings at the venue</Typography>
+          <Typography sx={{mt: '1rem'}}>If you are able to offer a lift home to any of our guests tonight, please <strong>let one of the groomsmen know</strong> and we will try to connect based on the end destination</Typography>
+          <Typography sx={{mt: '1rem'}}>Here is a list of local taxi firms:</Typography>
+          <ul>
+            <li><a href="https://www.uber.com/gb/en/" target="_blank" rel="noopener noreferrer">Uber</a></li>
+            <li>Dunmow Cab company: <a href="tel:01371 869060">01371 869060</a></li> 
+            <li>Pasha Taxis - Dunmow Taxi Service: <a href="tel:01371868128">01371868128</a> or <a href="tel:07940964194">07940964194</a></li> 
+            <li>Phoenix Cars Dunmow: <a href="tel:01371 502007">01371 502007</a></li> 
+            <li>Easton Lite Cars Dunmow: <a href="tel:01371 875155">01371 875155</a></li>  
+            <li>Great Dunmow Taxis: <a href="tel:01279 755300">01279 755300</a></li>  
+            <li>ECL Minicab Services: <a href="tel:01371267267">01371267267</a></li>  
+            <li>MO Taxis Braintree: <a href="tel:07908 051422">07908 051422</a></li>  
+            <li>Stansted Airport Taxi: <a href="tel:01279 216222">01279 216222</a></li>  
+          </ul>
+        </Paper>}
         {['afro', 'euro'].includes(cuisine) && <Typography variant="h3" sx={{mt: '1rem'}}>From the food menu, you have chosen:</Typography>}
         {isAttending && isFed && memoizedMealSelection}
       </Box>

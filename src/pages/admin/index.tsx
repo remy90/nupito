@@ -51,7 +51,7 @@ export const Admin = ({ user, guests }: IAdmin) => {
       <Paper sx={{px: '2rem'}}>
         <Box sx={{mx: '2rem'}}>
           <Typography sx={{marginTop, px: '0.5rem'}} variant="h2">Admin details</Typography>
-          <Typography sx={{px: '0.5rem'}}>Total guests attending: <strong>{guests.length}</strong></Typography>
+          <Typography sx={{px: '0.5rem'}}>Total guests attending: <strong>{guests.filter(guest => guest.isAttending).length}</strong></Typography>
           <Typography sx={{px: '0.5rem'}}>Number of fed guests: <strong>{fedGuests.length}</strong></Typography>
           <Divider />
           <Box>
